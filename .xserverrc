@@ -1,0 +1,15 @@
+#!/bin/sh
+
+OPTS=
+
+# Sets the keyboard repeat delay to 200ms
+OPTS+="-ardelay 200 "
+# Sets the keyboard repeat period to 17ms, or roughly 60Hz
+OPTS+="-arinterval 17 "
+# We can also, when the X server has started, run this command:
+# xset r rate 200 60
+
+#exec /usr/bin/X -nolisten tcp "${OPTS}" "$@"
+#exec /usr/bin/X "${OPTS}" -nolisten tcp "$@"
+#exec /usr/bin/X -nolisten tcp -ardelay=200 arinterval=17 "$@"
+exec /usr/bin/X -nolisten tcp "$@"

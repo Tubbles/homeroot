@@ -1,0 +1,8 @@
+[user]
+    name = Tubbles
+    email = jae91m@gmail.com
+[core]
+    editor = vim
+    excludesfile = $HOME/.gitignore_global
+[push]
+    default = simple
