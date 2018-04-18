@@ -16,4 +16,5 @@ alias path='env | grep -E "^PATH=" | tr ":" "\n" | sed "s/PATH=//g"'
 alias less='less -r'
 alias dog='highlight --force -O xterm256'
 alias reload="test -r $HOME/.bashrc && . $HOME/.bashrc"
+alias screenshot='import -window root'
 
