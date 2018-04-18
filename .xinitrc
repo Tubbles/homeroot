@@ -33,4 +33,5 @@ fi
 
 twm &
 
+setxkbmap -layout us -variant alt-intl-unicode
 exec i3
