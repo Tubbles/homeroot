@@ -9,7 +9,7 @@
 test -r ${HOME}/.git-completion.bash && . ${HOME}/.git-completion.bash
 test -r ${HOME}/.git-prompt.sh && . ${HOME}/.git-prompt.sh
 
-export PS1='\[\e[37m\][$?] `date +%y%m%d-%H%M%S`\n\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]$MSYSTEM\[\e[0m\] \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n\$ '
+export PS1='\[\e[37m\][$?] `date +%y%m%d-%H%M%S`\n\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]${MSYSTEM:+${MSYSTEM} }\[\e[0m\]\[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n\$ '
 
 alias ls='LC_COLLATE=C ls -Fq --color --group-directories-first'
 alias l='ls -lh --time-style=+%y%m%d-%H%M%S'

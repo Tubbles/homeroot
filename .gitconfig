@@ -6,3 +6,6 @@
     excludesfile = $HOME/.gitignore_global
 [push]
     default = simple
+[alias]
+    lol = log --oneline --all --graph
+
