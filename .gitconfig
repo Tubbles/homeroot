@@ -7,5 +7,22 @@
 [push]
     default = simple
 [alias]
-    lol = log --oneline --all --graph
-
+    lol =  log --graph --all --format='%C(yellow)%h %C(auto)%d %Creset%<(80,trunc)%s'
+    lola = log --graph --all --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(auto)%d %Creset%<(80,trunc)%s'
+    lold = log --graph --all --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(red)%ad %C(auto)%d %Creset%<(80,trunc)%s' --date=iso
+    jshow = show --name-only
+    readd = !git status --porcelain | grep ^[MARC][MD] | cut -c 4- | tee /dev/tty | xargs git add 2>&1 | sed -E '/.*(Nothing|Maybe).*/d'
+    rediff = !git status --porcelain | grep ^[MARC][MD] | cut -c 4- | xargs git diff
+    drop = !git status --porcelain | grep '^[MARCD ][MD]' | cut -c 4- | xargs git checkout
+    back = !git show --name-status HEAD..origin/HEAD --pretty="" | sort | uniq
+    ll = status --porcelain --ignored
+[color "status"]
+    untracked = magenta
+    changed = cyan
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
