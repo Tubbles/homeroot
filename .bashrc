@@ -14,14 +14,17 @@ export PS1='\[\e[37m\][$?] `date +%y%m%d-%H%M%S`\n\[\e]0;\w\a\]\n\[\e[32m\]\u@\h
 alias ls='LC_COLLATE=C ls -Fq --color --group-directories-first'
 alias l='ls -lh --time-style=+%y%m%d-%H%M%S'
 alias ll='l -A'
+alias lm='ll -ct'
 alias path='echo $PATH | tr ":" "\n"'
 alias less='less -r'
 alias grep='grep --color=always'
 alias dog='highlight --force -O xterm256'
 alias reload="test -r ${HOME}/.bashrc && . ${HOME}/.bashrc"
-alias screenshot='import -window root'
+#alias screenshot='import -window root'
+alias screenshot="import -window root ${HOME}/tmp/prtsc_"'$(date +%y%m%d_%H%M%S_%N)'
 alias btphones="echo -e 'power on\nconnect 28:9A:4B:20:07:16\nquit' | bluetoothctl"
 alias tmux='tmux -2'
+alias vlc='QT_AUTO_SCREEN_SCALE_FACTOR=0 vlc'
 
 #highlight () { grep --color -E "$1|$" "${@:2}" ;  }
 
