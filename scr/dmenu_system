@@ -1,0 +1,45 @@
+#!/bin/sh
+
+o_lock="lock"
+o_exit="exit"
+o_suspend="suspend"
+o_reboot="reboot"
+o_shutdown="shutdown"
+
+options="${o_lock}
+${o_exit}
+${o_suspend}
+${o_reboot}
+${o_shutdown}
+"
+
+if [[ -z "$1" ]] ; then
+    res="$(echo -e "${options}" | dmenu -i -p "system")"
+else
+    res="$1"
+fi
+
+lock() {
+    i3lock --color=000000
+}
+
+case "${res}" in
+    "${o_lock}")
+        lock
+        ;;
+    "${o_exit}")
+        i3-msg exit
+        ;;
+    "${o_suspend}")
+        lock && systemctl suspend
+        ;;
+    "${o_reboot}")
+        systemctl reboot
+        ;;
+    "${o_shutdown}")
+        systemctl poweroff
+        ;;
+    *)
+        exit 1
+        ;;
+esac

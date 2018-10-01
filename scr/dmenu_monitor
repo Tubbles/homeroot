@@ -1,0 +1,38 @@
+#!/bin/bash
+
+o_reset="reset"
+o_duplicate="duplicate"
+o_extend="extend"
+
+options="${o_reset}
+${o_duplicate}
+${o_extend}
+"
+
+if [[ -z "$1" ]] ; then
+    res="$(echo -e "${options}" | dmenu -i -p "monitor")"
+else
+    res="$1"
+fi
+
+case "${res}" in
+    "${o_reset}")
+        xrandr --output HDMI1 --off
+        xrandr --output eDP1 --scale 1x1
+        ;;
+    "${o_duplicate}")
+        xrandr --output eDP1 --scale 1x1
+        xrandr --output HDMI1 --auto --same-as eDP1
+        ;;
+    "${o_extend}")
+        # Set zoom level
+        xrandr --output eDP1 --scale 0.8x.8
+        xrandr --output HDMI1 --auto --right-of eDP1
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
+# Fix wallpaper
+feh --bg-scale $HOME/pic/wallpaper
