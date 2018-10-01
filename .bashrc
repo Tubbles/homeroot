@@ -13,8 +13,9 @@ export PS1='\[\e[37m\][$?] `date +%y%m%d-%H%M%S`\n\[\e]0;\w\a\]\n\[\e[32m\]\u@\h
 
 alias ls='LC_COLLATE=C ls -bF --color --group-directories-first'
 alias l='ls -hl --time-style=+%y%m%d-%H%M%S'
+alias lm='l -ct'
 alias ll='l -A'
-alias lm='ll -ct'
+alias llm='ll -ct'
 alias path='echo $PATH | tr ":" "\n"'
 alias less='less -r'
 alias grep='grep --color=always'
