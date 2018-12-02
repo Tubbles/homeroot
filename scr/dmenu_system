@@ -31,7 +31,7 @@ case "${res}" in
         i3-msg exit
         ;;
     "${o_suspend}")
-        lock && systemctl suspend
+        lock && sleep 0.1 && systemctl suspend
         ;;
     "${o_reboot}")
         systemctl reboot
