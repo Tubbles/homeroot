@@ -1,0 +1,26 @@
+#!/bin/bash
+
+o_steam="com.valvesoftware.Steam"
+
+options="${o_steam}
+"
+
+if [[ -z "$1" ]] ; then
+    res="$(echo -e "${options}" | dmenu -i -p "flapak run")"
+    ret=$?
+else
+    res="$1"
+fi
+
+if [[ $ret != 0 ]] ; then
+    exit $ret
+fi
+
+case "${res}" in
+    "${o_steam}")
+        flatpak run com.valvesoftware.Steam
+        ;;
+    *)
+        exit 1
+        ;;
+esac

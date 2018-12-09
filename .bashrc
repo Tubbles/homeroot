@@ -30,3 +30,6 @@ alias jgrep='find . -type f -print0 | xargs -0 grep -nE'
 
 #highlight () { grep --color -E "$1|$" "${@:2}" ;  }
 
+# Start startx automatically on logon
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+

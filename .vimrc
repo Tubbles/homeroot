@@ -102,3 +102,8 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 
+" Set up 4 spaces instead of tab character
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+" Line number
+set number

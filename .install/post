@@ -1,0 +1,116 @@
+#!/bin/bash
+
+# # After installing grub and microcode updates, before leaving chroot, we need to fix wireless (if needed)
+# pacman -S wpa_supplicant iw
+# export if="$(iw dev | grep Interface | awk '{print $2}')"
+# wpa_passphrase Monkey_Business_5G > /etc/wpa_supplicant/wpa_supplicant-$if.conf
+# # Remove the clear text psk
+# sed -i '/#psk/d' /etc/wpa_supplicant/wpa_supplicant-$if.conf 
+# # Create a new user
+# useradd -m monkey
+# passwd monkey
+# # Add the user to sudoers
+# visudo
+
+# # Leave chroot, restart the system, unplug the live usb, and log in with the newly created user
+# # Set up wifi
+# sudo systemctl enable --now dhcpcd wpa_supplicant@"$(iw dev | grep Interface | awk '{print $2}')"
+# # Wait for wifi to start, then install git
+# sudo pacman -S git ssh
+# # Now fetch the repo that contains this install script, and then run it
+# cd ; git init ; git remote add origin git@github.com:Tubbles/homeroot.git && git pull origin master
+# # After that, we can run this script
+# cd ; ./.install/post
+# # Alternatively, to install everything do
+# cd ; auto_prompt=yes ./.install/post
+
+mydir="$(dirname "$(realpath "$0")")"
+
+# Possible values for auto_prompt are 'yes' and 'no'
+#auto_prompt=yes
+#auto_prompt=no
+
+prompt() {
+    if [[ $auto_prompt = "yes" ]] ; then
+        res=y
+        echo "${1:-Are you sure?} [y/N] $res"
+    elif [[ $auto_prompt = "no" ]] ; then
+        res=n
+        echo "${1:-Are you sure?} [y/N] $res"
+    else
+        read -r -p "${1:-Are you sure?} [y/N] " res
+        res=${res,,} # tolower
+    fi
+    if [[ "$res" =~ ^y ]] ; then
+        true
+    else
+        false
+    fi
+}
+
+# Full system update
+if prompt "Do full system update?" ; then
+    ( set -x ; sudo pacman -Syuu )
+fi
+
+# sshd
+if prompt "Enable and start sshd?" ; then
+    ( set -x ; sudo systemctl enable --now sshd )
+fi
+
+# basic
+if prompt "Install basic packages?" ; then
+    ( set -x ; sudo pacman --needed -S $(cat $mydir/basic-packages) )
+fi
+
+# tools
+for tool in $(cat $mydir/tools-packages) ; do
+    if prompt "Install $tool?" ; then
+        ( set -x ; sudo pacman -S --needed $tool )
+    fi
+done
+
+# Get yay, https://aur.archlinux.org/packages/yay/
+if prompt "Install yay?" ; then
+    set -x
+    cd /tmp
+    rm -rf /tmp/yay
+    curl -sO https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
+    sudo tar -xvf yay.tar.gz &>/dev/null
+    cd yay
+    makepkg -si
+    cd /tmp
+    set +x
+fi
+
+# aur
+if [[ ! -f /usr/bin/yay ]] ; then
+    echo -e "yay needed for AUR packages"
+else
+    for tool in $(cat $mydir/aur-packages) ; do
+        if prompt "Install $tool from AUR?" ; then
+            ( set -x ; yay -S --needed $tool )
+        fi
+    done
+fi
+
+# kbd speed on boot
+if prompt "Set kbd speed on boot?" ; then
+    ( set -x ; sudo mkdir -p /etc/X11/xinit/xinitrc.d/ && sudo cp $mydir/90-keyboard-speed.sh /etc/X11/xinit/xinitrc.d/ )
+fi
+
+# Get tubbles st
+
+# Set up firefox plugin settings
+
+
+# Themes
+# https://github.com/NicoHood/arc-theme
+# Papirus
+# They /should/ be included in the git repo, as gtk rc files
+
+# After this, run lxappearance
+if prompt "Run LXAppearance now?" ; then
+    lxappearance
+fi
+

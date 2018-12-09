@@ -34,4 +34,9 @@ fi
 twm &
 
 setxkbmap -layout us -variant alt-intl-unicode
+
+# Unset the screen saving settings
+xset -dpms
+xset s off
+
 exec i3
