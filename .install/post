@@ -53,6 +53,11 @@ if prompt "Do full system update?" ; then
     ( set -x ; sudo pacman -Syuu )
 fi
 
+# NTP Clock
+if prompt "Activate NTP?" ; then
+    ( set -x ; sudo systemctl enable --now systemd-timesyncd )
+fi
+
 # sshd
 if prompt "Enable and start sshd?" ; then
     ( set -x ; sudo systemctl enable --now sshd )

@@ -45,7 +45,7 @@ conky.text = [[
     { "full_text": "${execi 5 iw dev | grep ssid | awk '{print $2}'} ${gw_ip}" , "color": "\#f3f4f5" },
     { "full_text": " ${texeci 60 curl icanhazip.com}" , "color": "\#f3f4f5" },
     { "full_text": " ${loadavg 1} (${freq_g}Ghz)" , "color": "\#f3f4f5" },
-    { "full_text": ${if_empty ${battery_short}}""${else}"${battery_short}(${battery_time})"${endif} , "color": "\#f3f4f5" },
+    { "full_text": ${if_empty ${battery_short}}""${else}" ${battery_short}(${battery_time})"${endif} , "color": "\#f3f4f5" },
     { "full_text": "${time}" , "color": "\#f3f4f5" }
 ],
 ]];
