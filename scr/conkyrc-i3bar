@@ -35,7 +35,7 @@ conky.config = {
 
 conky.text = [[
 [
-    { "full_text": "CPU ${execi 2 sensors | grep Tdie | awk '{print $2}' | tr -d '+'}" , "color": "\#f3f4f5" },
+    { "full_text": "CPU ${execi 2 sensors | grep -e Tdie -e temp1 | tail -n 1 | awk '{print $2}' | tr -d '+'}" , "color": "\#f3f4f5" },
     { "full_text": "GPU ${execi 2 nvidia-smi dmon -s p -c 1 -i 0 | grep -v '#' | awk '{print $3}'}°C" , "color": "\#f3f4f5" },
     { "full_text": "  ${fs_free /}" , "color": "\#f3f4f5" },
     { "full_text": "RAM ${memperc}%" , "color": ${if_match ${memperc}<90}"\#f3f4f5"${else}"\#ff0000"${endif} },
