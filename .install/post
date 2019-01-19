@@ -99,10 +99,11 @@ else
     done
 fi
 
+# Moved to 'reset_input.sh'
 # kbd speed on boot
-if prompt "Set kbd speed on boot?" ; then
-    ( set -x ; sudo mkdir -p /etc/X11/xinit/xinitrc.d/ && sudo cp $mydir/90-keyboard-speed.sh /etc/X11/xinit/xinitrc.d/ )
-fi
+#if prompt "Set kbd speed on boot?" ; then
+#    ( set -x ; sudo mkdir -p /etc/X11/xinit/xinitrc.d/ && sudo cp $mydir/90-keyboard-speed.sh /etc/X11/xinit/xinitrc.d/ )
+#fi
 
 # Get tubbles st
 
