@@ -21,7 +21,8 @@ if [[ -n "$(command -v xinput)" ]] ; then
         xinp-set ${tpid} 287 1
         # Do not disable while typing
         xinp-set ${tpid} 301 0
-        # Set the click method
+        # Set the click method to be the number of fingers determine the click type
+        # This means that right click is only possible via tapping two fingers on the touchpad
         xinp-set ${tpid} 307 "{0 1}"
         # Tapping button mapping
         #xinp-set ${tpid} 299 {1 1}
