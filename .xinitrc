@@ -31,12 +31,21 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     unset f
 fi
 
-twm &
+#twm &
 
 setxkbmap -layout us -variant alt-intl-unicode
 
 # Unset the screen saving settings
 xset -dpms
 xset s off
+
+if [[ -x "${HOME}/.install/reset_input.sh" ]] ; then
+    "${HOME}/.install/reset_input.sh"
+fi
+
+if [[ -n "$(command -v libinput-gestures-setup)" ]] ; then
+    # Start the touchpad gesture daemon
+    libinput-gestures-setup start
+fi
 
 exec i3

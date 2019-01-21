@@ -107,3 +107,7 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " Line number
 set number
+
+" Disable mouse
+set mouse-=a
+
