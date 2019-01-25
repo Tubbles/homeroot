@@ -110,6 +110,13 @@ fi
 # Set up firefox plugin settings
 # When the firefox profile has been set up, remember to copy the folder .install/chrome/
 # to the ~/.mozilla/firefox/<profile>.default/ directory
+# Also remember to change vimium settings:
+# Ekybindings are as follows:
+# # Fix the tab navigation
+# unmap J
+# unmap K
+# map J nextTab
+# map K previousTab
 
 # Reindex the applications directory
 if prompt "Reindex the .local/share/applications/ folder?" ; then
