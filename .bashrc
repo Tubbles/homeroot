@@ -5,6 +5,28 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Find our system
+if [[ -z "${MSYSTEM}" ]] ; then
+    case "$(uname -o)" in
+        "GNU/Linux")
+            case "$(cat /etc/*-release | grep ^NAME | awk -F'[="]' '{print $3}')" in
+                "Arch Linux")
+                    MSYSTEM="Arch_Linux"
+                    ;;
+                "Raspbian GNU/Linux")
+                    MSYSTEM="Raspbian_GNU_Linux"
+                    ;;
+                *)
+                    echo -e "Warning: Unknown linux system"
+                    ;;
+            esac
+            ;;
+        *)
+            echo -e "Warning: Unknown system"
+            ;;
+    esac
+fi
+
 # Read in git specific scripts
 test -r ${HOME}/.git-completion.bash && . ${HOME}/.git-completion.bash
 test -r ${HOME}/.git-prompt.sh && . ${HOME}/.git-prompt.sh
@@ -32,4 +54,9 @@ alias jgrep='find . -type f -print0 | xargs -0 grep -nE'
 
 # Start startx automatically on logon
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+
+# Now load system specific files
+file="${HOME}/.config/bashrc.d/os_name_${MSYSTEM}"
+test -r ${file} && . ${file}
+unset file
 
