@@ -2,8 +2,7 @@
 
 o_steam="com.valvesoftware.Steam"
 
-options="${o_steam}
-"
+options="${o_steam}"
 
 if [[ -z "$1" ]] ; then
     res="$(echo -e "${options}" | dmenu -i -p "flapak run")"

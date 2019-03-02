@@ -10,8 +10,7 @@ options="${o_lock}
 ${o_exit}
 ${o_suspend}
 ${o_reboot}
-${o_shutdown}
-"
+${o_shutdown}"
 
 if [[ -z "$1" ]] ; then
     res="$(echo -e "${options}" | dmenu -i -p "system")"
