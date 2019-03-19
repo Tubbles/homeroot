@@ -26,7 +26,7 @@ setw -g window-status-fg "colour30"
 
 setw -g window-status-current-fg white
 setw -g window-status-current-bg "colour239"
-setw -g window-status-current-format " #I:#W "
+setw -g window-status-current-format "#{?window_zoomed_flag,#[fg=red](#[fg=default], }#I:#W#{?window_zoomed_flag,#[fg=red])#[fg=default], }"
 
 setw -g window-status-bell-fg "colour9"
 setw -g window-status-activity-fg yellow
