@@ -16,7 +16,9 @@ if v:progname =~? "evim"
 endif
 
 " Get the defaults that most users want.
-source $VIMRUNTIME/defaults.vim
+if filereadable("$VIMRUNTIME/defaults.vim")
+  source $VIMRUNTIME/defaults.vim
+endif
 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
@@ -99,8 +101,13 @@ endif " has("autocmd")
 " The ! means the package won't be loaded right away but when plugins are
 " loaded during initialization.
 if has('syntax') && has('eval')
-  packadd! matchit
+  if exists("packadd")
+    packadd! matchit
+  endif
 endif
+
+" Always be in paste mode
+set paste
 
 " Set up 4 spaces instead of tab character
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -108,6 +115,14 @@ set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 " Line number
 set number
 
+" 80 cols marker
+set colorcolumn=80
+
+" Activate syntax highlightning
+syntax on
+
 " Disable mouse
 set mouse-=a
 
+" Debug message
+":echom "~/.vimrc loaded"
