@@ -236,6 +236,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 
 # Print screen
 bindsym Print exec import -window root ${HOME}/tmp/prtsc_$(date +%y%m%d_%H%M%S_%N).png
+bindsym shift+Print exec import ${HOME}/tmp/prtsc_$(date +%y%m%d_%H%M%S_%N).png
 
 # Move workspace to next screen (xrandr output)
 bindsym $mod+x focus output right
