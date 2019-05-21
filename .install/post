@@ -63,6 +63,19 @@ if prompt "Enable and start sshd?" ; then
     ( set -x ; sudo systemctl enable --now sshd )
 fi
 
+# Set up the suspend lock
+if prompt "Set up the systemd suspend hooks for session locking?" ; then
+    if [[ ! -d /etc/systemd/system ]] ; then
+        echo "Error: Could not find /etc/systemd/system directory"
+    else
+        ( set -x ; 
+        sudo cp "${mydir}"/wakelock.service /etc/systemd/system/ ;
+        sudo cp "${mydir}"/wakelockpost.service /etc/systemd/system/ ;
+        sudo systemctl enable wakelock wakelockpost ;
+        )
+    fi
+fi
+
 # basic
 if prompt "Install basic packages?" ; then
     ( set -x ; sudo pacman --needed -S $(cat $mydir/basic-packages) )
@@ -111,7 +124,7 @@ fi
 # When the firefox profile has been set up, remember to copy the folder .install/chrome/
 # to the ~/.mozilla/firefox/<profile>.default/ directory
 # Also remember to change vimium settings:
-# Ekybindings are as follows:
+# Keybindings are as follows:
 # # Fix the tab navigation
 # unmap J
 # unmap K

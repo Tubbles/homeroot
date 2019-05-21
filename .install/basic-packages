@@ -64,3 +64,5 @@ zathura-ps
 zsh
 rofi
 conky
+physlock
+xorg-xset

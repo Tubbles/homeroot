@@ -1,5 +1,10 @@
 #!/bin/sh
 
+log="/home/monkey/lock.tmp"
+echo "$@" > "${log}"
+echo >> "${log}"
+env >> "${log}"
+
 o_lock="lock"
 o_exit="exit"
 o_suspend="suspend"
@@ -19,7 +24,13 @@ else
 fi
 
 lock() {
-    i3lock --color=000000
+    if [[ -z "$(pgrep i3lock)" ]] ; then
+        physlock -l
+        xset +dpms dpms 2 2 2
+        i3lock --color=111111 --nofork
+        xset -dpms
+        physlock -L
+    fi
 }
 
 case "${res}" in
@@ -30,7 +41,7 @@ case "${res}" in
         i3-msg exit
         ;;
     "${o_suspend}")
-        lock && sleep 0.1 && systemctl suspend
+        systemctl suspend
         ;;
     "${o_reboot}")
         systemctl reboot

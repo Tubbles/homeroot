@@ -1,0 +1,12 @@
+[Unit]
+Description=Lock the screen on resume from suspend and sleep
+Before=sleep.target suspend.target
+
+[Service]
+User=monkey
+Type=forking
+Environment=DISPLAY=:0
+ExecStart=/home/monkey/scr/prelock
+
+[Install]
+WantedBy=sleep.target suspend.target

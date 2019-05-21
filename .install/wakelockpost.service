@@ -1,0 +1,12 @@
+[Unit]
+Description=Reset the DPMS settings after a screen lock 
+After=sleep.target suspend.target
+
+[Service]
+User=monkey
+Type=forking
+Environment=DISPLAY=:0
+ExecStart=/home/monkey/scr/postlock
+
+[Install]
+WantedBy=sleep.target suspend.target
