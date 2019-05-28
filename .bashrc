@@ -5,6 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Set correct umask
+umask 002
+
 # Find our system
 if [[ -z "${MSYSTEM}" ]] ; then
     case "$(uname -o)" in
