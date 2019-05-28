@@ -17,7 +17,7 @@ if [[ -z "${MSYSTEM}" ]] ; then
                     MSYSTEM="Raspbian_GNU_Linux"
                     ;;
                 *)
-                    echo -e "Warning: Unknown linux system"
+                    echo -e "Warning: Unknown linux system: $(cat /etc/*-release | grep ^NAME | awk -F'[="]' '{print $3}')"
                     ;;
             esac
             ;;
@@ -26,6 +26,8 @@ if [[ -z "${MSYSTEM}" ]] ; then
             ;;
     esac
 fi
+
+export PATH="${HOME}/bin:${PATH}"
 
 # Read in git specific scripts
 test -r ${HOME}/.git-completion.bash && . ${HOME}/.git-completion.bash
