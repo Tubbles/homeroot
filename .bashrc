@@ -56,6 +56,7 @@ alias screenshot="import -window root ${HOME}/tmp/prtsc_"'$(date +%y%m%d_%H%M%S_
 alias btphones="echo -e 'power on\nconnect 28:9A:4B:20:07:16\nquit' | bluetoothctl"
 alias tmux='tmux -2'
 alias vlc='QT_AUTO_SCREEN_SCALE_FACTOR=0 vlc'
+alias r='source ranger'
 
 #highlight () { grep --color -E "$1|$" "${@:2}" ;  }
 
