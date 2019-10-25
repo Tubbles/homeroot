@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# We loop until the i3lock process is gone
+while [[ -n "$(pgrep i3lock)" ]] ; do : ; done
+xset -dpms
+physlock -L

@@ -1,0 +1,45 @@
+#!/bin/sh
+
+term="/usr/local/bin/st"
+name="quake_term"
+
+if [[ -n "$1" ]] ; then
+    term="$1"
+fi
+
+if [[ -n "$2" ]] ; then
+    name="$2"
+fi
+
+# Check if it is already started, else start it
+ps -U $(whoami) -o command | grep "^${term} -n ${name}\$" > /dev/null 2>&1 || 
+{
+    ${term} -n ${name} &
+    sleep 0.1
+    i3-msg "[instance=${name}] floating enable, resize set 1820 675, move scratchpad, border pixel 3" > /dev/null 2>&1
+}
+
+i3-msg "[instance=${name}] scratchpad show, move position center, resize set 1820 675" > /dev/null 2>&1
+#i3-msg "[instance=${name}] scratchpad show, move position center, resize set 1920 675; exec --no-startup-id $scr/xmove" > /dev/null 2>&1
+
+#i3-msg "[instance=${name}] scratchpad show" > /dev/null 2>&1
+
+#exit 0
+
+# Get the current monitor
+current=( $(xgetoutput) )
+
+echo -e "current: m:${current[0]}, w:${current[1]}, h:${current[2]}, x:${current[3]}, y:${current[4]}"
+
+# The window will take up no more than a third of
+# the width or height of the screen.
+newwidth=$(($(xdotool getdisplaygeometry | awk '{print $2}') / 3))
+newheight=$(($(xdotool getdisplaygeometry | awk '{print $1}') / 3))
+
+#xdotool windowsize "${current}" 1920 675
+
+newsize=$(xdotool getwindowgeometry "${current}" | grep Geometry | sed -e 's/x/ /g' | awk '{print $3}')
+
+height=$(($(xdotool getdisplaygeometry | awk '{print $2}') - newsize))
+xdotool windowmove "${current}" x 3
+

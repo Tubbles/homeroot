@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ -z "$(pgrep i3lock)" ]] ; then
+    physlock -l
+    xset +dpms dpms 2 2 2
+    i3lock --color=111111
+    sleep 0.5
+fi
