@@ -30,6 +30,9 @@ if [[ -z "${MSYSTEM}" ]] ; then
     esac
 fi
 
+export VISUAL=vim
+export EDITOR=vim
+
 export PATH="${HOME}/bin:${PATH}"
 
 # Read in git specific scripts
