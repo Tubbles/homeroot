@@ -5,6 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Set up correct DEL behaviour
+tput smkx
+
 # Set correct umask
 umask 002
 
