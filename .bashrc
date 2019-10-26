@@ -19,6 +19,9 @@ if [[ -z "${MSYSTEM}" ]] ; then
                 "Arch Linux")
                     MSYSTEM="Arch_Linux"
                     ;;
+                "Manjaro Linux")
+                    MSYSTEM="Manjaro_Linux"
+                    ;;
                 "Raspbian GNU/Linux")
                     MSYSTEM="Raspbian_GNU_Linux"
                     ;;
