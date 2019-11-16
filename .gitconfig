@@ -28,7 +28,7 @@
 
     # readd, rediff - handle changes to already staged files
     readd = !git status --porcelain | grep ^[MARC][MD] | cut -c 4- | tee /dev/tty | xargs git add 2>&1 | sed -E '/.*(Nothing|Maybe).*/d'
-    rediff = !git status --porcelain | grep ^[MARC][MD] | cut -c 4- | xargs git diff --ws-error-highlight=all
+    rediff = !git status --porcelain | grep ^[MARC][MD] | cut -c 4- | xargs -r git diff --ws-error-highlight=all
 
     # drop - drop non-staged changes (Potentially dangerous)
     drop = !git status --porcelain | grep '^[MARCD ][MD]' | cut -c 4- | xargs git checkout
