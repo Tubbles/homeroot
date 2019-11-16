@@ -123,6 +123,7 @@ fi
 # Set up firefox plugin settings
 # When the firefox profile has been set up, remember to copy the folder .install/chrome/
 # to the ~/.mozilla/firefox/<profile>.default/ directory
+# and then enable toolkit.legacyUserProfileCustomizations.stylesheets in about:config
 # Also remember to change vimium settings:
 # Keybindings are as follows:
 # # Fix the tab navigation

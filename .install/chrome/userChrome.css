@@ -1,4 +1,4 @@
-#main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar {
+#main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar > .toolbar-items {
   opacity: 0;
   pointer-events: none;
 }
