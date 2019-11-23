@@ -60,12 +60,33 @@ alias grep='grep --color=auto'
 alias jgrep='find . -type f -print0 | xargs -0 grep -nE'
 alias todec='printf "%d\n"'
 alias tohex='printf "%X\n"'
-alias dog='highlight -s solarized-dark --force=sh -O xterm256'
+#alias dog='highlight -s solarized-dark --force=sh -O xterm256'
 alias screenshot="import -window root ${HOME}/tmp/prtsc_"'$(date +%y%m%d_%H%M%S_%N).png'
 alias btphones="echo -e 'power on\nconnect 28:9A:4B:20:07:16\nquit' | bluetoothctl"
 alias tmux='tmux -2'
 alias vlc='QT_AUTO_SCREEN_SCALE_FACTOR=0 vlc'
 alias r='source ranger'
+
+# Set up the dog alias
+highlight_above_353=false
+if [[ $(command -v highlight) ]] ; then
+    # Check correct version, needs to be equal to or above 3.53
+    if (( $(highlight --version | grep " highlight version " | sed -E 's/ highlight version ([0-9]+)\.([0-9]+)/\1/g') > 3 )) ; then
+        highlight_above_353=true
+    else
+        if (( $(highlight --version | grep " highlight version " | sed -E 's/ highlight version ([0-9]+)\.([0-9]+)/\1/g') == 3 )) ; then
+            if (( $(highlight --version | grep " highlight version " | sed -E 's/ highlight version ([0-9]+)\.([0-9]+)/\2/g') >= 53 )) ; then
+                highlight_above_353=true
+            fi
+        fi
+    fi
+fi
+
+if [[ "${highlight_above_353}" == "true" ]] ; then
+    alias dog='highlight -s solarized-dark --force=sh -O xterm256'
+else
+    alias dog='highlight -s solarized-dark --force -O xterm256'
+fi
 
 #highlight () { grep --color -E "$1|$" "${@:2}" ;  }
 
