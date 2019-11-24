@@ -58,6 +58,14 @@ if prompt "Activate NTP?" ; then
     ( set -x ; sudo systemctl enable --now systemd-timesyncd )
 fi
 
+# fstrim https://wiki.archlinux.org/index.php/Solid_state_drive#Periodic_TRIM
+if prompt "Enable and start periodic fstrim? Usable for SSDs" ; then
+    ( set -x ;
+    sudo pacman --needed -S util-linux ;
+    sudo systemctl enable --now fstrim.timer ;
+    )
+fi
+
 # sshd
 if prompt "Enable and start sshd?" ; then
     ( set -x ; sudo systemctl enable --now sshd )
@@ -90,15 +98,15 @@ done
 
 # Get yay, https://aur.archlinux.org/packages/yay/
 if prompt "Install yay?" ; then
-    set -x
-    cd /tmp
-    rm -rf /tmp/yay
-    curl -sO https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
-    sudo tar -xvf yay.tar.gz &>/dev/null
-    cd yay
-    makepkg -si
-    cd /tmp
-    set +x
+    ( set -x
+    cd /tmp ;
+    rm -rf /tmp/yay ;
+    curl -sO https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz ;
+    tar -xvf yay.tar.gz &>/dev/null ;
+    cd yay ;
+    makepkg -si ;
+    cd /tmp ;
+    )
 fi
 
 # aur
