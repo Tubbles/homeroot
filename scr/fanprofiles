@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Use this script to load different fan profiles
+# $1 = Profile name, as in ${HOME}/.install/fanprofiles/<profile name>.<host name>
+
+dir="${HOME}/.install/fanprofiles"
+
+# Get options
+if [[ -n "$1" ]] ; then
+    file="$1.$(uname -n)"
+else
+    echo -e "USAGE: $0 <profile name>\n"
+    echo -e "Available profiles:"
+    find "${dir}" -type f -name '*.*' | xargs basename
+    exit 0
+fi
+
+if [[ ! -r "${dir}/${file}" ]] ; then
+    echo -e "ERROR: File ${file} does not exist under ${dir}"
+    exit 1
+fi
+
+dest="/etc/fancontrol"
+
+# Use set -x for transparency
+( set -x ; sudo cp "${dir}/${file}" "${dest}" ; sudo systemctl restart fancontrol.service )
