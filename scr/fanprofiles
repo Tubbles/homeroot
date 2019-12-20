@@ -11,7 +11,7 @@ if [[ -n "$1" ]] ; then
 else
     echo -e "USAGE: $0 <profile name>\n"
     echo -e "Available profiles:"
-    find "${dir}" -type f -name '*.*' | xargs basename
+    find "${dir}" -type f -name '*.*' | xargs -n 1 basename
     exit 0
 fi
 
