@@ -1,0 +1,7 @@
+set pages-per-row 2
+set first-page-column 1
+set n-completion-items 25
+set show-hidden true
+set show-recent 20
+set selection-clipboard clipboard
+set zoom-center true
