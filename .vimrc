@@ -126,3 +126,6 @@ set mouse-=a
 
 " Debug message
 ":echom "~/.vimrc loaded"
+
+" Always show the status line
+set laststatus=2
