@@ -129,3 +129,6 @@ set mouse-=a
 
 " Always show the status line
 set laststatus=2
+
+" activates filetype detection
+filetype plugin indent on
