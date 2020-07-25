@@ -120,6 +120,14 @@ else
     done
 fi
 
+# downgrades
+for url in $(cat $mydir/downgrades) ; do
+    pkg="$(echo "$url" | sed -E 's#.+/packages/./([^/]+)/.+#\1#g')"
+    if prompt "Downgrade $pkg ($url)?" ; then
+        ( set -x ; sudo pacman -U $url ; sudo -k sh -c "echo -e [options]'\n'IgnorePkg = $pkg >> /etc/pacman.conf" )
+    fi
+done
+
 # Moved to 'reset_input.sh'
 # kbd speed on boot
 #if prompt "Set kbd speed on boot?" ; then
