@@ -63,6 +63,7 @@ alias btphones="echo -e 'power on\nconnect 28:9A:4B:20:07:16\nquit' | bluetoothc
 alias tmux='tmux -2'
 alias vlc='QT_AUTO_SCREEN_SCALE_FACTOR=0 vlc'
 alias r='source ranger'
+alias localnet='for i in $(seq 1 1 254) ; do ip=192.168.1.$i ; ans="$(dig -x $ip +short)" ; if [[ -n "$ans" ]] ; then echo "$ip: ${ans::-1}" ; fi ; done'
 
 # Set up the dog alias
 highlight_above_353=false
@@ -94,4 +95,3 @@ fi
 file="${HOME}/.config/bashrc.d/os_name_${MSYSTEM}"
 test -r ${file} && . ${file}
 unset file
-
