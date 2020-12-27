@@ -46,8 +46,8 @@ export PS1='\[\e[37m\][$?] `date +%y%m%d-%H%M%S`\n\[\e]0;\w\a\]\n\[\e[32m\]\u@\h
 
 alias gst='(git fetch --all --prune 2>/dev/null && git lold --color=always -10 && echo "---" && git loll --color=always -10 && git branch -vv --color=always && git -c color.status=always status -s) | less -RFX'
 alias reload='test -r ${HOME}/.bashrc && . ${HOME}/.bashrc'
-alias ls='LC_COLLATE=C ls -bF --color --group-directories-first'
-alias l='ls -hl --time-style=+%y%m%d-%H%M%S'
+alias ls='LC_COLLATE=C ls -b --group-directories-first'
+alias l='ls -Fhl --color --time-style=+%y%m%d-%H%M%S'
 alias lm='l -ct'
 alias ll='l -A'
 alias llm='ll -ct'
