@@ -64,7 +64,7 @@ alias tmux='tmux -2'
 alias vlc='QT_AUTO_SCREEN_SCALE_FACTOR=0 vlc'
 alias r='source ranger'
 alias localnet='for i in $(seq 1 1 254) ; do ip=192.168.1.$i ; ans="$(dig -x $ip +short)" ; if [[ -n "$ans" ]] ; then echo "$ip: ${ans::-1}" ; fi ; done'
-alias git-recurse='for dir in `find . -type d -name ".git"` ; do cd `dirname $dir` ; pwd ; git status -s ; cd - ; done'
+alias git-recurse='for dir in `find . -type d -name ".git"` ; do cd `dirname $dir` ; pwd ; git status -s ; cd - > /dev/null; done'
 
 # Set up the dog alias
 highlight_above_353=false
