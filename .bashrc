@@ -96,3 +96,8 @@ fi
 file="${HOME}/.config/bashrc.d/os_name_${MSYSTEM}"
 test -r ${file} && . ${file}
 unset file
+
+spawn() {
+    # { nohup "$@" < /dev/null > /dev/null 2>&1 & disown ; } > /dev/null 2>&1
+    ("$@" &)
+}
