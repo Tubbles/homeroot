@@ -98,6 +98,6 @@ test -r ${file} && . ${file}
 unset file
 
 spawn() {
-    # { nohup "$@" < /dev/null > /dev/null 2>&1 & disown ; } > /dev/null 2>&1
-    ("$@" &)
+    { nohup "$@" < /dev/null > /dev/null 2>&1 & disown ; } > /dev/null 2>&1
+    # ("$@" &)
 }
