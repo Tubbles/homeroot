@@ -70,3 +70,5 @@
     wsErrorHighlight = all
 [blame]
     coloring = highlightRecent
+[init]
+	defaultBranch = main
