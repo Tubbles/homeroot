@@ -1,0 +1,3 @@
+[submodule ".install/vscode-extensions"]
+	path = .install/vscode-extensions
+	url = git@github.com:Tubbles/vscode-extensions.git
