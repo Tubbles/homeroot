@@ -1,0 +1,27 @@
+{
+    "files.associations": {
+        "*.bb": "bitbake",
+        "*.bbappend": "bitbake",
+        "*.inc": "python",
+    },
+    "editor.detectIndentation": false,
+    "cmake.configureOnOpen": false,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "explorer.confirmDelete": false,
+    "window.zoomLevel": 0,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "files.trimTrailingWhitespace": true,
+    "window.title": "${rootName}${separator}${rootPath}${separator}${appName}",
+    // "window.title": "${dirty}${rootName}${separator}${activeEditorLong}${separator}${appName}",
+    "window.titleSeparator": " -  ",
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "editor.wordWrapColumn": 140,
+    "files.trimFinalNewlines": true,
+    "zenMode.hideLineNumbers": false,
+    "diffEditor.renderSideBySide": false,
+    "zenMode.centerLayout": false
+}

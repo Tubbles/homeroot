@@ -2,6 +2,7 @@
     name = Tubbles
     email = jae91m@gmail.com
 [core]
+#    editor = 'C:/Tools/Notepad++ 7.2.2/notepad++.exe' -multiInst -notabbar -nosession
     editor = vim
     excludesfile = $HOME/.gitignore_global
     preloadindex = true
@@ -11,13 +12,16 @@
 [push]
     default = simple
 [alias]
+    # Count the commit authors
+    authors = shortlog -s -n --all --no-merges
+
     # Various log aliases
     lol =  log --graph --all --format='%C(yellow)%h %C(auto)%d %Creset%<(80,trunc)%s'
     lola = log --graph --all --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(auto)%d %Creset%<(80,trunc)%s'
     lold = log --graph --all --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(red)%ad %C(auto)%d %Creset%<(80,trunc)%s' --date=iso
     loll = log --graph       --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(red)%ad %C(auto)%d %Creset%<(80,trunc)%s' --date=iso
     loldplumb = log --graph  --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(red)%ad %C(auto)%d %Creset%<(80,trunc)%s' --date=iso
-    tlol = tag --sort version:refname --format='%(align:width=52)%(color:cyan)%(refname:short)%(end) %(align:width=62)%(color:white)%(contents:subject)%(end) %(color:yellow)%(taggerdate:short) %(color:red)%(taggername)'
+    tlol = tag --sort version:refname --format='%(align:width=65)%(color:cyan)%(refname:short)%(end) %(align:width=80)%(color:white)%(contents:subject)%(end) %(color:yellow)%(taggerdate:short) %(color:red)%(taggername)'
 
     # jshow - Display what files only changed
     jshow = show --name-only
@@ -27,11 +31,15 @@
     jmshow = "!f() { git show \"${1:-HEAD}\" | grep ^Merge | sed -E 's/^Merge: ([0-9a-fA-F]+) ([0-9a-fA-F]+)/\\2..\\1/g' | xargs git diff --name-only; }; f"
 
     # readd, rediff - handle changes to already staged files
-    readd = !git status --porcelain | grep ^[MARC][MD] | cut -c 4- | tee /dev/tty | xargs git add 2>&1 | sed -E '/.*(Nothing|Maybe).*/d'
-    rediff = !git status --porcelain | grep ^[MARC][MD] | cut -c 4- | xargs -r git diff --ws-error-highlight=all
+    readd = !git -c color.status=never status --short | grep '^[MARC][MD]' | awk '{ print $NF }' | tee /dev/tty | xargs git add 2>&1 | sed -E '/.*(Nothing|Maybe).*/d'
+    rediff = !git -c color.status=never status --short | grep '^[MARC][MD]' | awk '{ print $NF }' | xargs --no-run-if-empty git diff --ws-error-highlight=all
+
+    # amend - commit amend without edit
+    amend = commit --amend --no-edit
 
     # drop - drop non-staged changes (Potentially dangerous)
-    drop = !git status --porcelain | grep '^[MARCD ][MD]' | cut -c 4- | xargs git checkout
+    drop = checkout -- .
+    udrop = !git status --porcelain | grep '^??' | cut -c 4- | tee /dev/tty | xargs -i rm -fr "{}"
 
     # back - display files that have changed in remote since last pull
     back = !git show --name-status HEAD..origin/HEAD --pretty="" | sort | uniq
@@ -43,15 +51,25 @@
     # conflict - Display what our current conflicts are, during a merge
     conflict = !git status -s | grep -E '^(.U|U.)' | awk '{print $2}' | xargs grep -Hn -E '(<<<<<<<|=======|>>>>>>>)'
 
+    # fix - Display what our current conflicts are, during a merge, using vscode
+    fix = !git diff --check 2>&1 | awk '{print $1}' | awk -F':' '{print $1}' | sort | uniq | xargs --no-run-if-empty code
+
     # file-log - display a log of history for a file, even through renames
     file-log = log -p --follow
 
     # jdiff - display a per-character diff instead of the ordinary per-line
     jdiff = diff --color-words=.
-	jdiff2 = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
+    jdiff2 = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
 
     # all - shows all history since the null tree (empty tree)
     all = !git show "$(git hash-object -t tree /dev/null)"..
+
+    # Japanese flavoured alias
+    # Use this together with the git stash, short for git stash push
+    # If git stash pop does not exist, it can be replaced by a git stash apply
+    # followed by a git stash drop.
+    jpop = stash pop --index
+
 [color "status"]
     untracked = magenta
     changed = cyan
@@ -64,11 +82,19 @@
     pager = true
 [gc]
     auto = 256
-[diff ".atsuo"]
-    textconv = hexdump -v -C
 [diff]
     wsErrorHighlight = all
 [blame]
     coloring = highlightRecent
+[pager]
+    log = diff-highlight | less -FNMRX
+    show = diff-highlight | less -FNMRX
+    diff = diff-highlight | less -FNMRX
+[interactive]
+    diffFilter = diff-highlight
+[merge]
+    defaultToUpstream = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
+[format]
+    pretty = fuller
