@@ -44,6 +44,9 @@ if [[ -z "${MSYSTEM}" ]] ; then
                 "Raspbian GNU/Linux")
                     MSYSTEM="Raspbian_GNU_Linux"
                     ;;
+                "Ubuntu")
+                    MSYSTEM="Ubuntu"
+                    ;;
                 *)
                     echo -e "Warning: Unknown linux system: $(cat /etc/*-release | grep ^NAME | awk -F'[="]' '{print $3}')"
                     ;;
