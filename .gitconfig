@@ -98,3 +98,5 @@
     defaultBranch = main
 [format]
     pretty = fuller
+[include]
+    path = ~/.gitconfig_extra
