@@ -1,0 +1,11 @@
+[Unit]
+Description=xbanish hide the mouse
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/xbanish
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
