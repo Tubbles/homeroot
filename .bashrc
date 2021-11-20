@@ -62,7 +62,6 @@ export VISUAL=vim
 export EDITOR=vim
 
 export PATH="${HOME}/.bin:${PATH}"
-export PATH="${PATH}:/usr/share/doc/git/contrib/diff-highlight"
 
 # Read in git specific scripts
 test -r ${HOME}/.git-completion.bash && . ${HOME}/.git-completion.bash
