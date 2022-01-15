@@ -9,7 +9,6 @@
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "explorer.confirmDelete": false,
-    "window.zoomLevel": 0,
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true,
     "files.trimTrailingWhitespace": true,
