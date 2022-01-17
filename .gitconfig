@@ -101,3 +101,5 @@
     pretty = fuller
 [include]
     path = ~/.gitconfig_extra
+[reset]
+	quiet = true
