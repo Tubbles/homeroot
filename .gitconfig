@@ -99,8 +99,6 @@
     defaultBranch = main
 [format]
     pretty = fuller
-[include]
-    path = ~/.gitconfig_extra
 [reset]
 	quiet = true
 [fetch]
@@ -110,3 +108,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[credential]
+	helper = store
+[include]
+    path = ~/.gitconfig_extra
