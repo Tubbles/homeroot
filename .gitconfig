@@ -87,9 +87,9 @@
 [blame]
     coloring = highlightRecent
 [pager]
-    log = diff-highlight | less -FNMRX
-    show = diff-highlight | less -FNMRX
-    diff = diff-highlight | less -FNMRX
+    log = diff-highlight | less -NMRX
+    show = diff-highlight | less -NMRX
+    diff = diff-highlight | less -NMRX
 [interactive]
     diffFilter = diff-highlight
 [merge]
