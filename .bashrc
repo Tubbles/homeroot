@@ -67,7 +67,8 @@ test -r ${HOME}/.git-prompt.sh && . ${HOME}/.git-prompt.sh
 
 export PS1='\[\e[37m\][$?] `date +%y%m%d-%H%M%S`\n\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]${MSYSTEM:+${MSYSTEM} }\[\e[0m\]\[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n\$ \[`tput smkx`\]'
 
-alias gst='(git fetch --all --prune 2>/dev/null && git lold --color=always -10 && echo "---" && git loll --color=always -10 && git branch -vv --color=always && git branch --color=never -rvv --color=always | grep -v "all/" ; git -c color.status=always status -s) | less -RFX'
+alias gst='(git fetch --all --prune 2>/dev/null && git lol --all --color=always -10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always && git branch --color=never -rvv --color=always | grep -v "all/" ; git -c color.status=always status -s) | less -FRX'
+alias jst='(git lol --all --color=always -10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always && git branch --color=never -rvv --color=always | grep -v "all/" ; git -c color.status=always status -s) | less -FRX'
 alias reload='test -r ${HOME}/.bash_profile && . ${HOME}/.bash_profile'
 alias ls='LC_COLLATE=C ls -b --group-directories-first'
 alias l='ls -Fhl --color --time-style=+%y%m%d-%H%M%S'
