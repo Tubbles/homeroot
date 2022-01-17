@@ -113,7 +113,7 @@ set paste
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " Line number
-set number
+set number relativenumber
 
 " 80 cols marker
 set colorcolumn=80
