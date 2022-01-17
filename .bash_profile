@@ -23,7 +23,3 @@ __append_dir_to_path_smart  "/usr/share/git/diff-highlight/" # Some distros use 
 
 __source_if_exists "$HOME/.bashrc"
 
-unset -f __source_if_exists
-unset -f __prepend_dir_to_path_smart
-unset -f __append_dir_to_path_smart
-

@@ -34,23 +34,7 @@ export LS_COLORS
 if [[ -z "${MSYSTEM}" ]] ; then
     case "$(uname -o)" in
         "GNU/Linux")
-            case "$(cat /etc/*-release | grep ^NAME | awk -F'[="]' '{print $3}')" in
-                "Arch Linux")
-                    MSYSTEM="Arch_Linux"
-                    ;;
-                "Manjaro Linux")
-                    MSYSTEM="Manjaro_Linux"
-                    ;;
-                "Raspbian GNU/Linux")
-                    MSYSTEM="Raspbian_GNU_Linux"
-                    ;;
-                "Ubuntu")
-                    MSYSTEM="Ubuntu"
-                    ;;
-                *)
-                    echo -e "Warning: Unknown linux system: $(cat /etc/*-release | grep ^NAME | awk -F'[="]' '{print $3}')"
-                    ;;
-            esac
+            MSYSTEM="$(cat /etc/*release | grep DISTRIB_DESCRIPTION | awk -F'"' '{print $2}')"
             ;;
         *)
             echo -e "Warning: Unknown system"
@@ -130,9 +114,7 @@ done
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
 # Now load system specific files
-file="${HOME}/.config/bashrc.d/os_name_${MSYSTEM}"
-test -r ${file} && . ${file}
-unset file
+__source_if_exists "${HOME}/.config/bashrc.d/os_name_${MSYSTEM//[\/ ]/_}"
 
 spawn() {
     { nohup "$@" < /dev/null > /dev/null 2>&1 & disown ; } > /dev/null 2>&1
