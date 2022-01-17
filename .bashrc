@@ -92,7 +92,7 @@ alias git-recurse='for dir in `find . -type d -name ".git"` ; do cd `dirname $di
 alias lessp='LESSOPEN="|lesspipe.sh %s" less'
 alias start='xdg-open'
 alias gitextra='git checkout gitconfig_extra .gitconfig_extra && git reset .gitconfig_extra > /dev/null'
-alias github="curl 'https://api.github.com/users/tubbles/repos?sort=created' 2>/dev/null | grep '\"full_name\": \"' | sed -E 's#.+\": \"Tubbles/(.+)\",#git@github.com:Tubbles/\1.git#g' | sort"
+alias github="curl 'https://api.github.com/users/tubbles/repos' 2>/dev/null | grep '\"full_name\": \"' | sed -E 's#.+\": \"Tubbles/(.+)\",#git@github.com:Tubbles/\1.git#g' | sort -f"
 
 # Set up the dog alias
 highlight_above_353=false
