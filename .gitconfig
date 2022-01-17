@@ -103,3 +103,5 @@
     path = ~/.gitconfig_extra
 [reset]
 	quiet = true
+[fetch]
+	prune = true
