@@ -78,7 +78,7 @@ alias localnet='for i in $(seq 1 1 254) ; do ip=192.168.1.$i ; ans="$(dig -x $ip
 alias git-recurse='for dir in `find . -type d -name ".git"` ; do cd `dirname $dir` ; pwd ; git status -s ; cd - > /dev/null; done'
 alias lessp='LESSOPEN="|lesspipe.sh %s" less'
 alias start='xdg-open'
-alias gitextra='git checkout gitconfig_extra .gitconfig_extra && git reset .gitconfig_extra > /dev/null'
+alias gitextra='git checkout origin/gitconfig_extra .gitconfig_extra && git reset .gitconfig_extra > /dev/null'
 alias github="curl 'https://api.github.com/users/tubbles/repos' 2>/dev/null | grep '\"full_name\": \"' | sed -E 's#.+\": \"Tubbles/(.+)\",#git@github.com:Tubbles/\1.git#g' | sort -f"
 alias R='R --quiet --no-save'
 alias bc='bc --quiet'
