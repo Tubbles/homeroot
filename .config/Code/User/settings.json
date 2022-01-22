@@ -22,5 +22,8 @@
     "files.trimFinalNewlines": true,
     "zenMode.hideLineNumbers": false,
     "diffEditor.renderSideBySide": false,
-    "zenMode.centerLayout": false
+    "zenMode.centerLayout": false,
+    "python.formatting.autopep8Args": [
+        "--max-line-length=120"
+    ],
 }
