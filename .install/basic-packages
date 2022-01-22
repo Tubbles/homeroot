@@ -2,10 +2,12 @@ acpid
 alsa-utils
 base-devel
 compton
+conky
 dmenu
 dos2unix
 dosfstools
 feh
+flameshot
 fuse2
 git
 highlight
@@ -24,6 +26,7 @@ neofetch
 nmap
 openssh
 pacutils
+physlock
 picocom
 pinta
 psmisc
@@ -37,9 +40,12 @@ python2-setuptools
 r
 ranger
 reiserfsprogs
+rofi
 screen
 thunar
 tmux
+touche
+touchegg
 ttf-dejavu
 unrar
 unzip
@@ -55,6 +61,7 @@ xdotool
 xfsprogs
 xorg
 xorg-xinit
+xorg-xset
 xterm
 zathura
 zathura-cb
@@ -62,8 +69,3 @@ zathura-djvu
 zathura-pdf-mupdf
 zathura-ps
 zsh
-rofi
-conky
-physlock
-xorg-xset
-flameshot
