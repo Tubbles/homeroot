@@ -6,9 +6,12 @@
 [[ $- != *i* ]] && return
 
 # Source global definitions
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
+if [[ -f /etc/bashrc ]]; then
+    source /etc/bashrc
 fi
+
+# Source local macros
+source "${HOME}/.install/bash_env.source"
 
 # Set correct umask
 umask 002
