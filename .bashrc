@@ -81,6 +81,7 @@ alias start='xdg-open'
 alias gitextra='git checkout gitconfig_extra .gitconfig_extra && git reset .gitconfig_extra > /dev/null'
 alias github="curl 'https://api.github.com/users/tubbles/repos' 2>/dev/null | grep '\"full_name\": \"' | sed -E 's#.+\": \"Tubbles/(.+)\",#git@github.com:Tubbles/\1.git#g' | sort -f"
 alias R='R --quiet --no-save'
+alias bc='bc --quiet'
 
 # Set up the dog alias
 highlight_above_353=false
