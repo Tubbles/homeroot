@@ -85,6 +85,7 @@ alias gitextra='git checkout origin/gitconfig_extra .gitconfig_extra && git rese
 alias github="curl 'https://api.github.com/users/tubbles/repos' 2>/dev/null | grep '\"full_name\": \"' | sed -E 's#.+\": \"Tubbles/(.+)\",#git@github.com:Tubbles/\1.git#g' | sort -f"
 alias R='R --quiet --no-save'
 alias bc='bc --quiet'
+alias df='df -Thx squashfs'
 
 # Set up the dog alias
 highlight_above_353=false
