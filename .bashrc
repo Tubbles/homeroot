@@ -87,6 +87,7 @@ alias R='R --quiet --no-save'
 alias bc='bc --quiet'
 alias df='df -Thx squashfs'
 alias xbanish='systemctl --user start xbanish'
+alias battery='upower -e | grep battery | xargs -n 1 upower -i | grep -i --color=never -e percent -e native'
 
 # Set up the dog alias
 highlight_above_353=false
