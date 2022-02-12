@@ -26,6 +26,9 @@ shopt -s histappend
 #shopt -s nullglob
 shopt -s extglob
 
+# Expand path variables when tabbing instead of escaping them
+shopt -s direxpand
+
 # Don't put duplicate lines in the history.
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 
