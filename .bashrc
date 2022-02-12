@@ -86,6 +86,7 @@ alias github="curl 'https://api.github.com/users/tubbles/repos' 2>/dev/null | gr
 alias R='R --quiet --no-save'
 alias bc='bc --quiet'
 alias df='df -Thx squashfs'
+alias xbanish='systemctl --user start xbanish'
 
 # Set up the dog alias
 highlight_above_353=false
