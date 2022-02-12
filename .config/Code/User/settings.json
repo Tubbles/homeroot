@@ -28,6 +28,8 @@
     "python.formatting.autopep8Args": [
         "--max-line-length=120"
     ],
+    "reflow.preferredLineLength": 120,
+    "reflowMarkdown.preferredLineLength": 120,
     // "window.title": "${dirty}${rootName}${separator}${activeEditorLong}${separator}${appName}",
     "window.title": "${rootName}${separator}${rootPath}${separator}${appName}",
     "window.titleSeparator": " -  ",
