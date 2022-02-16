@@ -89,6 +89,8 @@ alias df='df -Thx squashfs'
 alias xbanish='systemctl --user start xbanish'
 alias battery='upower -e | grep battery | xargs -n 1 upower -i | grep -i --color=never -e percent -e native'
 alias asciiclean="tr -dc '\\11\\12\\15\\40-\\176' <"
+alias git-repo-public='git config user.name Tubbles ; git config user.email "jae91m@gmail.com"'
+alias git-repo-internal='git config --unset user.name ; git config --unset user.email'
 
 # Set up the dog alias
 highlight_above_353=false
