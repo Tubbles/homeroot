@@ -1,5 +1,34 @@
 #!/bin/bash
 
+__path_to_list() {
+    echo $PATH | tr ":" "\n"
+}
+
+__path_from_list() {
+    export PATH="$(echo "$1" | sed -E '/^$/d' | paste -sd':')"
+}
+
+__prepend_dir_to_path_smart_before() {
+    [[ ! -d "$1" ]] && return
+    [[ ":$PATH:" == *":$1:"* ]] && return
+    local newline=$'\n'
+    local path_list=$(__path_to_list)
+    local num_lines="$(echo "${path_list}" | wc -l)"
+    local offset="$(echo "${path_list}" | grep -nm1 "$2" | awk -F':' '{print $1}')"
+    local new_path
+    if [[ -z ${offset} ]] ; then
+        new_path="$(echo -e "${path_list}\n$1")"
+    else
+        new_path="$(echo "${path_list}" | head -n $(( ${offset} - 1 )))"
+        new_path+="${newline}"
+        new_path+="$(echo "$1")"
+        new_path+="${newline}"
+        new_path+="$(echo "${path_list}" | tail -n +${offset})"
+    fi
+    __path_from_list "${new_path}"
+}
+
+
 __prepend_dir_to_path_smart() {
     [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]] && export PATH="$1:$PATH"
 }
@@ -11,4 +40,3 @@ __append_dir_to_path_smart() {
 __source_if_exists() {
     [[ -r "$1" ]] && source "$1"
 }
-
