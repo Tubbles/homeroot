@@ -134,3 +134,6 @@ spawn() {
     { nohup "$@" < /dev/null > /dev/null 2>&1 & disown ; } > /dev/null 2>&1
     # ("$@" &)
 }
+
+# Set up atuin
+command -v atuin >/dev/null && eval "$(atuin init bash)"
