@@ -71,7 +71,6 @@ alias grep='grep --color=auto'
 alias jgrep='find . -type f -print0 | xargs -0 grep -nE'
 alias todec='printf "%d\n"'
 alias tohex='printf "%X\n"'
-#alias dog='highlight -s solarized-dark --force=sh -O xterm256'
 alias screenshot="import -window root ${HOME}/tmp/prtsc_"'$(date +%y%m%d_%H%M%S_%N).png'
 alias btphones="echo -e 'power on\nconnect 28:9A:4B:20:07:16\nquit' | bluetoothctl"
 alias tmux='tmux -2'
@@ -107,10 +106,11 @@ if [[ $(command -v highlight) ]] ; then
     fi
 fi
 
+dog_theme="zenburn"
 if [[ "${highlight_above_353}" == "true" ]] ; then
-    alias dog='highlight -s solarized-dark --force=sh -O xterm256'
+    alias dog='highlight -s ${dog_theme} --force=sh -O xterm256'
 else
-    alias dog='highlight -s solarized-dark --force -O xterm256'
+    alias dog='highlight -s ${dog_theme} --force -O xterm256'
 fi
 
 #highlight () { grep --color -E "$1|$" "${@:2}" ;  }
