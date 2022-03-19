@@ -91,6 +91,8 @@ alias asciiclean="tr -dc '\\11\\12\\15\\40-\\176' <"
 alias git-repo-public='git config user.name Tubbles ; git config user.email "jae91m@gmail.com"'
 alias git-repo-internal='git config --unset user.name ; git config --unset user.email'
 
+test $(command -v vscodium) && alias code=vscodium
+
 # Set up the dog alias
 highlight_above_353=false
 if [[ $(command -v highlight) ]] ; then
