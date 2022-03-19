@@ -51,6 +51,20 @@ fi
 export VISUAL=vim
 export EDITOR=vim
 
+# Set up PATH and source other settings
+__prepend_dir_to_path_smart_before "$HOME/.local/bin" "/usr/local/bin"
+__prepend_dir_to_path_smart_before "$HOME/.bin" "/usr/local/bin"
+__prepend_dir_to_path_smart_before "$HOME/bin" "/usr/local/bin"
+
+__prepend_dir_to_path_smart_before "$HOME/.cargo/bin" "/usr/games"
+
+__append_dir_to_path_smart  "/usr/share/doc/git/contrib/diff-highlight"
+__append_dir_to_path_smart  "/usr/share/git/diff-highlight/" # Some distros use this instead
+
+__source_if_exists "$HOME/.bash-preexec.sh"
+__source_if_exists "$HOME/.bash_extra"
+
+
 # Read in git specific scripts
 test -r ${HOME}/.git-completion.bash && . ${HOME}/.git-completion.bash
 test -r ${HOME}/.git-prompt.sh && . ${HOME}/.git-prompt.sh

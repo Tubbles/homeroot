@@ -1,14 +1,17 @@
 #!/bin/bash
 
 __path_to_list() {
+    # echo "__path_to_list" > /dev/tty
     echo $PATH | tr ":" "\n"
 }
 
 __path_from_list() {
+    # echo "__path_from_list $1" > /dev/tty
     export PATH="$(echo "$1" | sed -E '/^$/d' | paste -sd':')"
 }
 
 __prepend_dir_to_path_smart_before() {
+    # echo "__prepend_dir_to_path_smart_before $1 $2" > /dev/tty
     [[ ! -d "$1" ]] && return
     [[ ":$PATH:" == *":$1:"* ]] && return
     local newline=$'\n'
@@ -30,13 +33,16 @@ __prepend_dir_to_path_smart_before() {
 
 
 __prepend_dir_to_path_smart() {
+    # echo "__prepend_dir_to_path_smart $1" > /dev/tty
     [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]] && export PATH="$1:$PATH"
 }
 
 __append_dir_to_path_smart() {
+    # echo "__append_dir_to_path_smart $1" > /dev/tty
     [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]] && export PATH="$PATH:$1"
 }
 
 __source_if_exists() {
+    # echo "__source_if_exists $1" > /dev/tty
     [[ -r "$1" ]] && source "$1"
 }
