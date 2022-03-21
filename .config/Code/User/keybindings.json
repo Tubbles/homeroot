@@ -188,6 +188,15 @@
         "key": "ctrl+shift+i",
         "command": "editor.action.transformToLowercase"
     },
+    // Focus terminal
+    {
+        "key": "ctrl+t",
+        "command": "-workbench.action.showAllSymbols"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.terminal.focus"
+    },
     // Throw out wonky restructuredtext keybindings
     {
         "key": "backspace",
@@ -263,5 +272,5 @@
         "key": "shift+tab",
         "command": "-resttext.key.shift.tab",
         "when": "editorTextFocus && resttext.shift.tab.enabled && !inSnippetMode && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
-    }
+    },
 ]
