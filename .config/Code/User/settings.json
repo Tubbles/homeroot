@@ -5,6 +5,9 @@
     "[cpp]": {
         "editor.defaultFormatter": "xaver.clang-format"
     },
+    "[rust]": {
+        "editor.defaultFormatter": "matklad.rust-analyzer"
+    },
     "C_Cpp.formatting": "clangFormat",
     "clang-format.fallbackStyle": "WebKit",
     "clang-format.language.c.fallbackStyle": "WebKit",
