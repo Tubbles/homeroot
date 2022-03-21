@@ -52,9 +52,9 @@ export VISUAL=vim
 export EDITOR=vim
 
 # Set up PATH and source other settings
-__prepend_dir_to_path_smart_before "$HOME/.local/bin" "/usr/local/bin"
-__prepend_dir_to_path_smart_before "$HOME/.bin" "/usr/local/bin"
-__prepend_dir_to_path_smart_before "$HOME/bin" "/usr/local/bin"
+__prepend_dir_to_path_smart "$HOME/.local/bin"
+__prepend_dir_to_path_smart "$HOME/.bin"
+__prepend_dir_to_path_smart "$HOME/bin"
 
 __prepend_dir_to_path_smart_before "$HOME/.cargo/bin" "/usr/games"
 
