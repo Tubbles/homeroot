@@ -7,12 +7,20 @@
     },
     "C_Cpp.formatting": "clangFormat",
     "clang-format.fallbackStyle": "WebKit",
+    "clang-format.language.c.fallbackStyle": "WebKit",
+    "clang-format.language.cpp.fallbackStyle": "WebKit",
     "cmake.configureOnOpen": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.wordWrap": "on",
     "editor.copyWithSyntaxHighlighting": false,
     "editor.detectIndentation": false,
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
-    "editor.wordWrapColumn": 140,
+    "editor.rulers": [
+        120
+    ],
+    "editor.tabSize": 4,
+    "editor.wordWrapColumn": 120,
     "explorer.autoReveal": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
@@ -21,6 +29,10 @@
         "*.bb": "bitbake",
         "*.bbappend": "bitbake",
         "*.inc": "python",
+        "*.ln": "linkerscript",
+        "*.tt": "csharp",
+        "*.m": "matlab",
+        "*.json": "jsonc"
     },
     "files.eol": "\n",
     "files.trimFinalNewlines": true,
@@ -28,13 +40,23 @@
     "python.formatting.autopep8Args": [
         "--max-line-length=120"
     ],
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [
+        "--max-line-length=120"
+    ],
     "reflow.preferredLineLength": 120,
     "reflowMarkdown.preferredLineLength": 120,
+    "restructuredtext.linter.doc8.extraArgs": [
+        "--max-line-length",
+        "120"
+    ],
+    "security.workspace.trust.untrustedFiles": "open",
     // "window.title": "${dirty}${rootName}${separator}${activeEditorLong}${separator}${appName}",
     "window.title": "${rootName}${separator}${rootPath}${separator}${appName}",
     "window.titleSeparator": " -  ",
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
-    "zenMode.centerLayout": false,
+    "workbench.startupEditor": "none",
     "zenMode.hideLineNumbers": false,
+    "zenMode.restore": false,
 }

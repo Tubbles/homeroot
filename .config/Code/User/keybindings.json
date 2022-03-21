@@ -188,8 +188,80 @@
         "key": "ctrl+shift+i",
         "command": "editor.action.transformToLowercase"
     },
+    // Throw out wonky restructuredtext keybindings
     {
-        "key": "ctrl+`",
-        "command": "workbench.action.focusOtherSideEditor"
+        "key": "backspace",
+        "command": "-restructuredtext.editor.listEditing.onBackspaceKey",
+        "when": "editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId == 'restructuredtext' && vim.mode != 'CommandlineInProgress' && vim.mode != 'EasyMotionInputMode' && vim.mode != 'EasyMotionMode' && vim.mode != 'Normal' && vim.mode != 'Replace' && vim.mode != 'SearchInProgressMode' && vim.mode != 'SurroundInputMode' && vim.mode != 'Visual' && vim.mode != 'VisualBlock' && vim.mode != 'VisualLine'"
+    },
+    {
+        "key": "tab",
+        "command": "-restructuredtext.editor.listEditing.onTabKey",
+        "when": "editorTextFocus && !editorReadonly && !editorTabMovesFocus && !hasOtherSuggestions && !hasSnippetCompletions && !inSnippetMode && !inlineSuggestionVisible && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
+    },
+    {
+        "key": "shift+tab",
+        "command": "-restructuredtext.editor.listEditing.onShiftTabKey",
+        "when": "editorTextFocus && !editorReadonly && !editorTabMovesFocus && !hasOtherSuggestions && !hasSnippetCompletions && !inSnippetMode && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
+    },
+    {
+        "key": "shift+enter",
+        "command": "-restructuredtext.editor.listEditing.onShiftEnterKey",
+        "when": "editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
+    },
+    {
+        "key": "ctrl+oem_4",
+        "command": "-restructuredtext.editor.listEditing.onOutdentLines",
+        "when": "editorTextFocus && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
+    },
+    {
+        "key": "alt+up",
+        "command": "-restructuredtext.editor.listEditing.onMoveLineUp",
+        "when": "editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
+    },
+    {
+        "key": "alt+down",
+        "command": "-restructuredtext.editor.listEditing.onMoveLineDown",
+        "when": "editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
+    },
+    {
+        "key": "ctrl+oem_6",
+        "command": "-restructuredtext.editor.listEditing.onIndentLines",
+        "when": "editorTextFocus && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
+    },
+    {
+        "key": "enter",
+        "command": "-restructuredtext.editor.listEditing.onEnterKey",
+        "when": "editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId == 'restructuredtext' && vim.mode != 'CommandlineInProgress' && vim.mode != 'EasyMotionInputMode' && vim.mode != 'EasyMotionMode' && vim.mode != 'Normal' && vim.mode != 'Replace' && vim.mode != 'SearchInProgressMode' && vim.mode != 'SurroundInputMode' && vim.mode != 'Visual' && vim.mode != 'VisualBlock' && vim.mode != 'VisualLine'"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-restructuredtext.editor.listEditing.onCtrlEnterKey",
+        "when": "editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
+    },
+    {
+        "key": "shift+alt+up",
+        "command": "-restructuredtext.editor.listEditing.onCopyLineUp",
+        "when": "editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
+    },
+    {
+        "key": "shift+alt+down",
+        "command": "-restructuredtext.editor.listEditing.onCopyLineDown",
+        "when": "editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "-markdown.extension.editing.toggleBold",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'"
+    },
+    {
+        "key": "tab",
+        "command": "-resttext.key.tab",
+        "when": "editorTextFocus && resttext.tab.enabled && !inSnippetMode && !inlineSuggestionVisible && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
+    },
+    {
+        "key": "shift+tab",
+        "command": "-resttext.key.shift.tab",
+        "when": "editorTextFocus && resttext.shift.tab.enabled && !inSnippetMode && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
     }
 ]
