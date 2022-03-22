@@ -1,0 +1,75 @@
+#!/bin/bash
+
+git-fork-rebase() {
+    local default_remote default_main
+    default_remote="fork"
+    default_main="main"
+    usage() {
+        echo "Usage:"
+        echo "  git-fork-rebase [remote [branch]]"
+        echo "    <remote> defaults to '${default_remote}'"
+        echo "    <branch> defaults to '${default_main}'"
+    }
+    if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+        usage
+        return
+    fi
+
+    local remote main
+    remote="${1:-${default_remote}}"
+    main="${2:-${default_main}}"
+    if ! git config remote."${remote}".url >"/dev/null"; then
+        echo "Error: Remote '${remote}' does not exist"
+        usage
+        return
+    fi
+    if ! git rev-parse --quiet --verify "${main}" >"/dev/null"; then
+        echo "Error: Local branch '${main}' does not exist"
+        usage
+        return
+    fi
+    if ! git rev-parse --quiet --verify "${remote}/${main}" >"/dev/null"; then
+        echo "Error: Remote tracking branch '${remote}/${main}' does not exist"
+        usage
+        return
+    fi
+
+    local current_branch previous_branch
+    current_branch="$(git rev-parse --abbrev-ref HEAD 2>"/dev/null")"
+    git checkout - &>"/dev/null"
+    previous_branch="$(git rev-parse --abbrev-ref HEAD 2>"/dev/null")"
+
+    if [[ "$(git rev-parse "${main}")" != "$(git rev-parse "${remote}/${main}")" ]]; then
+        git push "${remote}" "${main}"
+    fi
+
+    for branch in $(git for-each-ref --format='%(refname:short)' refs/heads/); do
+        # shellcheck disable=SC1083
+        if [[ $(git rev-parse --abbrev-ref "${branch}"@{upstream} 2>"/dev/null") =~ ${remote}/.* ]]; then
+            echo "  Considering ${branch}"
+            git checkout "${branch}" &>"/dev/null"
+            if [[ "$(git show-ref --heads -s "${main}")" != "$(git merge-base "${main}" "${branch}")" ]]; then
+                if [[ $(set -x && git rebase "${main}") ]]; then
+                    echo "  Rebase successful, pushing.."
+                    git push --force "${remote}" "${branch}"
+                else
+                    echo "  Rebase failed"
+                    (set -x && git rebase --abort)
+                fi
+            else
+                echo "  Rebase not needed, checking remote.."
+                # set -x
+                if [[ "$(git push --dry-run "${remote}" "${branch}" 2>&1)" != "Everything up-to-date" ]]; then
+                    echo "  Pushing.."
+                    git push --force "${remote}" "${branch}"
+                else
+                    echo "  Push not needed"
+                fi
+                # set +x
+            fi
+        fi
+    done
+
+    git checkout "${previous_branch}" &>"/dev/null"
+    git checkout "${current_branch}" &>"/dev/null"
+}

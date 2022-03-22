@@ -150,6 +150,13 @@ done
 # Start startx automatically on logon
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
+# Load standard modules
+# shellcheck disable=SC2044
+for module in $(find ${HOME}/.config/bashrc.d -type f -name 'module-*'); do
+    # shellcheck disable=SC1090
+    source "${module}"
+done
+
 # Now load system specific files
 __source_if_exists "${HOME}/.config/bashrc.d/os_name_${MSYSTEM//[\/ ]/_}"
 __source_if_exists "${HOME}/.config/bashrc.d/host_name_$(hostname)"
