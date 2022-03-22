@@ -145,6 +145,7 @@ done
 
 # Now load system specific files
 __source_if_exists "${HOME}/.config/bashrc.d/os_name_${MSYSTEM//[\/ ]/_}"
+__source_if_exists "${HOME}/.config/bashrc.d/host_name_$(hostname)"
 
 spawn() {
     { nohup "$@" < /dev/null > /dev/null 2>&1 & disown ; } > /dev/null 2>&1
