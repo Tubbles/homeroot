@@ -195,7 +195,7 @@
     },
     {
         "key": "ctrl+t",
-        "command": "workbench.action.terminal.focus"
+        "command": "workbench.action.terminal.toggleTerminal"
     },
     // Throw out wonky restructuredtext keybindings
     {
