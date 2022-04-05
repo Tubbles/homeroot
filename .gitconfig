@@ -42,6 +42,10 @@
     drop = checkout -- .
     udrop = !git status --porcelain | grep '^??' | cut -c 4- | tee /dev/tty | xargs -i rm -fr "{}"
 
+    # nuke, drop-nuke - clean the repo as if it was newly checked out
+    nuke = clean -dffx
+    drop-nuke = !git drop && git nuke
+
     # back - display files that have changed in remote since last pull
     back = !git show --name-status HEAD..origin/HEAD --pretty="" | sort | uniq
 
