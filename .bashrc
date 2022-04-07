@@ -130,9 +130,11 @@ fi
 
 dog_theme="zenburn"
 if [[ "${highlight_above_353}" == "true" ]]; then
-    alias dog='highlight -s ${dog_theme} --force=sh -O xterm256'
+    # shellcheck disable=SC2139
+    alias dog="highlight -s ${dog_theme} --force=sh -O xterm256"
 else
-    alias dog='highlight -s ${dog_theme} --force -O xterm256'
+    # shellcheck disable=SC2139
+    alias dog="highlight -s ${dog_theme} --force -O xterm256"
 fi
 
 #highlight () { grep --color -E "$1|$" "${@:2}" ;  }
