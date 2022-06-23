@@ -17,7 +17,6 @@
     "diffEditor.wordWrap": "on",
     "editor.copyWithSyntaxHighlighting": false,
     "editor.detectIndentation": false,
-    "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.rulers": [
         120
@@ -38,6 +37,7 @@
         "*.json": "jsonc"
     },
     "files.eol": "\n",
+    "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "python.formatting.autopep8Args": [
