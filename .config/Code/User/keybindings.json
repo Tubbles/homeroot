@@ -273,4 +273,9 @@
         "command": "-resttext.key.shift.tab",
         "when": "editorTextFocus && resttext.shift.tab.enabled && !inSnippetMode && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
     },
+    {
+        "key": "ctrl+shift+u",
+        "command": "-rust-analyzer.parentModule",
+        "when": "editorTextFocus && editorLangId == 'rust'"
+    },
 ]
