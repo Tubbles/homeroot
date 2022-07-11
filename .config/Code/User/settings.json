@@ -62,4 +62,5 @@
     "workbench.startupEditor": "none",
     "zenMode.hideLineNumbers": false,
     "zenMode.restore": false,
+    "rewrap.wrappingColumn": 120,
 }
