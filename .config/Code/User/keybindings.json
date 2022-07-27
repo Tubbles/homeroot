@@ -278,4 +278,26 @@
         "command": "-rust-analyzer.parentModule",
         "when": "editorTextFocus && editorLangId == 'rust'"
     },
+    {
+        "key": "f1",
+        "command": "workbench.view.explorer"
+    },
+    {
+        "key": "f1",
+        "command": "-workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+shift+c",
+        "command": "-workbench.action.terminal.openNativeConsole",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+c",
+        "command": "-workbench.action.terminal.copySelection",
+        "when": "terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected"
+    },
+    {
+        "key": "ctrl+shift+c",
+        "command": "workbench.action.toggleCenteredLayout"
+    },
 ]

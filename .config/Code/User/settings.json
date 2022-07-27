@@ -5,8 +5,14 @@
     "[cpp]": {
         "editor.defaultFormatter": "xaver.clang-format"
     },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
     "[rust]": {
         "editor.defaultFormatter": "matklad.rust-analyzer"
+    },
+    "[shellscript]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
     },
     "C_Cpp.formatting": "clangFormat",
     "clang-format.fallbackStyle": "WebKit",
@@ -21,6 +27,7 @@
     "editor.rulers": [
         120
     ],
+    "editor.multiCursorModifier": "ctrlCmd",
     "editor.tabSize": 4,
     "editor.wordWrapColumn": 120,
     "explorer.autoReveal": false,
@@ -63,4 +70,9 @@
     "zenMode.hideLineNumbers": false,
     "zenMode.restore": false,
     "rewrap.wrappingColumn": 120,
+    "C_Cpp.default.cppStandard": "c++17",
+    "debug.onTaskErrors": "abort",
+    "window.menuBarVisibility": "compact",
+    "window.titleBarStyle": "custom",
+    "window.customMenuBarAltFocus": false,
 }
