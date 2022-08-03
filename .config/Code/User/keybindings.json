@@ -280,10 +280,6 @@
     },
     {
         "key": "f1",
-        "command": "workbench.view.explorer"
-    },
-    {
-        "key": "f1",
         "command": "-workbench.action.showCommands"
     },
     {
@@ -299,5 +295,9 @@
     {
         "key": "ctrl+shift+c",
         "command": "workbench.action.toggleCenteredLayout"
+    },
+    {
+        "key": "f1",
+        "command": "workbench.files.action.showActiveFileInExplorer"
     },
 ]
