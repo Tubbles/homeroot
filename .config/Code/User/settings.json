@@ -44,6 +44,7 @@
         "*.json": "jsonc"
     },
     "files.eol": "\n",
+    "files.hotExit": "onExitAndWindowClose",
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
@@ -75,4 +76,21 @@
     "window.menuBarVisibility": "compact",
     "window.titleBarStyle": "custom",
     "window.customMenuBarAltFocus": false,
+    "[dockerfile]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    },
+    "shellcheck.customArgs": [
+        "--enable=all"
+    ],
+    "shellcheck.exclude": [
+        "1091",
+        "2312"
+    ],
+    "editor.renderWhitespace": "all",
+    "search.useIgnoreFiles": false,
+    "errorLens.enabledDiagnosticLevels": [
+        "error",
+        "info",
+        "warning"
+    ],
 }
