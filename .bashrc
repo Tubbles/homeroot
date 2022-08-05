@@ -173,6 +173,20 @@ spawn() {
     # ("$@" &)
 }
 
+mkscript() {
+    args=("$@")
+    for arg in "${args[@]}"; do
+        mkdir -p "$(dirname "${arg}")"
+        touch "${arg}"
+        chmod +x "${arg}"
+    done
+}
+
+cdir() {
+    mkdir -p "$1"
+    cd "$1" || return
+}
+
 # Set up atuin
 command -v atuin >/dev/null && eval "$(atuin init bash)"
 
