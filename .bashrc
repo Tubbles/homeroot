@@ -74,6 +74,7 @@ test -r "${HOME}/.git-prompt.sh" && . "${HOME}/.git-prompt.sh"
 
 export PS1='\[\e[37m\][$?] `date +%y%m%d-%H%M%S`\n\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]${MSYSTEM:+${MSYSTEM} }\[\e[0m\]\[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n\$ \[`tput smkx`\]'
 
+unalias -a
 alias gst='(git fetch --all --prune 2>/dev/null && git lol --all --color=always -10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always && git branch --color=never -rvv --color=always | grep -v "all/" ; git -c color.status=always status -s) | less -FRX'
 alias jst='(git lol --all --color=always -10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always && git branch --color=never -rvv --color=always | grep -v "all/" ; git -c color.status=always status -s) | less -FRX'
 alias reload='test -r ${HOME}/.bash_profile && . ${HOME}/.bash_profile'
