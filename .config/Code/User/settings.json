@@ -75,6 +75,7 @@
     "debug.onTaskErrors": "abort",
     "window.menuBarVisibility": "compact",
     "window.titleBarStyle": "custom",
+    "window.commandCenter": true,
     "window.customMenuBarAltFocus": false,
     "[dockerfile]": {
         "editor.defaultFormatter": "ms-azuretools.vscode-docker"
