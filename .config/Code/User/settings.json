@@ -5,6 +5,9 @@
     "[cpp]": {
         "editor.defaultFormatter": "xaver.clang-format"
     },
+    "[dockerfile]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    },
     "[python]": {
         "editor.defaultFormatter": "ms-python.python"
     },
@@ -14,22 +17,30 @@
     "[shellscript]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
+    "C_Cpp.default.cppStandard": "c++17",
     "C_Cpp.formatting": "clangFormat",
     "clang-format.fallbackStyle": "WebKit",
     "clang-format.language.c.fallbackStyle": "WebKit",
     "clang-format.language.cpp.fallbackStyle": "WebKit",
     "cmake.configureOnOpen": false,
+    "debug.onTaskErrors": "abort",
     "diffEditor.ignoreTrimWhitespace": false,
     "diffEditor.wordWrap": "on",
     "editor.copyWithSyntaxHighlighting": false,
     "editor.detectIndentation": false,
     "editor.formatOnSave": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.renderWhitespace": "all",
     "editor.rulers": [
         120
     ],
-    "editor.multiCursorModifier": "ctrlCmd",
     "editor.tabSize": 4,
     "editor.wordWrapColumn": 120,
+    "errorLens.enabledDiagnosticLevels": [
+        "error",
+        "info",
+        "warning"
+    ],
     "explorer.autoReveal": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
@@ -38,10 +49,10 @@
         "*.bb": "bitbake",
         "*.bbappend": "bitbake",
         "*.inc": "python",
+        "*.json": "jsonc",
         "*.ln": "linkerscript",
-        "*.tt": "csharp",
         "*.m": "matlab",
-        "*.json": "jsonc"
+        "*.tt": "csharp"
     },
     "files.eol": "\n",
     "files.hotExit": "onExitAndWindowClose",
@@ -51,35 +62,19 @@
     "python.formatting.autopep8Args": [
         "--max-line-length=120"
     ],
-    "python.linting.flake8Enabled": true,
     "python.linting.flake8Args": [
         "--max-line-length=120"
     ],
+    "python.linting.flake8Enabled": true,
     "reflow.preferredLineLength": 120,
     "reflowMarkdown.preferredLineLength": 120,
     "restructuredtext.linter.doc8.extraArgs": [
         "--max-line-length",
         "120"
     ],
-    "security.workspace.trust.untrustedFiles": "open",
-    // "window.title": "${dirty}${rootName}${separator}${activeEditorLong}${separator}${appName}",
-    "window.title": "${rootName}${separator}${rootPath}${separator}${appName}",
-    "window.titleSeparator": " -  ",
-    "workbench.editor.enablePreview": false,
-    "workbench.editor.enablePreviewFromQuickOpen": false,
-    "workbench.startupEditor": "none",
-    "zenMode.hideLineNumbers": false,
-    "zenMode.restore": false,
     "rewrap.wrappingColumn": 120,
-    "C_Cpp.default.cppStandard": "c++17",
-    "debug.onTaskErrors": "abort",
-    "window.menuBarVisibility": "compact",
-    "window.titleBarStyle": "custom",
-    "window.commandCenter": true,
-    "window.customMenuBarAltFocus": false,
-    "[dockerfile]": {
-        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
-    },
+    "search.useIgnoreFiles": false,
+    "security.workspace.trust.untrustedFiles": "open",
     "shellcheck.customArgs": [
         "--enable=all"
     ],
@@ -87,11 +82,16 @@
         "1091",
         "2312"
     ],
-    "editor.renderWhitespace": "all",
-    "search.useIgnoreFiles": false,
-    "errorLens.enabledDiagnosticLevels": [
-        "error",
-        "info",
-        "warning"
-    ],
+    "window.commandCenter": true,
+    "window.customMenuBarAltFocus": false,
+    "window.menuBarVisibility": "compact",
+    // "window.title": "${dirty}${rootName}${separator}${activeEditorLong}${separator}${appName}",
+    "window.title": "${rootName}${separator}${rootPath}${separator}${appName}",
+    "window.titleBarStyle": "custom",
+    "window.titleSeparator": " -  ",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.startupEditor": "none",
+    "zenMode.hideLineNumbers": false,
+    "zenMode.restore": false,
 }
