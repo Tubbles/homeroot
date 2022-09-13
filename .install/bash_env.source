@@ -46,3 +46,12 @@ __source_if_exists() {
     # echo "__source_if_exists $1" > /dev/tty
     [[ -r "$1" ]] && source "$1"
 }
+
+__remove_matching_from_path() {
+    # echo "__remove_matching_from_path $1" > /dev/tty
+    local path_list
+    local new_path
+    path_list=$(__path_to_list)
+    new_path="$(echo "${path_list}" | grep -Ev "$1")"
+    __path_from_list "${new_path}"
+}

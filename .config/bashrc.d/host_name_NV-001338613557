@@ -9,13 +9,14 @@ if [[ "$(uname -a)" == *"Msys"* ]]; then
     __append_dir_to_path_smart "/c/Users/JohanEriksson/AppData/Local/Programs/Microsoft VS Code/bin"
 elif [[ "$(uname -a)" == *"WSL2"* ]]; then
     alias nv='cd /mnt/c/Users/JohanEriksson/NV/SW/BMS'
-    # TODO : Remove windows centric stuff here
-    # /mnt/c/msys64/mingw64/bin
-    # /mnt/c/msys64/usr/bin
-    # /mnt/c/Users/*/AppData/Local/Microsoft/WindowsApps
-    # /mnt/c/Users/*/AppData/Local/Programs/Git/cmd
-    # /mnt/c/Users/*/AppData/Local/Programs/Python/Launcher/
-    # /mnt/c/Users/*/AppData/Local/Programs/Python/Python310/
-    # /mnt/c/Users/*/AppData/Local/Programs/Python/Python310/Scripts/
-    # /mnt/c/WINDOWS/System32/OpenSSH/
+
+    # Remove windows centric stuff
+    __remove_matching_from_path "/mnt/c/msys64/mingw64/bin"
+    __remove_matching_from_path "/mnt/c/msys64/usr/bin"
+    __remove_matching_from_path "/mnt/c/Users/.*/AppData/Local/Microsoft/WindowsApps"
+    __remove_matching_from_path "/mnt/c/Users/.*/AppData/Local/Programs/Git/cmd"
+    __remove_matching_from_path "/mnt/c/Users/.*/AppData/Local/Programs/Python/Launcher/"
+    __remove_matching_from_path "/mnt/c/Users/.*/AppData/Local/Programs/Python/Python310/"
+    __remove_matching_from_path "/mnt/c/Users/.*/AppData/Local/Programs/Python/Python310/Scripts/"
+    __remove_matching_from_path "/mnt/c/WINDOWS/System32/OpenSSH/"
 fi
