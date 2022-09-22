@@ -114,7 +114,7 @@
     required = true
 [credential]
     helper = store
-[include]
-    path = ~/.gitconfig_extra
 [rerere]
     enabled = true
+[include]
+    path = ~/.gitconfig_extra
