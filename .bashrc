@@ -166,7 +166,7 @@ done
 
 # Now load system specific files
 __source_if_exists "${HOME}/.config/bashrc.d/os_name_${MSYSTEM//[\/ ]/_}"
-__source_if_exists "${HOME}/.config/bashrc.d/host_name_$(hostname)"
+__source_if_exists "${HOME}/.config/bashrc.d/host_name_$(uname -n)"
 
 spawn() {
     {
