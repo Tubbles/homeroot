@@ -1,1 +1,13 @@
 theme = "vscode"
+
+[editor]
+line-number = "relative"
+mouse = false
+rulers = [80, 120]
+color-modes = true
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.whitespace.render]
+tab = "all"
