@@ -3,7 +3,7 @@
     email = jae91m@gmail.com
 [core]
 #    editor = 'C:/Tools/Notepad++ 7.2.2/notepad++.exe' -multiInst -notabbar -nosession
-    editor = vim
+    editor = hx
     excludesfile = $HOME/.gitignore_global
     preloadindex = true
     fscache = true
