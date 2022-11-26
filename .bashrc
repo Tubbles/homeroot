@@ -50,8 +50,10 @@ if [[ -z "${MSYSTEM}" ]]; then
     esac
 fi
 
-export VISUAL=vim
-export EDITOR=vim
+# Fix for helix truecolor
+export COLORTERM=truecolor
+export VISUAL=hx
+export EDITOR=hx
 
 # Set up PATH and source other settings
 __prepend_dir_to_path_smart "${HOME}/.local/bin"
