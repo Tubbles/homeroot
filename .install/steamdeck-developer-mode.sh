@@ -1,6 +1,8 @@
 #!/bin/bash
 
-set -x
+set -ex
+
+sudo steamos-readonly disable
 
 sudo pacman-key --init
 sudo pacman-key --populate archlinux
