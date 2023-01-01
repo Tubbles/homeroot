@@ -11,3 +11,8 @@ insert = "bar"
 
 [editor.whitespace.render]
 tab = "all"
+
+[keys.normal]
+d = "delete_selection_noyank"
+c = "change_selection_noyank"
+
