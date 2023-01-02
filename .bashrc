@@ -114,6 +114,7 @@ alias git-repo-public='git config user.name Tubbles ; git config user.email "jae
 alias git-repo-internal='git config --unset user.name ; git config --unset user.email'
 alias dimages="docker image ls -a | grep -v '<none>' | sort"
 alias funcs='( declare -F | grep -v "declare -f _" | sed "s,declare -f,function,g" ; alias | sed -E "s,(alias [^=]+)=.*,\1,g" ) | sort'
+alias caret="printf '\033[6 q'"
 
 test "$(command -v vscodium)" && alias code=vscodium
 test "$(command -v helix)" && test ! -L "${HOME}/.local/bin/hx" && ln -s "$(command -v helix)" "${HOME}/.local/bin/hx"
