@@ -16,3 +16,5 @@ tab = "all"
 d = "delete_selection_noyank"
 c = "change_selection_noyank"
 
+[editor.file-picker]
+hidden = false

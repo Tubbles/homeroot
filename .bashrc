@@ -116,6 +116,7 @@ alias dimages="docker image ls -a | grep -v '<none>' | sort"
 alias funcs='( declare -F | grep -v "declare -f _" | sed "s,declare -f,function,g" ; alias | sed -E "s,(alias [^=]+)=.*,\1,g" ) | sort'
 
 test "$(command -v vscodium)" && alias code=vscodium
+test "$(command -v helix)" && test ! -L "${HOME}/.local/bin/hx" && ln -s "$(command -v helix)" "${HOME}/.local/bin/hx"
 
 # Set up the dog alias
 highlight_above_353=false
