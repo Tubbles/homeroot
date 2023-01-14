@@ -1,0 +1,19 @@
+[[language]]
+name = "c"
+indent = { tab-width = 4, unit = "    " }
+auto-pairs = false
+
+[[language]]
+name = "cpp"
+indent = { tab-width = 4, unit = "    " }
+auto-pairs = false
+
+[[language]]
+name = "cmake"
+indent = { tab-width = 4, unit = "    " }
+auto-pairs = false
+
+[[language]]
+name = "bash"
+indent = { tab-width = 4, unit = "    " }
+auto-pairs = false
