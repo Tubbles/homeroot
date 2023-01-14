@@ -13,8 +13,23 @@ insert = "bar"
 tab = "all"
 
 [keys.normal]
+# Change to more modern editor experience
 d = "delete_selection_noyank"
 c = "change_selection_noyank"
+R = "replace_selections_with_clipboard"
+y = "yank_main_selection_to_clipboard"
+p = "paste_clipboard_after"
+P = "paste_clipboard_before"
+
+# Window movement
+A-h = "jump_view_left"
+A-j = "jump_view_down"
+A-k = "jump_view_up"
+A-l = "jump_view_right"
+C-A-h = "swap_view_left"
+C-A-j = "swap_view_down"
+C-A-k = "swap_view_up"
+C-A-l = "swap_view_right"
 
 [editor.file-picker]
 hidden = false
