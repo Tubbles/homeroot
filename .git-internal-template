@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git_internal_name="my name"
+git_internal_email="my@email.com"
