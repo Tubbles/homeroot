@@ -11,6 +11,7 @@
     pager = less -x1,5
 [push]
     default = simple
+    autoSetupRemote = true
 [alias]
     # Count the commit authors
     authors = shortlog -s -n --all --no-merges
