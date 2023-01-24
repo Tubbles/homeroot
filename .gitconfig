@@ -76,6 +76,9 @@
     # followed by a git stash drop.
     jpop = stash pop --index
 
+    # Display all children of a commit
+    children = "!f() { git rev-list --all --not $1^@ --children | grep $(git rev-parse $1); }; f"
+
 [color "status"]
     untracked = magenta
     changed = cyan
