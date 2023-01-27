@@ -58,7 +58,7 @@
     conflict = !git status -s | grep -E '^(.U|U.)' | awk '{print $2}' | xargs grep -Hn -E '(<<<<<<<|=======|>>>>>>>)'
 
     # fix - Display what our current conflicts are, during a merge, using vscode
-    fix = !git diff --check 2>&1 | awk -F':' '{print $1}' | sort | uniq | xargs --no-run-if-empty code
+    fix = !git diff --check 2>&1 | grep conflict | awk -F':' '{print $1}' | sort -u | xargs --no-run-if-empty code
 
     # file-log - display a log of history for a file, even through renames
     file-log = log -p --follow
