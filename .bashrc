@@ -129,6 +129,7 @@ alias caret="printf '\033[6 q'"
 
 test "$(command -v vscodium)" && alias code=vscodium
 test "$(command -v helix)" && test ! "$(command -v hx)" && test ! -L "${HOME}/.local/bin/hx" && mkdir -p "${HOME}/.local/bin" && ln -s "$(command -v helix)" "${HOME}/.local/bin/hx"
+test "$(command -v podman)" && test ! "$(command -v docker)" && alias docker=podman
 
 # Set up the dog alias
 highlight_above_353=false
