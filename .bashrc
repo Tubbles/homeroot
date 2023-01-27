@@ -117,7 +117,7 @@ alias funcs='( declare -F | grep -v "declare -f _" | sed "s,declare -f,function,
 alias caret="printf '\033[6 q'"
 
 test "$(command -v vscodium)" && alias code=vscodium
-test "$(command -v helix)" && test ! -L "${HOME}/.local/bin/hx" && ln -s "$(command -v helix)" "${HOME}/.local/bin/hx"
+test "$(command -v helix)" && test ! "$(command -v hx)" && test ! -L "${HOME}/.local/bin/hx" && mkdir -p "${HOME}/.local/bin" && ln -s "$(command -v helix)" "${HOME}/.local/bin/hx"
 
 # Set up the dog alias
 highlight_above_353=false
