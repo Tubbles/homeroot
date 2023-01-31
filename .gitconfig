@@ -89,10 +89,16 @@
     interactive = auto
     ui = true
     pager = true
+[color.diff]
+    oldMoved = "red bold"
+    newMoved = blue
+    oldMovedAlternative = magenta
+    newMovedAlternative = cyan
 [gc]
     auto = 256
 [diff]
     wsErrorHighlight = all
+    colorMoved = default
 [blame]
     coloring = highlightRecent
 [pager]
