@@ -17,13 +17,10 @@
     authors = shortlog -s -n --all --no-merges
 
     # Various log aliases
-#    lol =  log --graph --all --format='%C(yellow)%h %C(auto)%d %Creset%<(80,trunc)%s'
-#    lola = log --graph --all --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(auto)%d %Creset%<(80,trunc)%s'
-#    lold = log --graph --all --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(red)%ad %C(auto)%d %Creset%<(80,trunc)%s' --date=iso
-#    loll = log --graph       --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(red)%ad %C(auto)%d %Creset%<(80,trunc)%s' --date=iso
-#    loldplumb = log --graph  --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(red)%ad %C(auto)%d %Creset%<(80,trunc)%s' --date=iso
     lol = log --graph --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(red)%ad %C(auto)%d %Creset%<(80,trunc)%s' --date=iso
-    tlol = tag --sort version:refname --format='%(align:width=65)%(color:cyan)%(refname:short)%(end) %(align:width=80)%(color:white)%(contents:subject)%(end) %(color:yellow)%(taggerdate:short) %(color:red)%(taggername)'
+    # tlol = tag --color --sort -authordate --format='%(align:width=65)%(color:cyan)%(refname:short)%(end) %(align:width=80)%(color:white)%(contents:subject)%(end) %(color:yellow)%(taggerdate:short) %(color:red)%(taggername)'
+    tlol = tag --color --sort -taggerdate --format='%(align:left,92)%(color:bold red)%(refname:short)%(end)%(color:nobold yellow)%(objectname:short) %(if)%(taggername)%(then)%(else)%(color:default)* %(end)%(align:left,20)%(color:cyan)%(if)%(taggername)%(then)%(taggername)%(else)%(authorname)%(end)%(end) %(align:left,30)%(color:red)%(if)%(taggerdate:iso)%(then)%(taggerdate:iso)%(else)%(authordate:iso)%(end)%(end) %(color:default)%(subject)'
+    blol = branch -r --color --sort -authordate --format='  %(align:left,92)%(color:bold red)%(refname:short)%(end)%(color:nobold yellow)%(objectname:short) %(align:left,20)%(color:cyan)%(authorname)%(end) %(align:left,30)%(color:red)%(authordate:iso)%(end) %(color:default)%(subject)'
 
     # jshow - Display what files only changed
     jshow = show --name-only
@@ -78,6 +75,9 @@
 
     # Display all children of a commit
     children = "!f() { git rev-list --all --not $1^@ --children | grep $(git rev-parse $1); }; f"
+
+    # List current feature branch
+    topic = !git lol --not `git remote show origin | grep \"HEAD branch\" | awk '{print $NF}'` --not `git branch --show` origin/`git branch --show`
 
 [color "status"]
     untracked = magenta
