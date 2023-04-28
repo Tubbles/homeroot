@@ -1,0 +1,6 @@
+#!/bin/bash
+
+__indicate_git_stash() {
+    # echo "__indicate_git_stash" > /dev/tty
+    if git stash list --format='%P' 2>&1 | grep -q "$(git rev-parse HEAD)" ; then echo " #" ; fi
+}

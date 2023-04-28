@@ -80,12 +80,20 @@ __source_if_exists "${HOME}/.bash-preexec.sh"
 __source_if_exists "${HOME}/.bash_extra"
 
 # Read in git specific scripts
-# shellcheck disable=SC1091
-test -r "${HOME}/.git-completion.bash" && . "${HOME}/.git-completion.bash"
-# shellcheck disable=SC1091
-test -r "${HOME}/.git-prompt.sh" && . "${HOME}/.git-prompt.sh"
+__source_if_exists "${HOME}/.git-completion.bash"
+__source_if_exists "${HOME}/.git-prompt.sh"
+__source_if_exists "${HOME}/.install/git-prompt.source"
 
-export PS1='\[\e[37m\][$?] `date +%y%m%d-%H%M%S`\n\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]${MSYSTEM:+${MSYSTEM} }\[\e[0m\]\[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n\$ \[`tput smkx`\]'
+PS1=''
+PS1+='\[\e[37m\][$?] `date +%y%m%d-%H%M%S`\n\[\e]0;\w\a\]\n'
+PS1+='\[\e[32m\]\u@\h '
+PS1+='\[\e[35m\]${MSYSTEM:+${MSYSTEM} }'
+PS1+='\[\e[0m\]'
+PS1+='\[\e[33m\]\w'
+PS1+='\[\e[36m\]`__git_ps1`'
+PS1+='\[\e[33m\]`__indicate_git_stash`'
+PS1+='\[\e[0m\]\n\$ \[`tput smkx`\]'
+export PS1
 
 alias gst='(git fetch --all --prune 2>/dev/null && git lol --all --color=always -10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always ; git -c color.status=always status -s) | less -FRX'
 alias jst='(git lol --all --color=always -10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always ; git -c color.status=always status -s) | less -FRX'
