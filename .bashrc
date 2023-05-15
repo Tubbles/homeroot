@@ -97,6 +97,9 @@ export PS1
 
 alias gst='(git fetch --all --prune 2>/dev/null && git lol --all --color=always -10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always ; git -c color.status=always status -s) | less -FRX'
 alias jst='(git lol --all --color=always -10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always ; git -c color.status=always status -s) | less -FRX'
+alias gapu='git add -pu'
+alias gd='git diff'
+alias gdc='git diff --cached'
 alias reload='test -r ${HOME}/.bash_profile && . ${HOME}/.bash_profile'
 alias ls='LC_COLLATE=C ls -b --group-directories-first'
 alias l='ls -Fhl --color --time-style=+%y%m%d-%H%M%S'
