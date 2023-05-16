@@ -18,6 +18,7 @@
 
     # Various log aliases
     lol = log --graph --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(red)%ad %C(auto)%d %Creset%<(80,trunc)%s' --date=iso
+    llol = !git for-each-ref --format='%(refname:short)' refs/heads/ | paste -sd' ' | xargs git lol
     # tlol = tag --color --sort -authordate --format='%(align:width=65)%(color:cyan)%(refname:short)%(end) %(align:width=80)%(color:white)%(contents:subject)%(end) %(color:yellow)%(taggerdate:short) %(color:red)%(taggername)'
     tlol = tag --color --sort -taggerdate --format='%(align:left,92)%(color:bold red)%(refname:short)%(end)%(color:nobold yellow)%(objectname:short) %(if)%(taggername)%(then)%(else)%(color:default)* %(end)%(align:left,20)%(color:cyan)%(if)%(taggername)%(then)%(taggername)%(else)%(authorname)%(end)%(end) %(align:left,30)%(color:red)%(if)%(taggerdate:iso)%(then)%(taggerdate:iso)%(else)%(authordate:iso)%(end)%(end) %(color:default)%(subject)'
     blol = branch -r --color --sort -authordate --format='  %(align:left,92)%(color:bold red)%(refname:short)%(end)%(color:nobold yellow)%(objectname:short) %(align:left,20)%(color:cyan)%(authorname)%(end) %(align:left,30)%(color:red)%(authordate:iso)%(end) %(color:default)%(subject)'
