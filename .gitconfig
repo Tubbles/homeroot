@@ -83,6 +83,9 @@
     # "Force merge"
     force-merge = !git reset --hard `git rev-parse --abbrev-ref --symbolic-full-name @{u}`
 
+    # "Force pull"
+    force-pull = !git fetch -ap && git force-merge
+
 [color "status"]
     untracked = magenta
     changed = cyan
