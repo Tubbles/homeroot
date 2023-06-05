@@ -55,7 +55,7 @@
         "editor.defaultFormatter": "ms-python.python"
     },
     "[rust]": {
-        "editor.defaultFormatter": "matklad.rust-analyzer"
+        "editor.defaultFormatter": "rust-lang.rust-analyzer"
     },
     "[shellscript]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -95,7 +95,9 @@
         "*.json": "jsonc",
         "*.ln": "linkerscript",
         "*.m": "matlab",
-        "*.tt": "csharp"
+        "*.tt": "csharp",
+        ".clang-format": "yaml",
+        ".clang-tidy": "yaml"
     },
     "files.eol": "\n",
     "files.hotExit": "onExitAndWindowClose",
