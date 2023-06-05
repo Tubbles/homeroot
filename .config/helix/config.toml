@@ -3,7 +3,7 @@ theme = "vscode"
 [editor]
 line-number = "relative"
 mouse = false
-rulers = [80, 120]
+rulers = [120]
 color-modes = true
 
 [editor.cursor-shape]
@@ -20,6 +20,14 @@ R = "replace_selections_with_clipboard"
 y = "yank_main_selection_to_clipboard"
 p = "paste_clipboard_after"
 P = "paste_clipboard_before"
+C-left = "move_prev_word_start"
+C-right = "move_next_word_start"
+C-p = "file_picker"
+C-s = ":w"
+C-j = "scroll_down"
+C-k = "scroll_up"
+C-down = "scroll_down"
+C-up = "scroll_up"
 
 # Window movement
 A-h = "jump_view_left"
@@ -30,6 +38,21 @@ C-A-h = "swap_view_left"
 C-A-j = "swap_view_down"
 C-A-k = "swap_view_up"
 C-A-l = "swap_view_right"
+
+[keys.insert]
+C-left = "move_prev_word_start"
+C-right = "move_next_word_start"
+
+[keys.select]
+# Change to more modern editor experience
+d = "delete_selection_noyank"
+c = "change_selection_noyank"
+R = "replace_selections_with_clipboard"
+y = "yank_main_selection_to_clipboard"
+p = "paste_clipboard_after"
+P = "paste_clipboard_before"
+C-left = "move_prev_word_start"
+C-right = "move_next_word_start"
 
 [editor.file-picker]
 hidden = false
