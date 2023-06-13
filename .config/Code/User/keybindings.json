@@ -300,4 +300,9 @@
         "key": "f1",
         "command": "workbench.files.action.showActiveFileInExplorer"
     },
+    {
+        "key": "shift+alt+f",
+        "command": "editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
 ]

@@ -43,7 +43,7 @@
     // yzhang.markdown-all-in-one@3.4.3
     // ZixuanWang.linkerscript@1.0.2
     "[c]": {
-        "editor.defaultFormatter": "xaver.clang-format"
+        "editor.defaultFormatter": "ms-vscode.cpptools"
     },
     "[cpp]": {
         "editor.defaultFormatter": "xaver.clang-format"
@@ -71,7 +71,6 @@
     "diffEditor.wordWrap": "on",
     "editor.copyWithSyntaxHighlighting": false,
     "editor.detectIndentation": false,
-    "editor.formatOnSave": true,
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.renderWhitespace": "all",
     "editor.rulers": [
@@ -139,4 +138,6 @@
     "workbench.startupEditor": "none",
     "zenMode.hideLineNumbers": false,
     "zenMode.restore": false,
+    "telemetry.telemetryLevel": "off",
+    "window.zoomLevel": 0,
 }
