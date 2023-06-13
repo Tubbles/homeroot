@@ -6,6 +6,12 @@ __gitmsg_get_msg_file_path_from_cwd() {
     __return "${git_msg_file}"
 }
 
+__gitmsg_clean_msg_file() {
+    git_msg_file="$(__gitmsg_get_msg_file_path_from_cwd)"
+
+    cat /dev/null > "${git_msg_file}"
+}
+
 __gitmsg_clean_comments_from_file() {
     git_msg_file="$(__gitmsg_get_msg_file_path_from_cwd)"
 
@@ -41,5 +47,22 @@ __gitmsg_commit() {
     git_msg_file="$(__gitmsg_get_msg_file_path_from_cwd)"
     __gitmsg_edit_msg_file
     __gitmsg_clean_comments_from_file
-    git commit -F "${git_msg_file}" "$@"
+
+    if git commit -F "${git_msg_file}" "$@" ; then
+        __gitmsg_clean_msg_file
+    fi
+}
+
+__gitmsg_print_pretty_title() {
+    git_msg_file="$(__gitmsg_get_msg_file_path_from_cwd)"
+    if [[ ! -s "${git_msg_file}" ]]; then
+        return
+    fi
+
+    title="$(head -n 1 "${git_msg_file}")"
+    if [[ -z "${title}" ]] ; then
+        return
+    fi
+
+    __return "$(tput setaf 3)Preparing: \"${title}\"$(tput sgr0)"
 }
