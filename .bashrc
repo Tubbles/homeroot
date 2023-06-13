@@ -100,6 +100,8 @@ alias jst='(git lol --all --color=always -10 && echo "---" && git lol --color=al
 alias gapu='git add -pu'
 alias gd='git diff'
 alias gdc='git diff --cached'
+alias jcm="__gitmsg_edit_msg_file"
+alias jc="__gitmsg_commit"
 alias reload='test -r ${HOME}/.bash_profile && . ${HOME}/.bash_profile'
 alias ls='LC_COLLATE=C ls -b --group-directories-first'
 alias l='ls -Fhl --color --time-style=+%y%m%d-%H%M%S'

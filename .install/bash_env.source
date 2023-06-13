@@ -1,5 +1,13 @@
 #!/bin/bash
 
+__return() {
+    echo "$@"
+}
+
+__echo() {
+    echo "$@" > /dev/tty
+}
+
 __path_to_list() {
     # echo "__path_to_list" > /dev/tty
     echo $PATH | tr ":" "\n"

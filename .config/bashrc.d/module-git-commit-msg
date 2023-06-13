@@ -1,0 +1,45 @@
+#!/bin/bash
+
+__gitmsg_get_msg_file_path_from_cwd() {
+    repo_root="$(git rev-parse --show-toplevel)"
+    git_msg_file="${repo_root}/.git/msg"
+    __return "${git_msg_file}"
+}
+
+__gitmsg_clean_comments_from_file() {
+    git_msg_file="$(__gitmsg_get_msg_file_path_from_cwd)"
+
+    sed -i '/^#/d' "${git_msg_file}"
+}
+
+__gitmsg_append_file_comments() {
+    git_msg_file="$(__gitmsg_get_msg_file_path_from_cwd)"
+
+    # Multi lines are more readable than a giant block
+    # shellcheck disable=SC2129
+    echo "# Please enter the commit message for your changes. Lines starting" >> "${git_msg_file}"
+    echo "# with '#' will be ignored, and an empty message aborts the commit." >> "${git_msg_file}"
+    echo "#" >> "${git_msg_file}"
+    git status | grep -Ev 'git (pull|add|restore)' | sed -E 's,^,# ,g' >> "${git_msg_file}"
+}
+
+__gitmsg_edit_msg_file() {
+    git_msg_file="$(__gitmsg_get_msg_file_path_from_cwd)"
+
+    # If the msg file does not exist, create it and seed it with an empty line
+    if [[ ! -s "${git_msg_file}" ]]; then
+        touch "${git_msg_file}"
+        echo "" >> "${git_msg_file}"
+    fi
+
+    __gitmsg_clean_comments_from_file
+    __gitmsg_append_file_comments
+    ${EDITOR:-vi} "${git_msg_file}"
+}
+
+__gitmsg_commit() {
+    git_msg_file="$(__gitmsg_get_msg_file_path_from_cwd)"
+    __gitmsg_edit_msg_file
+    __gitmsg_clean_comments_from_file
+    git commit -F "${git_msg_file}" "$@"
+}
