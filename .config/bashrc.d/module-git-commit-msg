@@ -32,10 +32,10 @@ __gitmsg_append_file_comments() {
 __gitmsg_edit_msg_file() {
     git_msg_file="$(__gitmsg_get_msg_file_path_from_cwd)"
 
-    # If the msg file does not exist, create it and seed it with an empty line
+    # If the msg file does not exist, create it and seed it
     if [[ ! -s "${git_msg_file}" ]]; then
         touch "${git_msg_file}"
-        echo "" >> "${git_msg_file}"
+        echo -e "$(git branch --show)\n" >> "${git_msg_file}"
     fi
 
     __gitmsg_clean_comments_from_file
