@@ -96,10 +96,10 @@ PS1+='\[\e[0m\]\n\$ \[`tput smkx`\]'
 
 # Hotfix for the helix-editor caret issue (and possibly others?) https://github.com/helix-editor/helix/issues/2684
 __caret() {
-    printf '\033[6 q'
+    printf '\e[6 q'
 }
 
-PS1+='`__caret`'
+PS1+='\[`__caret`\]'
 export PS1
 
 alias gst='(git fetch --all --prune 2>/dev/null && git lol --all --color=always -10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always ; __gitmsg_print_pretty_title ; git -c color.status=always status -s) | less -FRX'
