@@ -146,6 +146,11 @@ alias git-repo-internal='git config --unset user.name ; git config --unset user.
 alias dimages="docker image ls -a | grep -v '<none>' | sort"
 alias funcs='( declare -F | grep -v "declare -f _" | sed "s,declare -f,function,g" ; alias | sed -E "s,(alias [^=]+)=.*,\1,g" ) | sort'
 alias caret="printf '\033[6 q'"
+alias transparency='transset -tc 0.75'
+
+if cat /etc/*release | sed 's,ID_LIKE=,,g' | grep -q arch; then
+    alias transset='transset-df'
+fi
 
 test "$(command -v vscodium)" && alias code=vscodium
 test "$(command -v helix)" && test ! "$(command -v hx)" && test ! -L "${HOME}/.local/bin/hx" && mkdir -p "${HOME}/.local/bin" && ln -s "$(command -v helix)" "${HOME}/.local/bin/hx"
