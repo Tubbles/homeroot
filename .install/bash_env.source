@@ -5,7 +5,14 @@ __return() {
 }
 
 __echo() {
-    echo "$@" > /dev/tty
+    echo "$@" >/dev/tty
+}
+
+__join() {
+    local d=${1-} f=${2-}
+    if shift 2; then
+        printf %s "${f}" "${@/#/${d}}"
+    fi
 }
 
 __path_to_list() {
@@ -27,10 +34,10 @@ __prepend_dir_to_path_smart_before() {
     local num_lines="$(echo "${path_list}" | wc -l)"
     local offset="$(echo "${path_list}" | grep -nm1 "$2" | awk -F':' '{print $1}')"
     local new_path
-    if [[ -z ${offset} ]] ; then
+    if [[ -z ${offset} ]]; then
         new_path="$(echo -e "${path_list}\n$1")"
     else
-        new_path="$(echo "${path_list}" | head -n $(( ${offset} - 1 )))"
+        new_path="$(echo "${path_list}" | head -n $((${offset} - 1)))"
         new_path+="${newline}"
         new_path+="$(echo "$1")"
         new_path+="${newline}"
@@ -38,7 +45,6 @@ __prepend_dir_to_path_smart_before() {
     fi
     __path_from_list "${new_path}"
 }
-
 
 __prepend_dir_to_path_smart() {
     # echo "__prepend_dir_to_path_smart $1" > /dev/tty
