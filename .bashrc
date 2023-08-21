@@ -80,6 +80,7 @@ __source_if_exists "${HOME}/.bash-preexec.sh"
 __source_if_exists "${HOME}/.bash_extra"
 
 # Read in git specific scripts
+__source_if_exists "/usr/share/bash-completion/completions/git"
 __source_if_exists "${HOME}/.git-completion.bash"
 __source_if_exists "${HOME}/.git-prompt.sh"
 __source_if_exists "${HOME}/.install/git-prompt.source"
