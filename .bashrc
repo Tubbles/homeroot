@@ -100,6 +100,14 @@ __caret() {
     printf '\e[6 q'
 }
 
+__reload() {
+    # bash
+    __source_if_exists "${HOME}/.bash_profile"
+
+    # readline
+    test -r "${HOME}/.inputrc" && bind -f "${HOME}/.inputrc"
+}
+
 PS1+='\[`__caret`\]'
 export PS1
 
@@ -110,7 +118,7 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 alias jcm="__gitmsg_edit_msg_file"
 alias jc="__gitmsg_commit"
-alias reload='test -r ${HOME}/.bash_profile && . ${HOME}/.bash_profile'
+alias reload='__reload'
 alias ls='LC_COLLATE=C ls -b --group-directories-first'
 alias l='ls -Fhl --color --time-style=+%y%m%d-%H%M%S'
 alias lm='l -ct'
