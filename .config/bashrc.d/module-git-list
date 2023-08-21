@@ -1,0 +1,104 @@
+#!/bin/bash
+
+__git_list() {
+    # ' ' = unmodified
+    # M = modified
+    # T = file type changed (regular file, symbolic link or submodule)
+    # A = added
+    # D = deleted
+    # R = renamed
+    # C = copied (if config option status.renames is set to "copies")
+    # U = updated but unmerged
+
+    #    X          Y     Meaning
+    #    -------------------------------------------------
+    #             [AMD]   not updated
+    #    M        [ MTD]  updated in index
+    #    T        [ MTD]  type changed in index
+    #    A        [ MTD]  added to index
+    #    D                deleted from index
+    #    R        [ MTD]  renamed in index
+    #    C        [ MTD]  copied in index
+    #    [MTARC]          index and work tree matches
+    #    [ MTARC]    M    work tree changed since index
+    #    [ MTARC]    T    type changed in work tree since index
+    #    [ MTARC]    D    deleted in work tree
+    #                R    renamed in work tree
+    #                C    copied in work tree
+    #    -------------------------------------------------
+    #    D           D    unmerged, both deleted
+    #    A           U    unmerged, added by us
+    #    U           D    unmerged, deleted by them
+    #    U           A    unmerged, added by them
+    #    D           U    unmerged, deleted by us
+    #    A           A    unmerged, both added
+    #    U           U    unmerged, both modified
+    #    -------------------------------------------------
+    #    ?           ?    untracked
+    #    !           !    ignored
+    #    -------------------------------------------------
+
+    usage="__git_list [--help|<classification..>], where classification.. is one or more of the following list:
+    'modified'  Show files modified in the working tree
+    'deleted'  Show files deleted in the working tree
+    'modified_index'  Show files modified in the index
+    'added_index'  Show files added in the index
+    'deleted_index'  Show files deleted in the index
+    'renamed_index'  Show files modified in the index
+    'untracked'  Show untracked files
+    'ignored'  Show ignored files"
+
+    regex_groups=()
+
+    status="$(git -c color.status=never status --short --ignore-submodules=all --ignored 2>/dev/null)"
+
+    while (($#)); do
+        case "$1" in
+        "--help")
+            echo "usage: ${usage}"
+            return 0
+            ;;
+        "modified_index" | "mi")
+            regex_groups+=("M ")
+            ;;
+        "deleted_index" | "di")
+            regex_groups+=("D ")
+            ;;
+        "added_index" | "ai")
+            regex_groups+=("A ")
+            ;;
+        "renamed_index" | "ri")
+            regex_groups+=("R ")
+            ;;
+        "modified" | "m")
+            regex_groups+=(" M")
+            ;;
+        "deleted" | "d")
+            regex_groups+=(" D")
+            ;;
+        "untracked" | "u")
+            regex_groups+=("\?\?")
+            ;;
+        "ignored" | "i")
+            regex_groups+=("!!")
+            ;;
+        *)
+            echo "unkown: $1"
+            echo "usage: ${usage}"
+            return 1
+            ;;
+        esac
+        shift
+    done
+
+    regex=("^(" "$(__join "|" "${regex_groups[@]}")" ")")
+
+    # printf '%s\n' "${regex[@]}" | paste -sd ""
+    # Globbing and word splitting intended
+    # shellcheck disable=SC2086
+    matches="$(echo "${status}" | grep -E "$(__join "" "${regex[@]}")" | cut -c4- | paste -sd" ")"
+
+    if [[ -n "${matches}" ]]; then
+        echo "${matches}"
+    fi
+}

@@ -157,6 +157,7 @@ alias funcs='( declare -F | grep -v "declare -f _" | sed "s,declare -f,function,
 alias caret="printf '\033[6 q'"
 alias mousepager='xbindkeys --file ${HOME}/.xbindkeysrc-mousepager'
 alias transparency='transset -tc 0.75'
+alias gl='__git_list'
 
 if cat /etc/*release | sed 's,ID_LIKE=,,g' | grep -q arch; then
     alias transset='transset-df'
