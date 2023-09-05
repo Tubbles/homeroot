@@ -1,0 +1,13 @@
+[core]
+    sshCommand = ssh -i ~/.ssh/id_rsa_NAMESPACE
+
+[user]
+    name = NAME
+    email = EMAIL
+    signingkey = KEY
+
+[commit]
+    gpgSign = true
+
+[tag]
+    gpgSign = true

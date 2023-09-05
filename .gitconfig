@@ -133,5 +133,7 @@
     helper = store
 [rerere]
     enabled = true
+[log]
+    showSignature = true
 [include]
     path = ~/.gitconfig_extra

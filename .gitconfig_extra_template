@@ -1,0 +1,5 @@
+[includeIf "hasconfig:remote.*.url:https://github.com/NAMESPACE/**"]
+    path = ~/.gitconfig_extra_NAMESPACE
+
+[includeIf "hasconfig:remote.*.url:git@github.com:NAMESPACE/**"]
+    path = ~/.gitconfig_extra_NAMESPACE
