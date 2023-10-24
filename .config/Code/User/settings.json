@@ -198,4 +198,10 @@
     "workbench.startupEditor": "none",
     "zenMode.hideLineNumbers": false,
     "zenMode.restore": false,
+    "cmake.automaticReconfigure": false,
+    "cmake.autoSelectActiveFolder": false,
+    "cmake.configureOnEdit": false,
+    "cmake.loadCompileCommands": false,
+    "cmake.showSystemKits": false,
+    "cmake.saveBeforeBuild": false,
 }
