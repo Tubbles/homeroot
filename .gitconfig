@@ -24,7 +24,7 @@
     blol = branch -r --color --sort -authordate --format='  %(align:left,92)%(color:bold red)%(refname:short)%(end)%(color:nobold yellow)%(objectname:short) %(align:left,20)%(color:cyan)%(authorname)%(end) %(align:left,30)%(color:red)%(authordate:iso)%(end) %(color:default)%(subject)'
 
     # jshow - Display what files only changed
-    jshow = show --name-only
+    jshow = show --name-only --show-signature
 
     # mshow, jmshow - Display what changed for a merge commit, or only the files
     mshow  = "!f() { git show \"${1:-HEAD}\" | grep ^Merge | sed -E 's/^Merge: ([0-9a-fA-F]+) ([0-9a-fA-F]+)/\\2..\\1/g' | xargs git diff; }; f"
@@ -133,7 +133,5 @@
     helper = store
 [rerere]
     enabled = true
-[log]
-    showSignature = true
 [include]
     path = ~/.gitconfig_extra
