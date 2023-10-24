@@ -62,25 +62,29 @@
     // yzhang.markdown-all-in-one@3.4.3
     // ZixuanWang.linkerscript@1.0.2
     "[c]": {
-        "editor.defaultFormatter": "ms-vscode.cpptools"
+        "editor.defaultFormatter": "ms-vscode.cpptools",
     },
     "[cpp]": {
-        "editor.defaultFormatter": "ms-vscode.cpptools"
+        "editor.defaultFormatter": "ms-vscode.cpptools",
     },
     "[dockerfile]": {
-        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker",
     },
     "[python]": {
-        "editor.defaultFormatter": "ms-python.autopep8"
+        "editor.defaultFormatter": "ms-python.black-formatter",
     },
     "[rust]": {
-        "editor.defaultFormatter": "rust-lang.rust-analyzer"
+        "editor.defaultFormatter": "rust-lang.rust-analyzer",
     },
     "[shellscript]": {
-        "editor.defaultFormatter": "foxundermoon.shell-format"
+        "editor.defaultFormatter": "foxundermoon.shell-format",
     },
     "autopep8.args": [
-        "--max-line-length=120"
+        "--max-line-length=120",
+    ],
+    "black-formatter.args": [
+        "--line-length=120",
+        "--skip-string-normalization",
     ],
     "C_Cpp.default.cppStandard": "c++17",
     "C_Cpp.formatting": "clangFormat",
@@ -98,11 +102,11 @@
     "editor.emptySelectionClipboard": false,
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.quickSuggestions": {
-        "other": "off"
+        "other": "off",
     },
     "editor.renderWhitespace": "all",
     "editor.rulers": [
-        120
+        120,
     ],
     "editor.suggestOnTriggerCharacters": false,
     "editor.tabSize": 4,
@@ -111,7 +115,7 @@
     "errorLens.enabledDiagnosticLevels": [
         "error",
         "info",
-        "warning"
+        "warning",
     ],
     "explorer.autoReveal": false,
     "explorer.confirmDelete": false,
@@ -127,7 +131,8 @@
         "*.tt": "csharp",
         ".clang-format": "yaml",
         ".clang-tidy": "yaml",
-        ".inputrc": "properties"
+        ".inputrc": "properties",
+        "*.ld": "csharp"
     },
     "files.eol": "\n",
     "files.hotExit": "onExitAndWindowClose",
@@ -135,13 +140,13 @@
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "flake8.args": [
-        "--max-line-length=120"
+        "--max-line-length=120",
     ],
     "git.openRepositoryInParentFolders": "never",
     "idf.customExtraPaths": "/home/tubbles/opt/espressif/tools/xtensa-esp-elf-gdb/12.1_20221002/xtensa-esp-elf-gdb/bin:/home/tubbles/opt/espressif/tools/riscv32-esp-elf-gdb/12.1_20221002/riscv32-esp-elf-gdb/bin:/home/tubbles/opt/espressif/tools/xtensa-esp32-elf/esp-12.2.0_20230208/xtensa-esp32-elf/bin:/home/tubbles/opt/espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/bin:/home/tubbles/opt/espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin:/home/tubbles/opt/espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin:/home/tubbles/opt/espressif/tools/esp32ulp-elf/2.35_20220830/esp32ulp-elf/bin:/home/tubbles/opt/espressif/tools/openocd-esp32/v0.12.0-esp32-20230419/openocd-esp32/bin:/home/tubbles/opt/espressif/tools/ninja/1.10.2:/home/tubbles/opt/espressif/tools/esp-rom-elfs/20230320",
     "idf.customExtraVars": {
         "OPENOCD_SCRIPTS": "/home/tubbles/opt/espressif/tools/openocd-esp32/v0.12.0-esp32-20230419/openocd-esp32/share/openocd/scripts",
-        "ESP_ROM_ELF_DIR": "/home/tubbles/opt/espressif/tools/esp-rom-elfs/20230320/"
+        "ESP_ROM_ELF_DIR": "/home/tubbles/opt/espressif/tools/esp-rom-elfs/20230320/",
     },
     "idf.espIdfPath": "/home/tubbles/opt/esp/esp-idf",
     "idf.gitPath": "git",
@@ -153,32 +158,32 @@
             "command": "multiCommand.up1LineKeepCursor",
             "sequence": [
                 {"command": "editorScroll", "args": {"to": "up", "by": "line" }},
-                "cursorUp"
-            ]
+                "cursorUp",
+            ],
         },
         {
             "command": "multiCommand.down1LineKeepCursor",
             "sequence": [
                 {"command": "editorScroll", "args": {"to": "down", "by": "line" }},
-                "cursorDown"
-            ]
-        }
+                "cursorDown",
+            ],
+        },
     ],
     "reflow.preferredLineLength": 120,
     "reflowMarkdown.preferredLineLength": 120,
     "restructuredtext.linter.doc8.extraArgs": [
         "--max-line-length",
-        "120"
+        "120",
     ],
     "rewrap.wrappingColumn": 120,
     "search.useIgnoreFiles": false,
     "security.workspace.trust.untrustedFiles": "open",
     "shellcheck.customArgs": [
-        "--enable=all"
+        "--enable=all",
     ],
     "shellcheck.exclude": [
         "1091",
-        "2312"
+        "2312",
     ],
     "telemetry.telemetryLevel": "off",
     "window.commandCenter": true,
