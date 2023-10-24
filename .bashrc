@@ -238,6 +238,18 @@ cdir() {
     cd "$1" || return
 }
 
+findup() {
+    set -e
+    path="$1"
+    shift 1
+    while [[ ${path} != / ]];
+    do
+        find "${path}" -maxdepth 1 -mindepth 1 "$@"
+        # Note: if you want to ignore symlinks, use "$(realpath -s "${path}"/..)"
+        path="$(readlink -f "${path}"/..)"
+    done
+}
+
 # Set up fzf
 __source_if_exists "/usr/share/doc/fzf/examples/key-bindings.bash"
 __source_if_exists "/usr/share/doc/fzf/examples/completion.bash"
