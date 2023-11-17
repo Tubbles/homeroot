@@ -37,9 +37,10 @@
     # amend - commit amend without edit
     amend = commit --amend --no-edit
 
-    # drop - drop non-staged changes (Potentially dangerous)
+    # drop, udrop, bdrop - drop non-staged changes and gone branches (Potentially dangerous)
     drop = checkout -- .
     udrop = !git status --porcelain | grep '^??' | cut -c 4- | tee /dev/tty | xargs -i rm -fr "{}"
+    bdrop = !git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D
 
     # nuke, drop-nuke - clean the repo
     nuke = clean -dffX
