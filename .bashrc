@@ -258,11 +258,13 @@ cdir() {
 }
 
 findup() {
-    set -e
     path="$1"
-    shift 1
-    while [[ ${path} != / ]];
-    do
+    if [[ ! -d "${path}" ]]; then
+        path="$(pwd)"
+    else
+        shift 1
+    fi
+    while [[ ${path} != / ]]; do
         find "${path}" -maxdepth 1 -mindepth 1 "$@"
         # Note: if you want to ignore symlinks, use "$(realpath -s "${path}"/..)"
         path="$(readlink -f "${path}"/..)"
