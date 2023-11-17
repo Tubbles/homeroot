@@ -32,7 +32,7 @@ shopt -s extglob
 # shopt -s direxpand
 
 # Don't put duplicate lines in the history.
-export HISTCONTROL=${HISTCONTROL}${HISTCONTROL+,}ignoredups:erasedups
+export HISTCONTROL=ignoredups:erasedups
 
 # Increase the size of the history
 # export HISTSIZE=100000
@@ -115,6 +115,11 @@ __caret() {
 }
 
 __reload() {
+    # history
+    history -a # save current
+    history -c # clear current
+    history -r # reload from disk
+
     # bash
     __source_if_exists "${HOME}/.bash_profile"
 
