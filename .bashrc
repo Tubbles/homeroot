@@ -222,7 +222,7 @@ done
 
 # Start startx automatically on logon
 # shellcheck disable=SC2154
-[[ -z ${DISPLAY} && ${XDG_VTNR} -eq 1 ]] && exec startx
+[[ -z ${DISPLAY} && ${XDG_VTNR} -eq 1 ]] && command -v startx >/dev/null && exec startx
 
 # Load standard modules
 # shellcheck disable=SC2044
