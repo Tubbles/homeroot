@@ -272,6 +272,30 @@ findup() {
     done
 }
 
+trim_history() {
+    # First do a backup!
+    cp "${HOME}/.bash_history" "${HOME}/.bash_history.bak"
+
+    # Remove some crusty patterns
+    patterns=(
+        ".vscode/extensions/ms-python.debugpy-2024.0.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher"
+        ".vscode/extensions/ms-python.python-2023.14.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher"
+        ".vscode/extensions/ms-python.python-2024.0.1/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher"
+        "/usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-"
+    )
+
+    for pattern in "${patterns[@]}"; do
+        sed -i "\#${pattern}#d" "${HOME}/.bash_history"
+    done
+
+    # Also remove dupes, preserving order but keeping the latest entry (to have the most recent history somewhat intact)
+    tmp_file="$(mktemp)"
+    trap 'rm -f ${tmp_file}; exit 1' SIGHUP SIGINT SIGQUIT SIGPIPE SIGTERM
+    tac < "${HOME}/.bash_history" | awk '!seen[$0]++' | tac > "${tmp_file}"
+    mv "${tmp_file}" "${HOME}/.bash_history"
+    trap 0
+}
+
 # Set up fzf
 __source_if_exists "/usr/share/doc/fzf/examples/key-bindings.bash"
 __source_if_exists "/usr/share/doc/fzf/examples/completion.bash"
