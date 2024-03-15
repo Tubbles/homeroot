@@ -109,6 +109,7 @@
     "editor.emptySelectionClipboard": false,
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
+    "editor.guides.indentation": false, // These are too laggy :'(
     "editor.letterSpacing": 0.2,
     "editor.lineHeight": 1.6,
     "editor.multiCursorModifier": "ctrlCmd",
@@ -127,7 +128,7 @@
             "comments": "#707070",
         }
     },
-    "editor.wordBasedSuggestions": false,
+    "editor.wordBasedSuggestions": "off",
     "editor.wordWrapColumn": 120,
     "errorLens.enabled": true,
     "errorLens.enabledDiagnosticLevels": [
@@ -208,6 +209,7 @@
     "telemetry.telemetryLevel": "off",
     "window.commandCenter": false,
     "window.customMenuBarAltFocus": false,
+    "window.customTitleBarVisibility": "auto",
     "window.menuBarVisibility": "compact",
     "window.title": "${rootName}${separator}${rootPath}${separator}${appName} ${dirty}",
     "window.titleBarStyle": "custom",
