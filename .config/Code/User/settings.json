@@ -103,6 +103,7 @@
     "dev.containers.dockerPath": "/usr/bin/podman",
     "diffEditor.ignoreTrimWhitespace": false,
     "diffEditor.wordWrap": "on",
+    "doxdocgen.generic.paramTemplate": "@param[inout] {param} ",
     "editor.copyWithSyntaxHighlighting": false,
     "editor.detectIndentation": false,
     "editor.emptySelectionClipboard": false,
