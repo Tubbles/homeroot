@@ -79,7 +79,7 @@
     children = "!f() { git rev-list --all --not $1^@ --children | grep $(git rev-parse $1); }; f"
 
     # List current feature branch
-    topic = !git lol --not `git remote show origin | grep \"HEAD branch\" | awk '{print $NF}'` --not `git branch --show` origin/`git branch --show`
+    topic = !git lol --not origin/`git remote show origin | grep \"HEAD branch\" | awk '{print $NF}'` --not `git branch --show` origin/`git branch --show`
 
     # "Force merge"
     force-merge = !git reset --hard `git rev-parse --abbrev-ref --symbolic-full-name @{u}`
