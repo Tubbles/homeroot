@@ -209,8 +209,6 @@ else
     alias dog="highlight -s ${dog_theme} --force -O xterm256"
 fi
 
-#highlight () { grep --color -E "$1|$" "${@:2}" ;  }
-
 # Find the custom python git-blame script
 gbfile="git-blame-colored.py"
 for path in ${PATH//:/ }; do
@@ -303,5 +301,8 @@ __source_if_exists "/usr/share/fzf/key-bindings.bash"
 __source_if_exists "/usr/share/fzf/completion.bash"
 __source_if_exists "/mingw64/share/fzf/key-bindings.bash"
 __source_if_exists "/mingw64/share/fzf/completion.bash"
+
+# Default settings for ydiff
+export YDIFF_OPTIONS=-w0
 
 :
