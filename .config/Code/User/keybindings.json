@@ -384,4 +384,14 @@
         "command": "multiCommand.up1LineKeepCursor",
         "when": "editorTextFocus"
     },
+    {
+        "key": "ctrl+alt+h",
+        "command": "center-editor-window.center",
+        "when": "editorTextFocus || findWidgetVisible"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "-center-editor-window.center",
+        "when": "editorTextFocus || findWidgetVisible"
+    },
 ]
