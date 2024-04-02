@@ -13,7 +13,10 @@
     default = simple
     autoSetupRemote = true
 [alias]
-    # Count the commit authors
+    # alias - Show all available git aliases
+    alias = !git config --list | grep alias | sed 's/\\./ /g'
+
+    # authors - Count the commit authors
     authors = shortlog -s -n --all --no-merges
 
     # Various log aliases
@@ -38,7 +41,8 @@
     amend = commit --amend --no-edit
 
     # drop, udrop, bdrop - drop non-staged changes and gone branches (Potentially dangerous)
-    drop = checkout -- .
+    drop = "!f() { if [ -n \"$1\" ]; then git checkout -- \"$@\" ; else git checkout -- . ; fi }; f"
+
     udrop = !git status --porcelain | grep '^??' | cut -c 4- | tee /dev/tty | xargs -i rm -fr "{}"
     bdrop = !git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D
 
