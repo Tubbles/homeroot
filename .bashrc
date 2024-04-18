@@ -160,7 +160,6 @@ alias localnet='for i in $(seq 1 1 254) ; do ip=192.168.1.$i ; ans="$(dig -x $ip
 # shellcheck disable=SC2154
 alias git-recurse='for dir in `find . -type d -name ".git"` ; do cd `dirname $dir` ; pwd ; git status -s ; cd - > /dev/null; done'
 alias lessp='LESSOPEN="|lesspipe.sh %s" less'
-alias start='xdg-open'
 alias gitextra='git checkout origin/gitconfig_extra .gitconfig_extra && git reset .gitconfig_extra > /dev/null'
 # shellcheck disable=SC2142
 alias github="curl 'https://api.github.com/users/tubbles/repos?per_page=100' 2>/dev/null | grep 'clone_url' | awk -F'\"' '{print \$4}' | sort -f"
@@ -237,6 +236,14 @@ __source_if_exists "${HOME}/.config/bashrc.d/host_name_$(uname -n)"
 spawn() {
     {
         nohup "$@" </dev/null >/dev/null 2>&1 &
+        disown
+    } >/dev/null 2>&1
+    # ("$@" &)
+}
+
+start() {
+    {
+        nohup xdg-open "$@" </dev/null >/dev/null 2>&1 &
         disown
     } >/dev/null 2>&1
     # ("$@" &)
