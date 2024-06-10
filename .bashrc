@@ -131,11 +131,14 @@ __reload() {
 PS1+='\[`__caret`\]'
 export PS1
 
-alias gst='(git fetch --all --prune 2>/dev/null && git lol --all --color=always -10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always ; __gitmsg_print_pretty_title ; git -c color.status=always status -s) | less -FRX'
-alias jst='(git lol --all --color=always -10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always ; __gitmsg_print_pretty_title ; git -c color.status=always status -s) | less -FRX'
+alias gst='(/usr/bin/git fetch --all --prune 2>/dev/null && __git_auto_fast_forward && git lol --all --color=always -10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always ; __gitmsg_print_pretty_title ; git -c color.status=always status -s) | less -FRX'
+alias jst='(__git_local_10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always ; __gitmsg_print_pretty_title ; git -c color.status=always status -s) | less -FRX'
+alias wst='west status'
+alias gau='git add -u'
 alias gapu='git add -pu'
 alias gd='git diff'
 alias gdc='git diff --cached'
+alias gcm='git commit -m'
 alias jcm="__gitmsg_edit_msg_file"
 alias jc="__gitmsg_commit"
 alias reload='__reload'
@@ -175,6 +178,7 @@ alias caret="printf '\033[6 q'"
 alias mousepager='xbindkeys --file ${HOME}/.xbindkeysrc-mousepager'
 alias transparency='transset -tc 0.75'
 alias gl='__git_list'
+alias gaff='git fetch --all --prune && __git_auto_fast_forward'
 
 if cat /etc/*release | sed 's,ID_LIKE=,,g' | grep -q arch; then
     alias transset='transset-df'
@@ -299,6 +303,12 @@ trim_history() {
     tac < "${HOME}/.bash_history" | awk '!seen[$0]++' | tac > "${tmp_file}"
     mv "${tmp_file}" "${HOME}/.bash_history"
     trap 0
+}
+
+__git_local_10() {
+    # Word splitting intended
+    # shellcheck disable=SC2046
+    git lol --color=always -10 $(git branch | grep -v 'HEAD detached' | cut -c3- | paste -sd' ')
 }
 
 # Set up fzf

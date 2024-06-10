@@ -64,5 +64,5 @@ __gitmsg_print_pretty_title() {
         return
     fi
 
-    __return "$(tput setaf 3)Preparing: \"${title}\"$(tput sgr0)"
+    echo -e "$(tput setaf 3)Preparing: \"${title}\"\033[0;10m"
 }

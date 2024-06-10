@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+
+# set -eo pipefail
+
+# This function loops through all local branches that is set to track a remote branch and does a fast forward, if
+# possible. This is useful when you have a lot of branches that you want to keep up to date with the remote branch. It
+# does this without the use of `git pull` which can be dangerous if you have local changes that you haven't committed.
+__git_auto_fast_forward() {
+    local branch
+
+    # Do not use `git branch` which is a porcelain command, use `git for-each-ref` instead.
+    git for-each-ref --format='%(refname:short)' refs/heads | while read -r branch; do
+        local remote
+        # echo "branch: ${branch}"
+        remote="$(git config --get "branch.${branch}.remote")"
+        # Check if the branch is set to track a remote branch.
+        if [[ -z "${remote}" ]]; then
+            continue
+        fi
+
+        local remote_branch
+        remote_branch="$(git config --get "branch.${branch}.merge")"
+        # Check if the branch is set to track a remote branch.
+        if [[ -z "${remote_branch}" ]]; then
+            continue
+        fi
+
+        # Get the remote branch name.
+        # Remove the `refs/heads/` prefix.
+        remote_branch="${remote_branch#refs/heads/}"
+
+        # Check if the remote branch exists.
+        if git show-ref --verify --quiet "refs/remotes/origin/${remote_branch}"; then
+            # Check if the local branch is behind the remote branch.
+            if git merge-base --is-ancestor "${branch}" "origin/${remote_branch}"; then
+                # Check if the commits differ
+                if ! git diff --quiet "${branch}" "origin/${remote_branch}"; then
+                    # Fast forward the local branch.
+                    git fetch . "${remote}/${remote_branch}:${branch}"
+                    # echo "Fast forwarded ${branch} to ${remote}/${remote_branch}"
+                fi
+            fi
+        fi
+    done
+}

@@ -20,14 +20,15 @@
     authors = shortlog -s -n --all --no-merges
 
     # Various log aliases
-    lol = log --graph --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(red)%ad %C(auto)%d %Creset%<(80,trunc)%s' --date=iso
-    llol = !git for-each-ref --format='%(refname:short)' refs/heads/ | paste -sd' ' | xargs git lol
+    flog = log --graph --decorate --date=iso
+    lol = log --no-show-signature --graph --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(red)%ad %C(auto)%d %Creset%<(80,trunc)%s' --date=iso
+    llol = !git for-each-ref --format='%(refname:short)' refs/heads/ | paste -sd' ' | xargs git lol --no-show-signature
     # tlol = tag --color --sort -authordate --format='%(align:width=65)%(color:cyan)%(refname:short)%(end) %(align:width=80)%(color:white)%(contents:subject)%(end) %(color:yellow)%(taggerdate:short) %(color:red)%(taggername)'
     tlol = tag --color --sort -taggerdate --format='%(align:left,92)%(color:bold red)%(refname:short)%(end)%(color:nobold yellow)%(objectname:short) %(if)%(taggername)%(then)%(else)%(color:default)* %(end)%(align:left,20)%(color:cyan)%(if)%(taggername)%(then)%(taggername)%(else)%(authorname)%(end)%(end) %(align:left,30)%(color:red)%(if)%(taggerdate:iso)%(then)%(taggerdate:iso)%(else)%(authordate:iso)%(end)%(end) %(color:default)%(subject)'
     blol = branch -r --color --sort -authordate --format='  %(align:left,92)%(color:bold red)%(refname:short)%(end)%(color:nobold yellow)%(objectname:short) %(align:left,20)%(color:cyan)%(authorname)%(end) %(align:left,30)%(color:red)%(authordate:iso)%(end) %(color:default)%(subject)'
 
     # jshow - Display what files only changed
-    jshow = show --name-only --show-signature
+    jshow = show --name-only
 
     # mshow, jmshow - Display what changed for a merge commit, or only the files
     mshow  = "!f() { git show \"${1:-HEAD}\" | grep ^Merge | sed -E 's/^Merge: ([0-9a-fA-F]+) ([0-9a-fA-F]+)/\\2..\\1/g' | xargs git diff; }; f"
@@ -85,6 +86,9 @@
     # List current feature branch
     topic = !git lol --not origin/`git remote show origin | grep \"HEAD branch\" | awk '{print $NF}'` --not `git branch --show` origin/`git branch --show`
 
+    # List all local and their corresponding remote tracking branches
+    local = !git lol HEAD `git branch -vv | cut -c3- | sed 's/ \\[/\\n/g' | grep -v -e 'HEAD detached' -e ': gone]' | awk -F'[\\\\\\] :]' '{print $1}' | paste -sd' '`
+
     # "Force merge"
     force-merge = !git reset --hard `git rev-parse --abbrev-ref --symbolic-full-name @{u}`
 
@@ -125,6 +129,10 @@
     defaultBranch = main
 [format]
     pretty = fuller
+[log]
+    showSignature = true
+    follow = true
+    date = iso # shows relative timestamps thanks to git+ssh://git@github.com:Tubbles/git.git#main
 [reset]
     quiet = true
 [fetch]
