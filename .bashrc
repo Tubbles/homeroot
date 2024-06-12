@@ -122,10 +122,11 @@ __reload() {
     history -r # reload from disk
 
     # bash
-    __source_if_exists "${HOME}/.bash_profile"
+    # __source_if_exists "${HOME}/.bash_profile"
+    exec bash
 
-    # readline
-    test -r "${HOME}/.inputrc" && bind -f "${HOME}/.inputrc"
+    # # readline
+    # test -r "${HOME}/.inputrc" && bind -f "${HOME}/.inputrc"
 }
 
 PS1+='\[`__caret`\]'
