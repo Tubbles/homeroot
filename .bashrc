@@ -273,15 +273,38 @@ cdir() {
     cd "$1" || return
 }
 
-findup() {
-    path="$1"
+bfind() {
+    local path="$1"
     if [[ ! -d "${path}" ]]; then
         path="$(pwd)"
     else
         shift 1
     fi
-    while [[ ${path} != / ]]; do
+
+    local depth=0
+    local maxdepth=0
+    maxdepth=$(find "${path}" -type d | tr -dc '/\n' | awk '{print length}' | sort -r | head -n 1)
+    while [[ ${depth} -le ${maxdepth} ]]; do
+        find "${path}" -mindepth "${depth}" -maxdepth "${depth}" "$@"
+        ((depth++))
+    done
+}
+
+findup() {
+    local path="$1"
+    if [[ ! -d "${path}" ]]; then
+        path="$(pwd)"
+    else
+        shift 1
+    fi
+
+    path="$(readlink -f "${path}")"
+    while : ; do
         find "${path}" -maxdepth 1 -mindepth 1 "$@"
+        if [[ "${path}" == "/" ]]; then
+            find "${path}" -maxdepth 0 "$@"
+            break
+        fi
         # Note: if you want to ignore symlinks, use "$(realpath -s "${path}"/..)"
         path="$(readlink -f "${path}"/..)"
     done
