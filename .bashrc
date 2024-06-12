@@ -179,7 +179,7 @@ alias caret="printf '\033[6 q'"
 alias mousepager='xbindkeys --file ${HOME}/.xbindkeysrc-mousepager'
 alias transparency='transset -tc 0.75'
 alias gl='__git_list'
-alias gaff='git fetch --all --prune && __git_auto_fast_forward'
+alias gaff='git fetch --all --prune && __git_auto_fast_forward && git bdrop'
 
 if cat /etc/*release | sed 's,ID_LIKE=,,g' | grep -q arch; then
     alias transset='transset-df'
