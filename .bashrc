@@ -243,7 +243,13 @@ spawn() {
         nohup "$@" </dev/null >/dev/null 2>&1 &
         disown
     } >/dev/null 2>&1
-    # ("$@" &)
+}
+
+sspawn() {
+    sudo printf ""
+    (
+        sudo nohup "$@" </dev/null >/dev/null 2>&1 &
+    ) >/dev/null 2>&1
 }
 
 start() {
@@ -251,7 +257,6 @@ start() {
         nohup xdg-open "$@" </dev/null >/dev/null 2>&1 &
         disown
     } >/dev/null 2>&1
-    # ("$@" &)
 }
 
 mkscript() {
