@@ -176,7 +176,10 @@
         ".clang-tidy": "yaml",
         ".inputrc": "properties",
         "*.ld": "csharp",
-        "*.overlay": "dts"
+        "*.overlay": "dts",
+        "*.S": "arm",
+        "*.can": "csharp",
+        "*.gdb": "perl"
     },
     "files.eol": "\n",
     "files.hotExit": "onExitAndWindowClose",
@@ -276,4 +279,6 @@
     "yaml.format.printWidth": 120,
     "zenMode.hideLineNumbers": false,
     "zenMode.restore": false,
+    "editor.lightbulb.enabled": "onCode",
+    "github.copilot.editor.enableAutoCompletions": true,
 }

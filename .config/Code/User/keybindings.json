@@ -394,4 +394,23 @@
         "command": "-center-editor-window.center",
         "when": "editorTextFocus || findWidgetVisible"
     },
+    {
+        "key": "ctrl+t",
+        "command": "extension.transpose",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+shift+r",
+        "command": "editor.debug.action.runToCursor"
+    },
+    {
+        "key": "ctrl+shift+r",
+        "command": "-editor.action.refactor",
+        "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+r",
+        "command": "-rerunSearchEditorSearch",
+        "when": "inSearchEditor"
+    },
 ]
