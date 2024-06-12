@@ -45,7 +45,7 @@
     drop = "!f() { if [ -n \"$1\" ]; then git checkout -- \"$@\" ; else git checkout -- . ; fi }; f"
 
     udrop = !git status --porcelain | grep '^??' | cut -c 4- | tee /dev/tty | xargs -i rm -fr "{}"
-    bdrop = !git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D
+    bdrop = !git branch -vv | grep ': gone]' | grep -v '^*' | awk '{print $1}' | xargs --no-run-if-empty git branch -D
 
     # nuke, drop-nuke - clean the repo
     nuke = clean -dffX
