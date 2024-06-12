@@ -174,7 +174,7 @@ alias xbanish='systemctl --user start xbanish'
 alias battery='upower -e | grep battery | xargs -n 1 upower -i | grep -i --color=never -e percent -e native'
 alias asciiclean="tr -dc '\\11\\12\\15\\40-\\176' <"
 alias dimages="docker image ls -a | grep -v '<none>' | sort"
-alias funcs='( declare -F | grep -v "declare -f _" | sed "s,declare -f,function,g" ; alias | sed -E "s,(alias [^=]+)=.*,\1,g" ) | sort'
+alias funcs='declare -F | grep -v "declare -f _" | sed "s,declare -f ,,g"  | sort'
 alias caret="printf '\033[6 q'"
 alias mousepager='xbindkeys --file ${HOME}/.xbindkeysrc-mousepager'
 alias transparency='transset -tc 0.75'
