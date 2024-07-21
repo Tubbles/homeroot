@@ -1,0 +1,6 @@
+To restore grub bootloader, sometimes it can be necessary to run the following (from eg. a chroot)
+
+rm -fr /boot/grub
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=manjaro --recheck --removable
+grub-mkconfig -o /boot/grub/grub.cfg
+
