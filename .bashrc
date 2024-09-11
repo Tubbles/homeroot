@@ -90,6 +90,7 @@ __append_dir_to_path_smart "${HOME}/go/bin"
 
 __append_dir_to_path_smart "/usr/share/doc/git/contrib/diff-highlight"
 __append_dir_to_path_smart "/usr/share/git/diff-highlight/" # Some distros use this instead
+__append_dir_to_path_smart "/usr/share/git-core/contrib/" # Some distros use this instead
 
 __source_if_exists "${HOME}/.bash-preexec.sh"
 __source_if_exists "${HOME}/.bash_extra"
