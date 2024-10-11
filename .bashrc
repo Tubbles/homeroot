@@ -167,7 +167,7 @@ alias git-recurse='for dir in `find . -type d -name ".git"` ; do cd `dirname $di
 alias lessp='LESSOPEN="|lesspipe.sh %s" less'
 alias gitextra='git checkout origin/gitconfig_extra .gitconfig_extra && git reset .gitconfig_extra > /dev/null'
 # shellcheck disable=SC2142
-alias github="curl 'https://api.github.com/users/tubbles/repos?per_page=100' 2>/dev/null | grep 'clone_url' | awk -F'\"' '{print \$4}' | sort -f"
+alias github="curl 'https://api.github.com/users/tubbles/repos?per_page=100&sort=updated' 2>/dev/null | grep 'ssh_url' | awk -F'\"' '{print \$4}'"
 alias R='R --quiet --no-save'
 alias bc='bc --quiet'
 alias df='df -Thx squashfs'
