@@ -90,7 +90,7 @@ __append_dir_to_path_smart "${HOME}/go/bin"
 
 __append_dir_to_path_smart "/usr/share/doc/git/contrib/diff-highlight"
 __append_dir_to_path_smart "/usr/share/git/diff-highlight/" # Some distros use this instead
-__append_dir_to_path_smart "/usr/share/git-core/contrib/" # Some distros use this instead
+__append_dir_to_path_smart "/usr/share/git-core/contrib/"   # Some distros use this instead
 
 __source_if_exists "${HOME}/.bash-preexec.sh"
 __source_if_exists "${HOME}/.bash_extra"
@@ -171,7 +171,8 @@ alias github="curl 'https://api.github.com/users/tubbles/repos?per_page=100&sort
 alias R='R --quiet --no-save'
 alias bc='bc --quiet'
 alias df='df -Thx squashfs'
-alias xbanish='systemctl --user start xbanish'
+alias xbanish-start='systemctl --user start xbanish'
+alias xbanish-stop='systemctl --user stop xbanish'
 alias battery='upower -e | grep battery | xargs -n 1 upower -i | grep -i --color=never -e percent -e native'
 alias asciiclean="tr -dc '\\11\\12\\15\\40-\\176' <"
 alias dimages="docker image ls -a | grep -v '<none>' | sort"
@@ -300,7 +301,7 @@ findup() {
     fi
 
     path="$(readlink -f "${path}")"
-    while : ; do
+    while :; do
         find "${path}" -maxdepth 1 -mindepth 1 "$@"
         if [[ "${path}" == "/" ]]; then
             find "${path}" -maxdepth 0 "$@"
@@ -330,7 +331,7 @@ trim_history() {
     # Also remove dupes, preserving order but keeping the latest entry (to have the most recent history somewhat intact)
     tmp_file="$(mktemp)"
     trap 'rm -f ${tmp_file}; exit 1' SIGHUP SIGINT SIGQUIT SIGPIPE SIGTERM
-    tac < "${HOME}/.bash_history" | awk '!seen[$0]++' | tac > "${tmp_file}"
+    tac <"${HOME}/.bash_history" | awk '!seen[$0]++' | tac >"${tmp_file}"
     mv "${tmp_file}" "${HOME}/.bash_history"
     trap 0
 }
