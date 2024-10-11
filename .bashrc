@@ -348,6 +348,7 @@ __source_if_exists "/usr/share/fzf/key-bindings.bash"
 __source_if_exists "/usr/share/fzf/completion.bash"
 __source_if_exists "/mingw64/share/fzf/key-bindings.bash"
 __source_if_exists "/mingw64/share/fzf/completion.bash"
+__source_if_exists "/usr/share/fzf/shell/key-bindings.bash"
 
 # Default settings for ydiff
 export YDIFF_OPTIONS=-w0
