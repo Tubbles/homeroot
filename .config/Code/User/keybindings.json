@@ -412,6 +412,7 @@
         "key": "ctrl+shift+r",
         "command": "-rerunSearchEditorSearch",
         "when": "inSearchEditor"
+    },
     // Duplicate lines
     {
         "key": "ctrl+shift+down",
