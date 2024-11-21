@@ -249,6 +249,7 @@
     "security.workspace.trust.untrustedFiles": "open",
     "shellcheck.customArgs": [
         "--enable=all",
+        "--extended-analysis=false"
     ],
     "shellcheck.exclude": [
         "1091",
