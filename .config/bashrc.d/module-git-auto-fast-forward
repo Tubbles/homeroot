@@ -37,7 +37,13 @@ __git_auto_fast_forward() {
                 # Check if the commits differ
                 if ! git diff --quiet "${branch}" "origin/${remote_branch}"; then
                     # Fast forward the local branch.
-                    git fetch . "${remote}/${remote_branch}:${branch}"
+                    if ! git fetch . "${remote}/${remote_branch}:${branch}"; then
+                        # If it fails, check whether it is the currently checked out branch, and if so, run an ff only
+                        # merge to get more information about the error.
+                        if [[ "$(git symbolic-ref --short HEAD)" == "${branch}" ]]; then
+                            git merge --ff-only "${remote}/${remote_branch}"
+                        fi
+                    fi
                     # echo "Fast forwarded ${branch} to ${remote}/${remote_branch}"
                 fi
             fi
