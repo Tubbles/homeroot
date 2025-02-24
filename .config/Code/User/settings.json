@@ -134,6 +134,7 @@
     "editor.fontLigatures": true,
     "editor.guides.indentation": false, // These are too laggy :'(
     "editor.letterSpacing": 0.2,
+    "editor.lightbulb.enabled": "onCode",
     "editor.lineHeight": 1.6,
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.multiDocumentOccurrencesHighlight": true,
@@ -153,6 +154,9 @@
     },
     "editor.wordBasedSuggestions": "off",
     "editor.wordWrapColumn": 120,
+    "editWithShell.currentDirectoryKind": "workspaceRoot",
+    "editWithShell.processEntireTextIfNoneSelected": true,
+    "editWithShell.shell.linux": "/usr/bin/bash",
     "errorLens.enabled": true,
     "errorLens.enabledDiagnosticLevels": [
         "error",
@@ -189,7 +193,10 @@
     "flake8.args": [
         "--max-line-length=120",
     ],
+    "git.blame.editorDecoration.enabled": true,
+    "git.blame.statusBarItem.enabled": true,
     "git.openRepositoryInParentFolders": "never",
+    "github.copilot.editor.enableAutoCompletions": true,
     "idf.customExtraPaths": "/home/tubbles/opt/espressif/tools/xtensa-esp-elf-gdb/12.1_20221002/xtensa-esp-elf-gdb/bin:/home/tubbles/opt/espressif/tools/riscv32-esp-elf-gdb/12.1_20221002/riscv32-esp-elf-gdb/bin:/home/tubbles/opt/espressif/tools/xtensa-esp32-elf/esp-12.2.0_20230208/xtensa-esp32-elf/bin:/home/tubbles/opt/espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/bin:/home/tubbles/opt/espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin:/home/tubbles/opt/espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin:/home/tubbles/opt/espressif/tools/esp32ulp-elf/2.35_20220830/esp32ulp-elf/bin:/home/tubbles/opt/espressif/tools/openocd-esp32/v0.12.0-esp32-20230419/openocd-esp32/bin:/home/tubbles/opt/espressif/tools/ninja/1.10.2:/home/tubbles/opt/espressif/tools/esp-rom-elfs/20230320",
     "idf.customExtraVars": {
         "OPENOCD_SCRIPTS": "/home/tubbles/opt/espressif/tools/openocd-esp32/v0.12.0-esp32-20230419/openocd-esp32/share/openocd/scripts",
@@ -279,6 +286,4 @@
     "yaml.format.printWidth": 120,
     "zenMode.hideLineNumbers": false,
     "zenMode.restore": false,
-    "editor.lightbulb.enabled": "onCode",
-    "github.copilot.editor.enableAutoCompletions": true,
 }
