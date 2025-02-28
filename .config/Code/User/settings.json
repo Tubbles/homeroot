@@ -150,6 +150,14 @@
     "editor.tokenColorCustomizations": {
         "[Material Theme Darker High Contrast]": {
             "comments": "#707070",
+            "textMateRules": [
+                {
+                    "scope": "variable.other.enummember",
+                    "settings": {
+                        "foreground": "#F78C6C",
+                    }
+                }
+            ]
         }
     },
     "editor.wordBasedSuggestions": "off",
