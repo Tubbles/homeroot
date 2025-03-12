@@ -2,6 +2,7 @@
     // Seen extensions (code --list-extensions --show-versions):
     // albymor.increment-selection
     // asciidoctor.asciidoctor-vscode
+    // basdp.language-gas-x86
     // benjamin-simmonds.pythoncpp-debug
     // bgse.relative-path-and-line
     // brunnerh.insert-unicode
@@ -10,21 +11,20 @@
     // craigb85.custom-window-zoom
     // cschlosser.doxdocgen
     // dan-c-underwood.arm
-    // DavidAnson.vscode-markdownlint
     // davidanson.vscode-markdownlint
-    // DotJoshJohnson.xml
+    // dlech.chmod
+    // dotjoshjohnson.xml
     // eamodio.gitlens
     // earshinov.permute-lines
-    // equinusocio.vsc-material-theme-icons
     // equinusocio.vsc-material-theme
+    // equinusocio.vsc-material-theme-icons
     // espressif.esp-idf-extension
     // foxundermoon.shell-format
-    // Gimly81.matlab
-    // github.copilot-chat
+    // gimly81.matlab
     // github.copilot
+    // github.copilot-chat
     // github.github-vscode-theme
     // gruntfuggly.todo-tree
-    // Gruntfuggly.todo-tree
     // jacqueslucke.gcov-viewer
     // josetr.cmake-language-support-vscode
     // kaiwood.center-editor-window
@@ -48,14 +48,16 @@
     // ms-python.isort
     // ms-python.python
     // ms-python.vscode-pylance
+    // ms-vscode-remote.remote-ssh
+    // ms-vscode-remote.remote-ssh-edit
     // ms-vscode.cmake-tools
+    // ms-vscode.cpptools
     // ms-vscode.cpptools-extension-pack
     // ms-vscode.cpptools-themes
-    // ms-vscode.cpptools
     // ms-vscode.hexeditor
+    // ms-vscode.remote-explorer
     // ms-vscode.vscode-serial-monitor
     // mshr-h.veriloghdl
-    // Parasoft.vscode-cpptest
     // parasoft.vscode-cpptest
     // plorefice.devicetree
     // pustelto.bracketeer
@@ -63,6 +65,7 @@
     // redhat.vscode-yaml
     // rsbondi.highlight-words
     // rust-lang.rust-analyzer
+    // ryu1kn.edit-with-shell
     // ryuta46.multi-command
     // samuelcolvin.jinjahtml
     // shuworks.vscode-table-formatter
@@ -70,10 +73,10 @@
     // softwareape.numbermonger
     // stkb.rewrap
     // surajbarkale.ninja
+    // t3dotgg.vsc-material-theme-but-i-wont-sue-you
     // tamasfe.even-better-toml
     // timonwong.shellcheck
     // troelsdamgaard.reflow-paragraph
-    // TroelsDamgaard.reflow-paragraph
     // trond-snekvik.simple-rst
     // twxs.cmake
     // usernamehw.errorlens
@@ -82,8 +85,9 @@
     // xaver.clang-format
     // yrpark99.hex-ascii-converter
     // yzhang.markdown-all-in-one
+    // zarel.sublime-commands
     // zchrissirhcz.cmake-highlight
-    // ZixuanWang.linkerscript
+    // zixuanwang.linkerscript
     "[c]": {
         "editor.defaultFormatter": "ms-vscode.cpptools",
     },
@@ -133,6 +137,7 @@
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
     "editor.guides.indentation": false, // These are too laggy :'(
+    "editor.inlineSuggest.enabled": false,
     "editor.letterSpacing": 0.2,
     "editor.lightbulb.enabled": "onCode",
     "editor.lineHeight": 1.6,
@@ -201,7 +206,7 @@
     "flake8.args": [
         "--max-line-length=120",
     ],
-    "git.blame.editorDecoration.enabled": true,
+    "git.blame.editorDecoration.enabled": false,
     "git.blame.statusBarItem.enabled": true,
     "git.openRepositoryInParentFolders": "never",
     "github.copilot.editor.enableAutoCompletions": true,
@@ -215,6 +220,7 @@
     "idf.listDfuDevices": [],
     "idf.pythonBinPath": "/home/tubbles/opt/espressif/python_env/idf5.1_py3.10_env/bin/python",
     "idf.toolsPath": "/home/tubbles/opt/espressif",
+    "inlineChat.lineNaturalLanguageHint": false,
     "materialTheme.accent": "Indigo",
     "multiCommand.commands": [
         {

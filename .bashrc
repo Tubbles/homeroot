@@ -152,6 +152,7 @@ alias llm='ll -ct'
 alias path='echo $PATH | tr ":" "\n"'
 alias less='less -FNMRX'
 alias grep='grep --color=auto'
+alias tree='tree -C'
 alias jgrep='find . -type f -print0 | xargs -0 grep -nE'
 alias todec='printf "%d\n"'
 alias tohex='printf "%X\n"'
@@ -175,6 +176,7 @@ alias xbanish-start='systemctl --user start xbanish'
 alias xbanish-stop='systemctl --user stop xbanish'
 alias battery='upower -e | grep battery | xargs -n 1 upower -i | grep -i --color=never -e percent -e native'
 alias asciiclean="tr -dc '\\11\\12\\15\\40-\\176' <"
+alias images='jq -r '\''.[].names | select(. != null)[]'\'' ${HOME}/.local/share/containers/storage/overlay-images/images.json'
 alias dimages="docker image ls -a | grep -v '<none>' | sort"
 alias funcs='declare -F | grep -v "declare -f _" | sed "s,declare -f ,,g"  | sort'
 alias caret="printf '\033[6 q'"
