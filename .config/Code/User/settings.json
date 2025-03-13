@@ -84,6 +84,7 @@
     // yzhang.markdown-all-in-one
     // zarel.sublime-commands
     // zchrissirhcz.cmake-highlight
+    // zhuangtongfa.material-theme // This is the "One Dark Pro" theme
     // zixuanwang.linkerscript
     "[c]": {
         "editor.defaultFormatter": "ms-vscode.cpptools",
