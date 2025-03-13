@@ -16,8 +16,6 @@
     // dotjoshjohnson.xml
     // eamodio.gitlens
     // earshinov.permute-lines
-    // equinusocio.vsc-material-theme
-    // equinusocio.vsc-material-theme-icons
     // espressif.esp-idf-extension
     // foxundermoon.shell-format
     // gimly81.matlab
@@ -73,7 +71,6 @@
     // softwareape.numbermonger
     // stkb.rewrap
     // surajbarkale.ninja
-    // t3dotgg.vsc-material-theme-but-i-wont-sue-you
     // tamasfe.even-better-toml
     // timonwong.shellcheck
     // troelsdamgaard.reflow-paragraph
@@ -152,19 +149,19 @@
     ],
     "editor.suggestOnTriggerCharacters": false,
     "editor.tabSize": 4,
-    "editor.tokenColorCustomizations": {
-        "[Material Theme Darker High Contrast]": {
-            "comments": "#707070",
-            "textMateRules": [
-                {
-                    "scope": "variable.other.enummember",
-                    "settings": {
-                        "foreground": "#F78C6C",
-                    }
-                }
-            ]
-        }
-    },
+    // "editor.tokenColorCustomizations": {
+    //     "[Material Theme Darker High Contrast]": {
+    //         "comments": "#707070",
+    //         "textMateRules": [
+    //             {
+    //                 "scope": "variable.other.enummember",
+    //                 "settings": {
+    //                     "foreground": "#F78C6C",
+    //                 }
+    //             }
+    //         ]
+    //     }
+    // },
     "editor.wordBasedSuggestions": "off",
     "editor.wordWrapColumn": 120,
     "editWithShell.currentDirectoryKind": "workspaceRoot",
@@ -221,19 +218,30 @@
     "idf.pythonBinPath": "/home/tubbles/opt/espressif/python_env/idf5.1_py3.10_env/bin/python",
     "idf.toolsPath": "/home/tubbles/opt/espressif",
     "inlineChat.lineNaturalLanguageHint": false,
-    "materialTheme.accent": "Indigo",
     "multiCommand.commands": [
         {
             "command": "multiCommand.up1LineKeepCursor",
             "sequence": [
-                {"command": "editorScroll", "args": {"to": "up", "by": "line" }},
+                {
+                    "command": "editorScroll",
+                    "args": {
+                        "to": "up",
+                        "by": "line"
+                    }
+                },
                 "cursorUp",
             ],
         },
         {
             "command": "multiCommand.down1LineKeepCursor",
             "sequence": [
-                {"command": "editorScroll", "args": {"to": "down", "by": "line" }},
+                {
+                    "command": "editorScroll",
+                    "args": {
+                        "to": "down",
+                        "by": "line"
+                    }
+                },
                 "cursorDown",
             ],
         },
@@ -264,36 +272,37 @@
     "window.titleBarStyle": "custom",
     "window.titleSeparator": " -  ",
     "workbench.activityBar.location": "top",
-    "workbench.colorCustomizations": {
-        "[Material Theme Darker High Contrast]": {
-            "activityBarBadge.background": "#5C6BC0",
-            "activityBar.activeBorder": "#5C6BC0",
-            "list.activeSelectionForeground": "#5C6BC0",
-            "list.inactiveSelectionForeground": "#5C6BC0",
-            "list.highlightForeground": "#5C6BC0",
-            "scrollbarSlider.activeBackground": "#5C6BC050",
-            "editorSuggestWidget.highlightForeground": "#5C6BC0",
-            "textLink.foreground": "#5C6BC0",
-            "progressBar.background": "#5C6BC0",
-            "pickerGroup.foreground": "#5C6BC0",
-            "tab.activeBorder": "#5C6BC0",
-            "notificationLink.foreground": "#5C6BC0",
-            "editorWidget.resizeBorder": "#5C6BC0",
-            "editorWidget.border": "#5C6BC0",
-            "settings.modifiedItemIndicator": "#5C6BC0",
-            "settings.headerForeground": "#5C6BC0",
-            "panelTitle.activeBorder": "#5C6BC0",
-            "breadcrumb.activeSelectionForeground": "#5C6BC0",
-            "menu.selectionForeground": "#5C6BC0",
-            "menubar.selectionForeground": "#5C6BC0",
-            "editor.findMatchBorder": "#5C6BC0",
-            "selection.background": "#5C6BC040",
-            "statusBarItem.remoteBackground": "#5C6BC0",
-            "editorWhitespace.foreground": "#60606040",
-            "focusBorder": "#606060",
-        },
-    },
-    "workbench.colorTheme": "Material Theme Darker High Contrast",
+    // "workbench.colorCustomizations": {
+    //     "[Material Theme Darker High Contrast]": {
+    //         "activityBar.activeBorder": "#5C6BC0",
+    //         "activityBarBadge.background": "#5C6BC0",
+    //         "breadcrumb.activeSelectionForeground": "#5C6BC0",
+    //         "editor.findMatchBorder": "#5C6BC0",
+    //         "editorSuggestWidget.highlightForeground": "#5C6BC0",
+    //         "editorWhitespace.foreground": "#60606040",
+    //         "editorWidget.border": "#5C6BC0",
+    //         "editorWidget.resizeBorder": "#5C6BC0",
+    //         "focusBorder": "#606060",
+    //         "list.activeSelectionForeground": "#5C6BC0",
+    //         "list.highlightForeground": "#5C6BC0",
+    //         "list.inactiveSelectionForeground": "#5C6BC0",
+    //         "menu.selectionForeground": "#5C6BC0",
+    //         "menubar.selectionForeground": "#5C6BC0",
+    //         "notificationLink.foreground": "#5C6BC0",
+    //         "panelTitle.activeBorder": "#5C6BC0",
+    //         "pickerGroup.foreground": "#5C6BC0",
+    //         "progressBar.background": "#5C6BC0",
+    //         "scrollbarSlider.activeBackground": "#5C6BC050",
+    //         "selection.background": "#5C6BC040",
+    //         "settings.headerForeground": "#5C6BC0",
+    //         "settings.modifiedItemIndicator": "#5C6BC0",
+    //         "statusBarItem.remoteBackground": "#5C6BC0",
+    //         "tab.activeBorder": "#5C6BC0",
+    //         "textLink.foreground": "#5C6BC0",
+    //         // "": "",
+    //     },
+    // },
+    "workbench.colorTheme": "One Dark Pro Darker",
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.editor.showTabs": "single",
@@ -301,4 +310,5 @@
     "yaml.format.printWidth": 120,
     "zenMode.hideLineNumbers": false,
     "zenMode.restore": false,
+    "zenMode.showTabs": "single",
 }
