@@ -30,17 +30,24 @@ __git_auto_fast_forward() {
         # Remove the `refs/heads/` prefix.
         remote_branch="${remote_branch#refs/heads/}"
 
+        # echo "considering branch ${branch} -> ${remote_branch} (${remote})"
+
         # Check if the remote branch exists.
-        if git show-ref --verify --quiet "refs/remotes/origin/${remote_branch}"; then
+        if git show-ref --verify --quiet "refs/remotes/${remote}/${remote_branch}"; then
+            # echo 0
             # Check if the local branch is behind the remote branch.
-            if git merge-base --is-ancestor "${branch}" "origin/${remote_branch}"; then
+            if git merge-base --is-ancestor "${branch}" "${remote}/${remote_branch}"; then
+                # echo 1
                 # Check if the commits differ
-                if ! git diff --quiet "${branch}" "origin/${remote_branch}"; then
+                if ! git diff --quiet "${branch}" "${remote}/${remote_branch}"; then
+                    # echo 2
                     # Fast forward the local branch.
                     if ! git fetch . "${remote}/${remote_branch}:${branch}"; then
+                        # echo 3
                         # If it fails, check whether it is the currently checked out branch, and if so, run an ff only
                         # merge to get more information about the error.
                         if [[ "$(git symbolic-ref --short HEAD)" == "${branch}" ]]; then
+                            # echo 4
                             git merge --ff-only "${remote}/${remote_branch}"
                         fi
                     fi
