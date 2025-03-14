@@ -203,6 +203,7 @@
     "files.trimTrailingWhitespace": true,
     "flake8.args": [
         "--max-line-length=120",
+        "--ignore=E402,F541"
     ],
     "git.blame.editorDecoration.enabled": false,
     "git.blame.statusBarItem.enabled": true,
