@@ -249,6 +249,9 @@
             ],
         },
     ],
+    "oneDarkPro.editorTheme": "Dark Modern",
+    "oneDarkPro.italic": true,
+    "oneDarkPro.vivid": true,
     "reflow.preferredLineLength": 120,
     "reflowMarkdown.preferredLineLength": 120,
     "restructuredtext.linter.doc8.extraArgs": [
