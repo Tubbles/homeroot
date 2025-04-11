@@ -32,7 +32,7 @@ shopt -s extglob
 # shopt -s direxpand
 
 # Don't put duplicate lines in the history.
-export HISTCONTROL=ignoredups:erasedups
+export HISTCONTROL=ignoredups:erasedups:ignorespace
 
 # Increase the size of the history
 # export HISTSIZE=100000
