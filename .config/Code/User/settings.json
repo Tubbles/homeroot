@@ -129,6 +129,7 @@
     "diffEditor.ignoreTrimWhitespace": false,
     "diffEditor.wordWrap": "on",
     "doxdocgen.generic.paramTemplate": "@param[inout] {param} ",
+    "editor.autoIndent": "advanced",
     "editor.copyWithSyntaxHighlighting": false,
     "editor.detectIndentation": false,
     "editor.emptySelectionClipboard": false,
