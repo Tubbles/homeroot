@@ -248,6 +248,34 @@
                 "cursorDown",
             ],
         },
+        {
+            "command": "multiCommand.gdbHexRadix",
+            "sequence": [
+                "workbench.panel.repl.view.focus",
+                {
+                    "command": "editor.action.insertSnippet",
+                    "args": {
+                        "snippet": "-exec set output-radix 16"
+                    }
+                },
+                "repl.action.acceptInput",
+                "workbench.action.focusActiveEditorGroup",
+            ]
+        },
+        {
+            "command": "multiCommand.gdbDecRadix",
+            "sequence": [
+                "workbench.panel.repl.view.focus",
+                {
+                    "command": "editor.action.insertSnippet",
+                    "args": {
+                        "snippet": "-exec set output-radix 10"
+                    }
+                },
+                "repl.action.acceptInput",
+                "workbench.action.focusActiveEditorGroup",
+            ]
+        },
     ],
     "oneDarkPro.editorTheme": "Dark Modern",
     "oneDarkPro.italic": true,
