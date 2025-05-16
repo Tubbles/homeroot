@@ -209,6 +209,7 @@
     "git.blame.editorDecoration.enabled": false,
     "git.blame.statusBarItem.enabled": true,
     "git.openRepositoryInParentFolders": "never",
+    "github.copilot.chat.search.semanticTextResults": false,
     "github.copilot.editor.enableAutoCompletions": true,
     "idf.customExtraPaths": "/home/tubbles/opt/espressif/tools/xtensa-esp-elf-gdb/12.1_20221002/xtensa-esp-elf-gdb/bin:/home/tubbles/opt/espressif/tools/riscv32-esp-elf-gdb/12.1_20221002/riscv32-esp-elf-gdb/bin:/home/tubbles/opt/espressif/tools/xtensa-esp32-elf/esp-12.2.0_20230208/xtensa-esp32-elf/bin:/home/tubbles/opt/espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/bin:/home/tubbles/opt/espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin:/home/tubbles/opt/espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin:/home/tubbles/opt/espressif/tools/esp32ulp-elf/2.35_20220830/esp32ulp-elf/bin:/home/tubbles/opt/espressif/tools/openocd-esp32/v0.12.0-esp32-20230419/openocd-esp32/bin:/home/tubbles/opt/espressif/tools/ninja/1.10.2:/home/tubbles/opt/espressif/tools/esp-rom-elfs/20230320",
     "idf.customExtraVars": {
