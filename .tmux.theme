@@ -19,7 +19,7 @@ setw -g status-left-style fg=black,bg="colour30"
 
 set -g status-right-length "100"
 
-set -g status-right "#[bg=colour30]#[fg=black] %Y-%m-%d %H:%M "
+set -g status-right "#[bg=colour31]#[fg=black] %Y-%m-%d %H:%M 🔋#(acpi -b | grep -Eo '[0-9]+%' | tr -d '%')"
 
 setw -g window-status-format " #I:#W "
 setw -g window-status-separator ""
