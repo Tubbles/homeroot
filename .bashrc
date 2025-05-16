@@ -77,8 +77,8 @@ fi
 
 # Fix for helix truecolor
 export COLORTERM=truecolor
-export VISUAL=hx
-export EDITOR=hx
+export VISUAL=nvim
+export EDITOR=nvim
 
 # Set up PATH and source other settings
 __prepend_dir_to_path_smart "${HOME}/.local/bin"
@@ -184,6 +184,7 @@ alias mousepager='xbindkeys --file ${HOME}/.xbindkeysrc-mousepager'
 alias transparency='transset -tc 0.75'
 alias gl='__git_list'
 alias gaff='git fetch --all --prune && __git_auto_fast_forward && git bdrop'
+alias edit='$EDITOR'
 
 if cat /etc/*release | sed 's,ID_LIKE=,,g' | grep -q arch; then
     alias transset='transset-df'
@@ -345,6 +346,9 @@ __git_local_10() {
 }
 
 # Set up fzf
+export FZF_ALT_C_OPTS="
+  --walker-skip .git,.steam,Games,.local
+  --preview 'tree -C {}'"
 __source_if_exists "/usr/share/doc/fzf/examples/key-bindings.bash"
 __source_if_exists "/usr/share/doc/fzf/examples/completion.bash"
 __source_if_exists "/usr/share/fzf/key-bindings.bash"
