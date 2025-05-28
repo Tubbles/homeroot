@@ -185,6 +185,13 @@ alias transparency='transset -tc 0.75'
 alias gl='__git_list'
 alias gaff='git fetch --all --prune && __git_auto_fast_forward && git bdrop'
 alias edit='$EDITOR'
+alias wg='sudo wg'
+alias wu='wg-quick up'
+alias wd='wg-quick down'
+alias wua='for ifx in `basename -s .conf /etc/wireguard/*.conf` ; do echo $ifx ; wu $ifx ; done'
+alias wda='for ifx in `basename -s .conf /etc/wireguard/*.conf` ; do echo $ifx ; wd $ifx ; done'
+alias ptrace-debug-on='sudo sysctl -w kernel.yama.ptrace_scope=0'
+alias ptrace-debug-off='sudo sysctl -w kernel.yama.ptrace_scope=1'
 
 if cat /etc/*release | sed 's,ID_LIKE=,,g' | grep -q arch; then
     alias transset='transset-df'
