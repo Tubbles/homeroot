@@ -133,8 +133,8 @@ __reload() {
 PS1+='\[`__caret`\]'
 export PS1
 
-alias gst='(/usr/bin/git fetch --all --prune 2>/dev/null && __git_auto_fast_forward && __git_local_10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always ; __gitmsg_print_pretty_title ; git -c color.status=always status -s) | less -FRX'
-alias jst='(__git_local_10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always ; __gitmsg_print_pretty_title ; git -c color.status=always status -s) | less -FRX'
+alias gst='(/usr/bin/git fetch --all --prune 2>/dev/null && __git_auto_fast_forward && __git_local_10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always ; __git_remote_list ; __gitmsg_print_pretty_title ; git -c color.status=always status -s) | less -FRX'
+alias jst='(__git_local_10 && echo "---" && git lol --color=always -10 && git branch -vv --color=always ; __git_remote_list ; __gitmsg_print_pretty_title ; git -c color.status=always status -s) | less -FRX'
 alias wst='west status'
 alias gau='git add -u'
 alias gapu='git add -pu'

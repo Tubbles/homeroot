@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+
+__git_remote_list() {
+    git remote -vv | awk '{print "  " $1 "\t" $2}' | sort | uniq
+}
