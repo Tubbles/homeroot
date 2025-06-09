@@ -198,6 +198,7 @@ alias wua='for ifx in `basename -s .conf /etc/wireguard/*.conf` ; do echo $ifx ;
 alias wda='for ifx in `basename -s .conf /etc/wireguard/*.conf` ; do echo $ifx ; wd $ifx ; done'
 alias ptrace-debug-on='sudo sysctl -w kernel.yama.ptrace_scope=0'
 alias ptrace-debug-off='sudo sysctl -w kernel.yama.ptrace_scope=1'
+alias git-multi-status='for dir in `find . -type d -name .git -exec dirname {} \;` ; do ( echo $dir ; cd $dir ; gst2 ) ; done'
 
 if cat /etc/*release | sed 's,ID_LIKE=,,g' | grep -q arch; then
     alias transset='transset-df'
