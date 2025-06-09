@@ -103,7 +103,12 @@ __source_if_exists "${HOME}/.install/git-prompt.source"
 
 PS1=''
 PS1+='\[\e[37m\][$?] `date +%y%m%d-%H%M%S`\n\[\e]0;\w\a\]\n'
-PS1+='\[\e[32m\]\u@\h '
+if [[ -z "${MCONTAINER:-}" ]]; then
+    PS1+='\[\e[32m\]\u@\h '
+else
+    PS1+='\[\e[32m\]\u@'
+    PS1+='\[\e[31m\]\h '
+fi
 PS1+='\[\e[35m\]${MSYSTEM:+${MSYSTEM} }'
 PS1+='\[\e[0m\]'
 PS1+='\[\e[33m\]\w'

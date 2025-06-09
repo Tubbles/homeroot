@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Get the directory of this script, even when sourced
+my_dir="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+
+# TODO : This wont work if some other config file redefines docker_home after this has been set..
+
+extra_run_flags+=(
+    --env "MCONTAINER=CONTAINER" \
+
+    --volume "${HOME}/.bashrc:${docker_home}/.bashrc:ro"
+    --volume "${HOME}/.bin:${docker_home}/.bin:ro"
+    --volume "${HOME}/.config/bashrc.d:${docker_home}/.config/bashrc.d:ro"
+    --volume "${HOME}/.git-prompt.sh:${docker_home}/.git-prompt.sh:ro"
+    --volume "${HOME}/.gitconfig:${docker_home}/.gitconfig:ro"
+    --volume "${HOME}/.install/bash_env.source:${docker_home}/.install/bash_env.source:ro"
+    --volume "${HOME}/.install/git-prompt.source:${docker_home}/.install/git-prompt.source:ro"
+    --volume "${HOME}/.ssh:${docker_home}/.ssh:ro"
+
+    --volume "${HOME}/scr/setup_inside_container.sh:${docker_home}/scr/setup_inside_container.sh:ro"
+)
+
+if [[ -r "${my_dir}/.dockerenv_extra" ]]; then
+    source "${my_dir}/.dockerenv_extra"
+fi
