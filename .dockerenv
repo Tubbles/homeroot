@@ -1,12 +1,25 @@
 #!/usr/bin/env bash
 
+# Check that _my_dir is not already defined
+test -n "${_my_dir:-}" && echo "Error: _my_dir is already defined" && exit 1
+
 # Get the directory of this script, even when sourced
-my_dir="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+_my_dir="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
 # TODO : This wont work if some other config file redefines docker_home after this has been set..
 
+_check_and_add() {
+    local source="$1"
+    local dest="$2"
+    if [[ -d "${source}" ]]; then
+        extra_run_flags+=(
+            --volume "${source}:${dest}"
+        )
+    fi
+}
+
 extra_run_flags+=(
-    --env "MCONTAINER=CONTAINER" \
+    --env "MCONTAINER=CONTAINER"
 
     --volume "${HOME}/.bashrc:${docker_home}/.bashrc:ro"
     --volume "${HOME}/.bin:${docker_home}/.bin:ro"
@@ -15,11 +28,20 @@ extra_run_flags+=(
     --volume "${HOME}/.gitconfig:${docker_home}/.gitconfig:ro"
     --volume "${HOME}/.install/bash_env.source:${docker_home}/.install/bash_env.source:ro"
     --volume "${HOME}/.install/git-prompt.source:${docker_home}/.install/git-prompt.source:ro"
-    --volume "${HOME}/.ssh:${docker_home}/.ssh:ro"
 
     --volume "${HOME}/scr/setup_inside_container.sh:${docker_home}/scr/setup_inside_container.sh:ro"
 )
 
-if [[ -r "${my_dir}/.dockerenv_extra" ]]; then
-    source "${my_dir}/.dockerenv_extra"
+_check_and_add "${HOME}/.ssh" "${docker_home}/.ssh:ro"
+_check_and_add "/usr/local" "/usr/local:ro"
+
+if [[ -r "${_my_dir}/.dockerenv_extra" ]]; then
+    source "${_my_dir}/.dockerenv_extra"
 fi
+
+if [[ -r "${_my_dir}/ghtoken" ]]; then
+    extra_build_flags+=("--secret id=GH_TOKEN,src=${_my_dir}/ghtoken")
+fi
+
+# Clean up
+unset _my_dir _check_and_add
