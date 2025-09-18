@@ -13,3 +13,7 @@
   display: none;
 }
 
+/* Firefox 140.0 introduced the sidebar-panel instead of above mentioned sidebar-box */
+#sidebar-panel-header {
+  display: none !important;
+}
