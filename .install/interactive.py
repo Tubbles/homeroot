@@ -89,64 +89,95 @@ def us(dur):
 
 
 def todec(number=None):
+    def fun(number):
+        print(int(str(number), 0))
+
     if not number:
         try:
             while True:
                 print("> ", end="")
                 number = input()
                 try:
-                    print(int(str(number), 0))
+                    fun(number)
                 except ValueError as e:
                     print(e)
         except (KeyboardInterrupt, EOFError):
             print("")
     else:
-        print(int(str(number), 0))
+        fun(number)
 
 
 def tohex(number=None):
+    def fun(number):
+        print(hex(int(str(number), 0)))
+
     if not number:
         try:
             while True:
                 print("> ", end="")
                 number = input()
                 try:
-                    print(hex(int(str(number), 0)))
+                    fun(number)
                 except ValueError as e:
                     print(e)
         except (KeyboardInterrupt, EOFError):
             print("")
     else:
-        print(hex(int(str(number), 0)))
+        fun(number)
 
 
 def tobin(number=None):
+    def fun(number):
+        print(bin(int(str(number), 0)))
+
     if not number:
         try:
             while True:
                 print("> ", end="")
                 number = input()
                 try:
-                    print(bin(int(str(number), 0)))
+                    fun(number)
                 except ValueError as e:
                     print(e)
         except (KeyboardInterrupt, EOFError):
             print("")
     else:
-        print(bin(int(str(number), 0)))
+        fun(number)
 
 
 def tooct(number=None):
+    def fun(number):
+        print(oct(int(str(number), 0)))
+
     if not number:
         try:
             while True:
                 print("> ", end="")
                 number = input()
                 try:
-                    print(oct(int(str(number), 0)))
+                    fun(number)
                 except ValueError as e:
                     print(e)
         except (KeyboardInterrupt, EOFError):
             print("")
     else:
-        print(oct(int(str(number), 0)))
+        fun(number)
+
+
+def bits(number=None):
+    def fun(number):
+        print([x for x, y in enumerate(bin(int(number))[2:][::-1]) if y != '0'])
+
+    if not number:
+        try:
+            while True:
+                print("> ", end="")
+                number = input()
+                try:
+                    fun(number)
+                except ValueError as e:
+                    print(e)
+        except (KeyboardInterrupt, EOFError):
+            print("")
+    else:
+        fun(number)
