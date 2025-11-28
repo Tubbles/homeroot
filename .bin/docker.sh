@@ -88,7 +88,7 @@ extra_pull_flags=()
 extra_build_flags=()
 extra_run_flags=()
 
-: "${image_name:="ubuntu"}"
+: "${image_name:="worker"}"
 : "${image_tag:="latest"}"
 : "${registry:="docker.io"}"
 : "${local_directory:="${my_dir}/docker"}"

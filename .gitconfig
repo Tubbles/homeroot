@@ -3,7 +3,7 @@
     email = jae91m@gmail.com
 [core]
 #    editor = 'C:/Tools/Notepad++ 7.2.2/notepad++.exe' -multiInst -notabbar -nosession
-    editor = hx
+    editor = nvim
     excludesfile = $HOME/.gitignore_global
     preloadindex = true
     fscache = true
@@ -87,7 +87,7 @@
     topic = !git lol --not origin/`git remote show origin | grep \"HEAD branch\" | awk '{print $NF}'` --not `git branch --show` origin/`git branch --show`
 
     # List all local and their corresponding remote tracking branches
-    local = !git lol HEAD `git branch -vv | cut -c3- | sed 's/ \\[/\\n/g' | grep -v -e 'HEAD detached' -e ': gone]' | awk -F'[\\\\\\] :]' '{print $1}' | paste -sd' '`
+    local = !git lol HEAD `git branch -vv | cut -c3- | sed 's, \\[,\\n,g' | grep -v -e '^HEAD detached' -e '^(no branch' -e ': gone]' | awk -F'[\\\\\\] :]' '{print $1}' | paste -sd' '`
 
     # "Force merge"
     force-merge = !git reset --hard `git rev-parse --abbrev-ref --symbolic-full-name @{u}`

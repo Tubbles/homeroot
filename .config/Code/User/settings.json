@@ -97,6 +97,7 @@
     },
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": false,
     },
     "[rust]": {
         "editor.defaultFormatter": "rust-lang.rust-analyzer",
@@ -195,7 +196,10 @@
         "*.overlay": "dts",
         "*.S": "arm",
         "*.can": "csharp",
-        "*.gdb": "perl"
+        "*.gdb": "perl",
+        "*.mod": "go.mod",
+        "*.lcm": "coffeescript",
+        "*.h": "c"
     },
     "files.eol": "\n",
     "files.hotExit": "onExitAndWindowClose",
@@ -206,7 +210,7 @@
         "--max-line-length=120",
         "--ignore=E402,F541"
     ],
-    "git.blame.editorDecoration.enabled": false,
+    "git.blame.editorDecoration.enabled": true,
     "git.blame.statusBarItem.enabled": true,
     "git.openRepositoryInParentFolders": "never",
     "github.copilot.chat.search.semanticTextResults": false,
@@ -287,7 +291,7 @@
     "oneDarkPro.italic": true,
     "oneDarkPro.vivid": true,
     "reflow.preferredLineLength": 120,
-    "reflowMarkdown.preferredLineLength": 120,
+    "reflowMarkdown.preferredLineLength": 100,
     "restructuredtext.linter.doc8.extraArgs": [
         "--max-line-length",
         "120",
@@ -312,36 +316,6 @@
     "window.titleBarStyle": "custom",
     "window.titleSeparator": " -  ",
     "workbench.activityBar.location": "top",
-    // "workbench.colorCustomizations": {
-    //     "[Material Theme Darker High Contrast]": {
-    //         "activityBar.activeBorder": "#5C6BC0",
-    //         "activityBarBadge.background": "#5C6BC0",
-    //         "breadcrumb.activeSelectionForeground": "#5C6BC0",
-    //         "editor.findMatchBorder": "#5C6BC0",
-    //         "editorSuggestWidget.highlightForeground": "#5C6BC0",
-    //         "editorWhitespace.foreground": "#60606040",
-    //         "editorWidget.border": "#5C6BC0",
-    //         "editorWidget.resizeBorder": "#5C6BC0",
-    //         "focusBorder": "#606060",
-    //         "list.activeSelectionForeground": "#5C6BC0",
-    //         "list.highlightForeground": "#5C6BC0",
-    //         "list.inactiveSelectionForeground": "#5C6BC0",
-    //         "menu.selectionForeground": "#5C6BC0",
-    //         "menubar.selectionForeground": "#5C6BC0",
-    //         "notificationLink.foreground": "#5C6BC0",
-    //         "panelTitle.activeBorder": "#5C6BC0",
-    //         "pickerGroup.foreground": "#5C6BC0",
-    //         "progressBar.background": "#5C6BC0",
-    //         "scrollbarSlider.activeBackground": "#5C6BC050",
-    //         "selection.background": "#5C6BC040",
-    //         "settings.headerForeground": "#5C6BC0",
-    //         "settings.modifiedItemIndicator": "#5C6BC0",
-    //         "statusBarItem.remoteBackground": "#5C6BC0",
-    //         "tab.activeBorder": "#5C6BC0",
-    //         "textLink.foreground": "#5C6BC0",
-    //         // "": "",
-    //     },
-    // },
     "workbench.colorTheme": "One Dark Pro Darker",
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
@@ -351,4 +325,18 @@
     "zenMode.hideLineNumbers": false,
     "zenMode.restore": false,
     "zenMode.showTabs": "single",
+    "insert-unicode.favorites": {
+        "directories": {},
+        "items": [
+            [
+                9
+            ]
+        ]
+    },
+    "makefile.configureOnOpen": false,
+    "errorLens.messageEnabled": false,
+    "editor.formatOnSave": true,
+    "workbench.editor.empty.hint": "hidden",
+    "claudeCode.preferredLocation": "sidebar",
+    "tableformatter.common.centerAlignedHeader": false,
 }

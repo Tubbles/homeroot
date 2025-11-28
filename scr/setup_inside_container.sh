@@ -8,10 +8,10 @@ sudo usermod -d "${HOME}" "$(whoami)"
 sudo apt update
 
 # Install sanity
-sudo apt install -y git less vim fzf
+sudo apt install -y git less vim fzf make
 
 # Install locate
-sudo apt install -y mlocate
+sudo apt install -y plocate
 sudo updatedb
 
 # Install apt-file
