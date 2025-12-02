@@ -1,0 +1,11 @@
+[Unit]
+Description=log the locking and unlocking of the machine
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/tubbles/scr/locklogger
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

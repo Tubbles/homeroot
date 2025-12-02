@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+
+dbus-monitor --session "type='signal',interface='org.freedesktop.ScreenSaver',path='/org/freedesktop/ScreenSaver',member='ActiveChanged'" | \
+( while true; do
+    read X
+    if echo "${X}" | grep "boolean true" &> /dev/null ; then
+        echo "Screen locked on $(date)"
+    fi
+    if echo "${X}" | grep "boolean false" &> /dev/null ; then
+        echo "Screen unlocked on $(date)"
+    fi
+done )
