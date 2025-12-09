@@ -483,4 +483,13 @@
         "command": "-notebook.centerActiveCell",
         "when": "notebookEditorFocused"
     },
+    {
+        // From claude code
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\\\r\n"
+        },
+        "when": "terminalFocus"
+    },
 ]
