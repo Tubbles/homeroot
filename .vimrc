@@ -116,7 +116,7 @@ set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set number relativenumber
 
 " 80 cols marker
-set colorcolumn=80
+set colorcolumn=72
 
 " Activate syntax highlightning
 syntax on
