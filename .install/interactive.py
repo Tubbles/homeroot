@@ -4,12 +4,26 @@
 # /usr/local/bin/st -g44x30 -e R -q --no-save
 
 from math import log2  # NOQA useful for interactive use
+from math import sqrt  # NOQA useful for interavtive use
+from math import floor  # NOQA useful for interavtive use
+from math import log10  # NOQA useful for interavtive use
 
 
 def frac(a, b):
     from fractions import Fraction
 
     return Fraction(a, b).as_integer_ratio()
+
+
+def eng(n, precision=2):
+    """Formats a number in engineering notation (E3, E6, E-3, etc.)"""
+    if n == 0:
+        return "0"
+
+    exponent = int(floor(log10(abs(n)) / 3) * 3)
+    mantissa = n / (10**exponent)
+
+    return f"{mantissa:.{precision}f}E{exponent}"
 
 
 def _pretty_print_timedelta(td):
@@ -166,7 +180,7 @@ def tooct(number=None):
 
 def bits(number=None):
     def fun(number):
-        print([x for x, y in enumerate(bin(int(number))[2:][::-1]) if y != '0'])
+        print([x for x, y in enumerate(bin(int(number))[2:][::-1]) if y != "0"])
 
     if not number:
         try:
