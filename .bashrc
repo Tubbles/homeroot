@@ -200,6 +200,7 @@ alias wda='for ifx in `basename -s .conf /etc/wireguard/*.conf` ; do echo $ifx ;
 alias ptrace-debug-on='sudo sysctl -w kernel.yama.ptrace_scope=0'
 alias ptrace-debug-off='sudo sysctl -w kernel.yama.ptrace_scope=1'
 alias git-multi-status='for dir in `find . -type d -name .git -exec dirname {} \;` ; do ( echo $dir ; cd $dir ; gst2 ) ; done'
+alias gf="git commit --fixup \$(git log --oneline --no-show-signature | fzf | awk '{print \$1}')"
 
 if cat /etc/*release | sed 's,ID_LIKE=,,g' | grep -q arch; then
     alias transset='transset-df'
@@ -357,7 +358,7 @@ trim_history() {
 __git_local_10() {
     # Word splitting intended
     # shellcheck disable=SC2046
-    git lol --color=always -10 $(git branch | grep -v 'HEAD detached' | cut -c3- | paste -sd' ')
+    git lol --color=always -10 $(git branch | grep -v -e 'HEAD detached' -e '(no branch' | cut -c3- | paste -sd' ')
 }
 
 # Set up fzf
