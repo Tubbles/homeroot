@@ -59,22 +59,22 @@ __git_list() {
             return 0
             ;;
         "modified_index" | "mi")
-            regex_groups+=("M ")
+            regex_groups+=("M.")
             ;;
         "deleted_index" | "di")
-            regex_groups+=("D ")
+            regex_groups+=("D.")
             ;;
         "added_index" | "ai")
-            regex_groups+=("A ")
+            regex_groups+=("A.")
             ;;
         "renamed_index" | "ri")
-            regex_groups+=("R ")
+            regex_groups+=("R.")
             ;;
         "modified" | "m")
-            regex_groups+=(" M")
+            regex_groups+=(".M")
             ;;
         "deleted" | "d")
-            regex_groups+=(" D")
+            regex_groups+=(".D")
             ;;
         "untracked" | "u")
             regex_groups+=("\?\?")
