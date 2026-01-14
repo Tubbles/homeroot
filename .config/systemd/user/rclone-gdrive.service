@@ -1,0 +1,25 @@
+[Unit]
+Description=rclone mount gdrive
+AssertPathIsDirectory=/home/tubbles/rsync/gdrive
+AssertPathIsDirectory=/home/tubbles/.var/log
+After=network-online.target
+
+[Service]
+Type=notify
+# User=username
+ExecStart=/usr/bin/rclone mount \
+        --config=/home/tubbles/.config/rclone/rclone.conf \
+        --vfs-cache-mode full \
+        --vfs-cache-max-age 4h \
+        --vfs-cache-max-size 7G \
+        --vfs-fast-fingerprint \
+        --vfs-read-ahead 5G \
+        --log-file=/home/tubbles/.var/log/rclone-gdrive.log \
+        --log-level DEBUG \
+        gdrive: /home/tubbles/rsync/gdrive
+ExecStop=/usr/bin/fusermount3 -u /home/tubbles/rsync/gdrive
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
