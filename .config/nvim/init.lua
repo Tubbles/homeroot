@@ -2,3 +2,5 @@
 require("config.lazy")
 
 vim.o.whichwrap="h,l,<,>,[,]"
+
+vim.wo.relativenumber = false
