@@ -5,9 +5,9 @@ dbus-monitor --session "type='signal',interface='org.freedesktop.ScreenSaver',pa
 ( while true; do
     read X
     if echo "${X}" | grep "boolean true" &> /dev/null ; then
-        echo "Screen locked on $(date)"
+        echo "Screen locked on $(date --rfc-3339=seconds)"
     fi
     if echo "${X}" | grep "boolean false" &> /dev/null ; then
-        echo "Screen unlocked on $(date)"
+        echo "Screen unlocked on $(date --rfc-3339=seconds)"
     fi
 done )
