@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+
+__git_fixup_pick() {
+    #!/usr/bin/env bash
+    # SPDX-FileCopyrightText: 2019 Martin Wallgren
+    #
+    # SPDX-License-Identifier: MIT
+    #
+    # SPDX-FileContributor: Anthony Accioly <anthony@accioly.dev>
+    #
+    # Changelog:
+    # - 2025-06-16: Anthony Accioly - Added fzf preview, pbcopy support and default branch detection
+    #
+    # Original at: https://gist.github.com/MartinWallgren/5c00716d176350a842f46037a79f9230
+    function usage() {
+        echo "Git command to help you select which commit to create a fixup commit for."
+        echo ""
+        echo "The command will let you select a commit from a range and commit the current"
+        echo "staging area using the selected commit as argument to the --fixup= option. Any"
+        echo "extra options passed to this command will be forwarded to the git commit"
+        echo "command."
+        echo ""
+        echo "The range will be the current upstream to HEAD. If no upstream is set for the"
+        echo "current branch, the default range will be used. You can set the default range"
+        echo "with GIT_DEFAULT_FIXUP_RANGE, if not set, origin/master..HEAD will be used as"
+        echo "default range."
+        echo "Example: GIT_DEFAULT_FIXUP_RANGE=origin/develop..HEAD git-fixup."
+        echo "Note that a configured upstream branch will take precedence over the default range."
+        echo ""
+        echo "This command depends on fzf (https://github.com/junegunn/fzf)"
+        echo ""
+        echo "git-fixup"
+        echo -e "\t-h --help"
+        echo ""
+    }
+
+    while [ ! $# -eq 0 ]; do
+        case "$1" in
+        --help | -h)
+            usage
+            exit
+            ;;
+        esac
+        shift
+    done
+
+    upstream=$(git rev-parse --abbrev-ref "@{upstream}" &>/dev/null)
+    # Determine the current branch and the default branch name dynamically.
+    current_branch=$(git rev-parse --abbrev-ref HEAD)
+    default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+    if [ -z "$default_branch" ]; then
+        default_branch="main"
+    fi
+
+    if [[ "${current_branch}" == "${default_branch}" ]]; then
+        # If on the default branch, use all commits since root.
+        fixup_range="$(git rev-list --max-parents=0 HEAD)..HEAD"
+    elif [ -z "${upstream}" ]; then
+        fixup_range="${GIT_DEFAULT_FIXUP_RANGE:-origin/${default_branch}..HEAD}"
+    else
+        fixup_range="${upstream}..HEAD"
+    fi
+
+    parent=$(git log --no-merges --oneline "${fixup_range}" |
+        fzf --height "${FZF_TMUX_HEIGHT:-40%}" \
+            --preview "git show {1} --color=always" \
+            --bind "ctrl-y:execute-silent(echo {1} | cut -d' ' -f1 | pbcopy)+abort" \
+            --bind "page-up:preview-page-up,page-down:preview-page-down" |
+        cut -d' ' -f1)
+
+    if [ -z "${parent}" ]; then
+        echo "No commit found to fix."
+    else
+        git commit --fixup="${parent}" "$@"
+    fi
+}

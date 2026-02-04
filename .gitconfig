@@ -84,7 +84,7 @@
     children = "!f() { git rev-list --all --not $1^@ --children | grep $(git rev-parse $1); }; f"
 
     # List current feature branch
-    topic = !git lol --not origin/`git remote show origin | grep \"HEAD branch\" | awk '{print $NF}'` --not `git branch --show` origin/`git branch --show`
+    topic = "!bash -ic '__git_topic \"$@\"' --"
 
     # List all local and their corresponding remote tracking branches
     local = !git lol HEAD `git branch -vv | cut -c3- | sed 's, \\[,\\n,g' | grep -v -e '^HEAD detached' -e '^(no branch' -e ': gone]' | awk -F'[\\\\\\] :]' '{print $1}' | paste -sd' '`
@@ -94,6 +94,9 @@
 
     # "Force pull"
     force-pull = !git fetch -ap && git force-merge
+
+    # "Statistics"
+    stat = "!bash -ic '__git_stat \"$@\"' --"
 
 [color "status"]
     untracked = magenta

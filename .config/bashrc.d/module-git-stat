@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+
+__git_stat() {
+    local commit=${1:-HEAD}
+    declare -A statuses
+
+    # 1. Pre-fetch colors once to avoid calling git config in a loop
+    local c_new=$(git config --get-color color.diff.new "green bold")
+    local c_old=$(git config --get-color color.diff.old "red bold")
+    local c_rst=$(git config --get-color "" "reset")
+    local l_new="${c_new}[NEW]${c_rst}"
+    local l_del="${c_old}[DEL]${c_rst}"
+    local l_empty="     "
+
+    # 2. Map file statuses and count new/deleted files
+    local new_count=0
+    local del_count=0
+    while read -r status filename; do
+        statuses["${filename}"]=${status}
+        [[ ${status} == "A" ]] && ((new_count++))
+        [[ ${status} == "D" ]] && ((del_count++))
+    done < <(git show --format="" --name-status "${commit}")
+
+    # 3. Process the stat output
+    # Use -p to preserve the colors from git show
+    while IFS= read -r line; do
+        if [[ "${line}" == *" | "* ]]; then
+            # Use Bash string manipulation to get the filename (faster than cut/sed)
+            # Remove everything after the pipe
+            local file_part="${line%% | *}"
+
+            # Strip ANSI escape codes using Bash pattern matching (Fastest)
+            # This removes the color codes Git added to the filename
+            local file_clean="${file_part//$'\e'\[[0-9;]*m/}"
+            file_clean=$(echo "${file_clean}" | xargs) # Trim whitespace
+
+            # Determine label
+            local label=${l_empty}
+            [[ ${statuses["${file_clean}"]} == "A" ]] && label=${l_new}
+            [[ ${statuses["${file_clean}"]} == "D" ]] && label=${l_del}
+
+            printf "%b %s\n" "${label}" "${line}"
+        else
+            echo "      ${line}"
+        fi
+    done < <(git show --format="" --stat="$(($(tput cols) - 6))" --color=always "${commit}")
+
+    # 4. Print new/deleted file summary
+    if ((new_count > 0 || del_count > 0)); then
+        local parts=()
+        ((new_count > 0)) && parts+=("${new_count} new")
+        ((del_count > 0)) && parts+=("${del_count} deleted")
+        local IFS=", "
+        printf "       %s files\n" "${parts[*]}"
+    fi
+}

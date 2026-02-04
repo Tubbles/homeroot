@@ -200,7 +200,7 @@ alias wda='for ifx in $(basename -s .conf $(compgen -G "/etc/wireguard/*.conf"))
 alias ptrace-debug-on='sudo sysctl -w kernel.yama.ptrace_scope=0'
 alias ptrace-debug-off='sudo sysctl -w kernel.yama.ptrace_scope=1'
 alias git-multi-status='for dir in `find . -type d -name .git -exec dirname {} \;` ; do ( echo $dir ; cd $dir ; gst2 ) ; done'
-alias gf="git commit --fixup \$(git log --oneline --no-show-signature | fzf | awk '{print \$1}')"
+alias gf="__git_fixup_pick"
 
 if cat /etc/*release | sed 's,ID_LIKE=,,g' | grep -q arch; then
     alias transset='transset-df'
