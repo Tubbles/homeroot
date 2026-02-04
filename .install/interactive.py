@@ -3,19 +3,21 @@
 # /usr/local/bin/st -g100x30 -e python3 -i /home/tubbles/.install/interactive.py
 # /usr/local/bin/st -g44x30 -e R -q --no-save
 
-from math import log2  # NOQA useful for interactive use
-from math import sqrt  # NOQA useful for interavtive use
-from math import floor  # NOQA useful for interavtive use
-from math import log10  # NOQA useful for interavtive use
+from datetime import timedelta
+from math import floor  # pyright: ignore[reportUnusedImport] useful for interactive use
+from math import log2  # pyright: ignore[reportUnusedImport] useful for interactive use
+from math import sqrt  # pyright: ignore[reportUnusedImport] useful for interactive use
+from math import log10  # pyright: ignore[reportUnusedImport] useful for interactive use
+from math import log1p as ln  # pyright: ignore[reportUnusedImport] useful for interactive use
 
 
-def frac(a, b):
+def frac(a: int, b: int) -> tuple[int, int]:
     from fractions import Fraction
 
     return Fraction(a, b).as_integer_ratio()
 
 
-def eng(n, precision=2):
+def eng(n: float, precision: int = 2) -> str:
     """Formats a number in engineering notation (E3, E6, E-3, etc.)"""
     if n == 0:
         return "0"
@@ -26,13 +28,8 @@ def eng(n, precision=2):
     return f"{mantissa:.{precision}f}E{exponent}"
 
 
-def _pretty_print_timedelta(td):
-    # Print as Y years D days H hours M minutes S seconds MS milliseconds US microseconds
-    # Omit any fields that are zero, and stop at the first non-zero field
-    # If all fields are zero, print "0 seconds"
-    # If the timedelta is negative, print "negative " before the result
+def _pretty_print_timedelta(td: timedelta) -> None:
     string = ""
-    # Check if td is negative
     if td.days < 0:
         string += "negative "
         td = -td
@@ -84,26 +81,20 @@ def _pretty_print_timedelta(td):
     print(string)
 
 
-def s(dur):
-    from datetime import timedelta
-
+def s(dur: float) -> None:
     _pretty_print_timedelta(timedelta(seconds=dur))
 
 
-def ms(dur):
-    from datetime import timedelta
-
+def ms(dur: float) -> None:
     _pretty_print_timedelta(timedelta(milliseconds=dur))
 
 
-def us(dur):
-    from datetime import timedelta
-
+def us(dur: float) -> None:
     _pretty_print_timedelta(timedelta(microseconds=dur))
 
 
-def todec(number=None):
-    def fun(number):
+def todec(number: str | int | None = None) -> None:
+    def fun(number: str | int) -> None:
         print(int(str(number), 0))
 
     if not number:
@@ -121,8 +112,8 @@ def todec(number=None):
         fun(number)
 
 
-def tohex(number=None):
-    def fun(number):
+def tohex(number: str | int | None = None) -> None:
+    def fun(number: str | int) -> None:
         print(hex(int(str(number), 0)))
 
     if not number:
@@ -140,8 +131,8 @@ def tohex(number=None):
         fun(number)
 
 
-def tobin(number=None):
-    def fun(number):
+def tobin(number: str | int | None = None) -> None:
+    def fun(number: str | int) -> None:
         print(bin(int(str(number), 0)))
 
     if not number:
@@ -159,8 +150,8 @@ def tobin(number=None):
         fun(number)
 
 
-def tooct(number=None):
-    def fun(number):
+def tooct(number: str | int | None = None) -> None:
+    def fun(number: str | int) -> None:
         print(oct(int(str(number), 0)))
 
     if not number:
@@ -178,9 +169,9 @@ def tooct(number=None):
         fun(number)
 
 
-def bits(number=None):
-    def fun(number):
-        print([x for x, y in enumerate(bin(int(number))[2:][::-1]) if y != "0"])
+def bits(number: str | int | None = None) -> None:
+    def fun(number: str | int) -> None:
+        print([x for x, y in enumerate(bin(int(str(number)))[2:][::-1]) if y != "0"])
 
     if not number:
         try:
@@ -195,3 +186,37 @@ def bits(number=None):
             print("")
     else:
         fun(number)
+
+
+def unit(value: float, unit_str: str) -> None:
+    import pint
+    from collections import defaultdict
+
+    ureg = pint.UnitRegistry()
+    try:
+        qty = ureg.Quantity(value, unit_str)
+        base_dim = qty.dimensionality
+    except Exception:
+        return
+    sys_mapping: dict[str, str] = {}
+    for g_name, group in ureg._groups.items():
+        for member in group.members:
+            sys_mapping[member] = g_name
+    conversions: defaultdict[str, set[str]] = defaultdict(set)
+    for u_name in dir(ureg):
+        if "Δ" in u_name or u_name.startswith("_"):
+            continue
+        try:
+            u_obj = getattr(ureg, u_name)
+            if not isinstance(u_obj, ureg.Unit) or u_obj.dimensionality != base_dim:
+                continue
+            res = qty.to(u_obj)
+            root_name = str(ureg.get_name(u_name))
+            system = sys_mapping.get(u_name, sys_mapping.get(root_name, "other"))
+            conversions[system].add(f"{res.magnitude} {u_name}")
+        except Exception:
+            continue
+    for sys in sorted(conversions.keys()):
+        print(f"= {sys}")
+        for line in sorted(conversions[sys]):
+            print(line)
