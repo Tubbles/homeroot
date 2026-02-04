@@ -38,7 +38,7 @@ __git_list() {
     #    !           !    ignored
     #    -------------------------------------------------
 
-    usage="__git_list [--help|<classification..>], where classification.. is one or more of the following list:
+    usage="__git_list [--help|-l|--lines|<classification..>], where classification.. is one or more of the following list:
     'modified'  Show files modified in the working tree
     'deleted'  Show files deleted in the working tree
     'modified_index'  Show files modified in the index
@@ -46,11 +46,13 @@ __git_list() {
     'deleted_index'  Show files deleted in the index
     'renamed_index'  Show files modified in the index
     'untracked'  Show untracked files
-    'ignored'  Show ignored files"
+    'ignored'  Show ignored files
+
+    Furthermore, if the [-l|--lines] flag is given, it will print the results on their own line.
+    Otherwise the results will be space separated on a single line"
 
     regex_groups=()
-
-    status="$(git -c color.status=never status --short --ignore-submodules=all --ignored 2>/dev/null)"
+    lines=false
 
     while (($#)); do
         case "$1" in
@@ -82,8 +84,11 @@ __git_list() {
         "ignored" | "i")
             regex_groups+=("!!")
             ;;
+        "-l" | "--lines")
+            lines=true
+            ;;
         *)
-            echo "unkown: $1"
+            echo "unknown: $1"
             echo "usage: ${usage}"
             return 1
             ;;
@@ -93,10 +98,13 @@ __git_list() {
 
     regex=("^(" "$(__join "|" "${regex_groups[@]}")" ")")
 
-    # printf '%s\n' "${regex[@]}" | paste -sd ""
-    # Globbing and word splitting intended
-    # shellcheck disable=SC2086
-    matches="$(echo "${status}" | grep -E "$(__join "" "${regex[@]}")" | cut -c4- | paste -sd" ")"
+    status="$(git -c color.status=never status --short --ignore-submodules=all --ignored 2>/dev/null)"
+
+    if [[ ${lines} == false ]] ; then
+        matches="$(echo "${status}" | grep -E "$(__join "" "${regex[@]}")" | cut -c4- | paste -sd" ")"
+    else
+        matches="$(echo "${status}" | grep -E "$(__join "" "${regex[@]}")" | cut -c4-)"
+    fi
 
     if [[ -n "${matches}" ]]; then
         echo "${matches}"
