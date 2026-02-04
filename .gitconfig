@@ -61,6 +61,9 @@
     # conflict - Display what our current conflicts are, during a merge
     conflict = !git status -s | grep -E '^(.U|U.)' | awk '{print $2}' | xargs grep -Hn -E '(<<<<<<<|=======|>>>>>>>)'
 
+    # edit - Edit the currently modified files, using vscode
+    edit = !git -c color.status=never status --short --ignore-submodules=all --ignored 2>/dev/null | grep -E "^.M" | cut -c4- | sort -u | xargs --no-run-if-empty code
+
     # fix - Display what our current conflicts are, during a merge, using vscode
     fix = !git diff --check 2>&1 | grep conflict | awk -F':' '{print $1}' | sort -u | xargs --no-run-if-empty code
 
