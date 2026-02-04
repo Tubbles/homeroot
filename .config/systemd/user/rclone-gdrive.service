@@ -1,6 +1,6 @@
 [Unit]
 Description=rclone mount gdrive
-AssertPathIsDirectory=/home/tubbles/rsync/gdrive
+AssertPathIsDirectory=/home/tubbles/rclone/gdrive
 AssertPathIsDirectory=/home/tubbles/.var/log
 After=network-online.target
 
@@ -16,8 +16,8 @@ ExecStart=/usr/bin/rclone mount \
         --vfs-read-ahead 5G \
         --log-file=/home/tubbles/.var/log/rclone-gdrive.log \
         --log-level DEBUG \
-        gdrive: /home/tubbles/rsync/gdrive
-ExecStop=/usr/bin/fusermount3 -u /home/tubbles/rsync/gdrive
+        gdrive: /home/tubbles/rclone/gdrive
+ExecStop=/usr/bin/fusermount3 -u /home/tubbles/rclone/gdrive
 Restart=always
 RestartSec=10
 
