@@ -37,4 +37,14 @@
             "# -*- coding: utf-8 -*-",
         ]
     },
+    "Markdown table": {
+        "prefix": "mdtable",
+        "description": "Insert a markdown table",
+        "body": [
+            "| Left         | Centered         | Right                      |",
+            "| :----------- | :--------------: | -------------------------: |",
+            "| This is left | Text is centered | And this is right-aligned  |",
+            "| More text    | Even more text   | And even more to the right |",
+        ],
+    },
 }
