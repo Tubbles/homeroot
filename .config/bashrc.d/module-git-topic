@@ -6,5 +6,6 @@ __git_topic() {
     upstream="$(git rev-parse --abbrev-ref "@{upstream}" | awk -F'[/]' '{print $1}')"
     remote_default_branch="$(git symbolic-ref "refs/remotes/${upstream}/HEAD" 2>/dev/null | sed 's,^refs/remotes/,,g')"
     current_branch="$(git rev-parse --abbrev-ref HEAD)"
-    git lol "${current_branch}" --not "${remote_default_branch}" "${remote_tracking_branch}" "$@"
+    # git lol "${current_branch}" --not "${remote_default_branch}" "${remote_tracking_branch}" "$@"
+    git lol "${current_branch}" "${remote_tracking_branch}" --not "${remote_default_branch}" "$@"
 }

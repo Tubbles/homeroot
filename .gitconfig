@@ -50,6 +50,7 @@
     # nuke, drop-nuke - clean the repo
     nuke = clean -dffX
     drop-nuke = !git drop && git clean -dffx
+    drop-branches = "!bash -ic '__git_drop_branches \"$@\"' --"
 
     # back - display files that have changed in remote since last pull
     back = !git show --name-status HEAD..origin/HEAD --pretty="" | sort | uniq

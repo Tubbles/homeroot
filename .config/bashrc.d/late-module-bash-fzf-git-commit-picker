@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+
+__fzf_git_commit__() {
+    git rev-parse --is-inside-work-tree &>/dev/null || return 0
+    local commit
+    commit=$(git log --no-merges --format='%h %<(12,trunc)%an %s' |
+        fzf --height "${FZF_TMUX_HEIGHT:-40%}" \
+            --reverse \
+            --ansi \
+            --no-sort \
+            --preview "git show {1} --color=always" \
+            --bind "ctrl-y:execute-silent(echo {1} | xclip -selection clipboard)+abort" \
+            --bind "ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down" |
+        cut -d' ' -f1)
+    [[ -n "$commit" ]] && printf '%s' "$commit"
+}
+
+fzf-git-commit-widget() {
+    local selected="$(__fzf_git_commit__)"
+    READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$selected${READLINE_LINE:$READLINE_POINT}"
+    READLINE_POINT=$((READLINE_POINT + ${#selected}))
+}
+
+if ((BASH_VERSINFO[0] >= 4)); then
+    # CTRL-T - Paste the selected file path into the command line
+    bind -m emacs-standard -x '"\C-e": fzf-git-commit-widget'
+    bind -m vi-command -x '"\C-e": fzf-git-commit-widget'
+    bind -m vi-insert -x '"\C-e": fzf-git-commit-widget'
+fi

@@ -376,4 +376,11 @@ __source_if_exists "/usr/share/fzf/shell/key-bindings.bash"
 # Default settings for ydiff
 export YDIFF_OPTIONS=-w0
 
+# Load standard late modules
+# shellcheck disable=SC2044
+for module in $(find "${HOME}/.config/bashrc.d" -type f -name 'late-module-*'); do
+    # shellcheck disable=SC1090
+    source "${module}"
+done
+
 :
