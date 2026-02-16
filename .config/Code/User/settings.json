@@ -153,6 +153,7 @@
     "editor.emptySelectionClipboard": false,
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
+    "editor.formatOnSave": true,
     "editor.guides.indentation": false, // These are too laggy :'(
     "editor.inlineSuggest.enabled": false,
     "editor.letterSpacing": 0.2,
