@@ -27,6 +27,7 @@
     // josetr.cmake-language-support-vscode
     // kaiwood.center-editor-window
     // lextudio.restructuredtext
+    // llvm-vs-code-extensions.vscode-clangd
     // maptz.regionfolder
     // marus25.cortex-debug
     // marvhen.reflow-markdown
@@ -87,10 +88,10 @@
     // zhuangtongfa.material-theme // This is the "One Dark Pro" theme
     // zixuanwang.linkerscript
     "[c]": {
-        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
     },
     "[cpp]": {
-        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
     },
     "[dockerfile]": {
         "editor.defaultFormatter": "ms-azuretools.vscode-docker",
@@ -113,9 +114,11 @@
     ],
     "C_Cpp.default.cppStandard": "c++17",
     "C_Cpp.formatting": "clangFormat",
+    "C_Cpp.intelliSenseEngine": "disabled",
     "clang-format.fallbackStyle": "WebKit",
     "clang-format.language.c.fallbackStyle": "WebKit",
     "clang-format.language.cpp.fallbackStyle": "WebKit",
+    "clangd.path": "/usr/bin/clangd-20",
     "cmake.automaticReconfigure": false,
     "cmake.autoSelectActiveFolder": false,
     "cmake.configureOnEdit": false,
