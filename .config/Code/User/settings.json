@@ -134,14 +134,24 @@
     "clang-format.language.c.fallbackStyle": "WebKit",
     "clang-format.language.cpp.fallbackStyle": "WebKit",
     "clangd.path": "/usr/bin/clangd-20",
+    "claudeCode.preferredLocation": "panel",
+    "claudeCode.useCtrlEnterToSend": true,
     "cmake.automaticReconfigure": false,
     "cmake.autoSelectActiveFolder": false,
     "cmake.configureOnEdit": false,
     "cmake.configureOnOpen": false,
     "cmake.loadCompileCommands": false,
-    "cmake.showSystemKits": false,
     "cmake.saveBeforeBuild": false,
+    "cmake.showSystemKits": false,
     "cpptest.installationLocation": "/home/tubbles/opt/parasoft/cpptest",
+    "cSpell.userWords": [
+        "aurix",
+        "cppcheck",
+        "einride",
+        "MISRA",
+        "SYDE",
+        "TRICORE"
+    ],
     "debug.onTaskErrors": "abort",
     "dev.containers.dockerPath": "/usr/bin/podman",
     "diffEditor.ignoreTrimWhitespace": false,
@@ -198,6 +208,7 @@
         "info",
         "warning",
     ],
+    "errorLens.messageEnabled": false,
     "explorer.autoReveal": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
@@ -232,7 +243,7 @@
         "--max-line-length=120",
         "--ignore=E402,F541"
     ],
-    "git.blame.editorDecoration.enabled": false,
+    "git.blame.editorDecoration.enabled": true,
     "git.blame.statusBarItem.enabled": true,
     "git.openRepositoryInParentFolders": "never",
     "github.copilot.chat.search.semanticTextResults": false,
@@ -253,6 +264,18 @@
     "idf.pythonBinPath": "/home/tubbles/opt/espressif/python_env/idf5.1_py3.10_env/bin/python",
     "idf.toolsPath": "/home/tubbles/opt/espressif",
     "inlineChat.lineNaturalLanguageHint": false,
+    "insert-unicode.favorites": {
+        "directories": {},
+        "items": [
+            [
+                9
+            ]
+        ]
+    },
+    "makefile.configureOnOpen": false,
+    "markdownlint.config": {
+        "MD024": false,
+    },
     "multiCommand.commands": [
         {
             "command": "multiCommand.up1LineKeepCursor",
@@ -312,6 +335,7 @@
     "oneDarkPro.editorTheme": "Dark Modern",
     "oneDarkPro.italic": true,
     "oneDarkPro.vivid": true,
+    "python.analysis.typeCheckingMode": "strict",
     "reflow.preferredLineLength": 120,
     "reflowMarkdown.preferredLineLength": 120,
     "restructuredtext.linter.doc8.extraArgs": [
@@ -329,6 +353,7 @@
         "1091",
         "2312",
     ],
+    "tableformatter.common.centerAlignedHeader": false,
     "telemetry.telemetryLevel": "off",
     "window.commandCenter": false,
     "window.customMenuBarAltFocus": false,
@@ -339,6 +364,7 @@
     "window.titleSeparator": " -  ",
     "workbench.activityBar.location": "top",
     "workbench.colorTheme": "One Dark Pro Darker",
+    "workbench.editor.empty.hint": "hidden",
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.editor.showTabs": "single",
@@ -347,22 +373,4 @@
     "zenMode.hideLineNumbers": false,
     "zenMode.restore": false,
     "zenMode.showTabs": "single",
-    "insert-unicode.favorites": {
-        "directories": {},
-        "items": [
-            [
-                9
-            ]
-        ]
-    },
-    "makefile.configureOnOpen": false,
-    "errorLens.messageEnabled": false,
-    "editor.formatOnSave": false,
-    "workbench.editor.empty.hint": "hidden",
-    "claudeCode.preferredLocation": "sidebar",
-    "tableformatter.common.centerAlignedHeader": false,
-    "cSpell.userWords": [
-        "aurix",
-        "TRICORE"
-    ],
 }
