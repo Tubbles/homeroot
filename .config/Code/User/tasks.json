@@ -1,0 +1,21 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Switch clangd config",
+            "type": "shell",
+            "command": "device=$(cat \"$(bash -ic '__find_parent_file \"clangd_configs\"')\" | fzf) && sed -i \"s|CompilationDatabase:.*|CompilationDatabase: \\\"${PWD}/devices/${device}/code\\\"|\" ~/.config/clangd/config.yaml && echo \"Switched to ${device}\"",
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            }
+        },
+    ]
+}
