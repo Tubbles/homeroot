@@ -483,6 +483,11 @@
         "when": "terminalFocus"
     },
     {
+        "key": "ctrl+shift+t",
+        "command": "workbench.action.focusOtherSideEditor",
+        "when": "sideBySideEditorActive || textCompareEditorActive"
+    },
+    {
         "key": "ctrl+`",
         "command": "clangd.switchheadersource",
         "when": "editorTextFocus && resourceLangId == 'c' || editorTextFocus && resourceLangId == 'cpp' || editorTextFocus && resourceLangId == 'cuda-cpp' || editorTextFocus && resourceLangId == 'objective-c' || editorTextFocus && resourceLangId == 'objective-cpp'"
