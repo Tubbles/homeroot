@@ -3,7 +3,7 @@
     email = jae91m@gmail.com
 [core]
 #    editor = 'C:/Tools/Notepad++ 7.2.2/notepad++.exe' -multiInst -notabbar -nosession
-    editor = nvim
+    editor = hx
     excludesfile = $HOME/.gitignore_global
     preloadindex = true
     fscache = true
@@ -63,10 +63,10 @@
     conflict = !git status -s | grep -E '^(.U|U.)' | awk '{print $2}' | xargs grep -Hn -E '(<<<<<<<|=======|>>>>>>>)'
 
     # edit - Edit the currently modified files, using vscode
-    edit = !git -c color.status=never status --short --ignore-submodules=all --ignored 2>/dev/null | grep -E "^.M" | cut -c4- | sort -u | xargs --no-run-if-empty code
+    edit = !git -c color.status=never status --short --ignore-submodules=all --ignored 2>/dev/null | grep -E "^.M" | cut -c4- | sort -u | xargs --no-run-if-empty $EDITOR
 
     # fix - Display what our current conflicts are, during a merge, using vscode
-    fix = !git diff --check 2>&1 | grep conflict | awk -F':' '{print $1}' | sort -u | xargs --no-run-if-empty code
+    fix = !git diff --check 2>&1 | grep conflict | awk -F':' '{print $1}' | sort -u | xargs --no-run-if-empty $EDITOR
 
     # file-log - display a log of history for a file, even through renames
     file-log = log -p --follow

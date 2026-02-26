@@ -77,8 +77,8 @@ fi
 
 # Fix for helix truecolor
 export COLORTERM=truecolor
-export VISUAL=nvim
-export EDITOR=nvim
+export VISUAL=hx
+export EDITOR=hx
 
 # Set up PATH and source other settings
 __prepend_dir_to_path_smart "${HOME}/.local/bin"

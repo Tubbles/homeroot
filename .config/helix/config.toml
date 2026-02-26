@@ -1,11 +1,14 @@
-theme = "vscode"
+theme = "onedark"
 
 [editor]
-line-number = "relative"
+# line-number = "relative"
 mouse = false
 rulers = [120]
 color-modes = true
 auto-format = true
+auto-pairs = false
+trim-trailing-whitespace = true
+trim-final-newlines = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -13,47 +16,83 @@ insert = "bar"
 [editor.whitespace.render]
 tab = "all"
 
+[editor.file-picker]
+hidden = false
+
 [keys.normal]
-# Change to more modern editor experience
+# Move lines up and down
+J = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+K = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before"
+]
+# Copy lines up and down
+C-A-J = ["extend_to_line_bounds", "yank", "paste_after"]
+C-A-S-down = ["extend_to_line_bounds", "yank", "paste_after"]
+C-A-K = ["extend_to_line_bounds", "yank", "paste_before"]
+C-A-S-up = ["extend_to_line_bounds", "yank", "paste_before"]
+# Do not yank when deleting, changing
 d = "delete_selection_noyank"
 c = "change_selection_noyank"
+# Use clipboard
 R = "replace_selections_with_clipboard"
-y = "yank_main_selection_to_clipboard"
+y = "yank_joined_to_clipboard"
 p = "paste_clipboard_after"
 P = "paste_clipboard_before"
+# Search for and select all occurrences
+L = ["search_selection", "select_all", "select_regex"]
+# Mimic GUIs a bit
 C-left = "move_prev_word_start"
 C-right = "move_next_word_start"
+C-h = "move_prev_word_start"
+C-l = "move_next_word_start"
 C-p = "file_picker"
+C-P = "command_palette"
 C-s = ":w"
+C-A-s = ":w --no-format"
+C-S = ":wa"
+C-A-S = ":wa --no-format"
 C-j = "scroll_down"
 C-k = "scroll_up"
 C-down = "scroll_down"
 C-up = "scroll_up"
-
-# Window movement
-A-h = "jump_view_left"
-A-j = "jump_view_down"
-A-k = "jump_view_up"
-A-l = "jump_view_right"
-C-A-h = "swap_view_left"
-C-A-j = "swap_view_down"
-C-A-k = "swap_view_up"
-C-A-l = "swap_view_right"
+A-z = ":toggle-option soft-wrap.enable"
+A-left = "jump_backward"
+A-right = "jump_forward"
+# Closing
+C-w = ":buffer-close"
+C-q = ":q"
+# Reloads
+C-r = ":reload"
+C-R = ":config-reload"
+## Custom commands
+# space.q.r.h = ":cd ~"
+# space.q.r.v = ":cd ~/dev/vehicle-control"
+# space.q.c = ":open ~/.config/clangd/config.yaml"
 
 [keys.insert]
+# Mimic GUIs a bit
 C-left = "move_prev_word_start"
 C-right = "move_next_word_start"
+C-h = "move_prev_word_start"
+C-l = "move_next_word_start"
+C-space = "completion"
 
 [keys.select]
-# Change to more modern editor experience
+# Do not yank when deleting, changing
 d = "delete_selection_noyank"
 c = "change_selection_noyank"
+# Use clipboard
 R = "replace_selections_with_clipboard"
 y = "yank_main_selection_to_clipboard"
 p = "paste_clipboard_after"
 P = "paste_clipboard_before"
+# Search for and select all occurrences
+L = ["normal_mode", "search_selection", "select_all", "select_regex"]
+# Mimic GUIs a bit
 C-left = "move_prev_word_start"
 C-right = "move_next_word_start"
-
-[editor.file-picker]
-hidden = false
+C-h = "move_prev_word_start"
+C-l = "move_next_word_start"
