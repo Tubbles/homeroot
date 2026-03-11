@@ -2,7 +2,8 @@ theme = "onedark"
 
 [editor]
 # line-number = "relative"
-mouse = false
+mouse = true
+scroll-lines = 3
 rulers = [120]
 color-modes = true
 auto-format = true
@@ -22,7 +23,14 @@ hidden = false
 [keys.normal]
 # Move lines up and down
 J = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+S-down = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 K = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before"
+]
+S-up = [
   "extend_to_line_bounds",
   "delete_selection",
   "move_line_up",
@@ -61,6 +69,9 @@ C-up = "scroll_up"
 A-z = ":toggle-option soft-wrap.enable"
 A-left = "jump_backward"
 A-right = "jump_forward"
+C-home = "goto_file_start"
+C-end = "goto_file_end"
+F12 = "goto_definition"
 # Closing
 C-w = ":buffer-close"
 C-q = ":q"
@@ -71,6 +82,8 @@ C-R = ":config-reload"
 # space.q.r.h = ":cd ~"
 # space.q.r.v = ":cd ~/dev/vehicle-control"
 # space.q.c = ":open ~/.config/clangd/config.yaml"
+space.q.s.s = ":pipe echo \"#!/usr/bin/env python\""
+space.q.g.b = ":sh ~/.bin/git-blame-oneline.sh %{buffer_name} %{cursor_line}"
 
 [keys.insert]
 # Mimic GUIs a bit
@@ -79,6 +92,10 @@ C-right = "move_next_word_start"
 C-h = "move_prev_word_start"
 C-l = "move_next_word_start"
 C-space = "completion"
+C-s = ":w"
+C-A-s = ":w --no-format"
+C-S = ":wa"
+C-A-S = ":wa --no-format"
 
 [keys.select]
 # Do not yank when deleting, changing
@@ -86,7 +103,7 @@ d = "delete_selection_noyank"
 c = "change_selection_noyank"
 # Use clipboard
 R = "replace_selections_with_clipboard"
-y = "yank_main_selection_to_clipboard"
+y = "yank_joined_to_clipboard"
 p = "paste_clipboard_after"
 P = "paste_clipboard_before"
 # Search for and select all occurrences
