@@ -7,7 +7,7 @@
     excludesfile = $HOME/.gitignore_global
     preloadindex = true
     fscache = true
-    whitespace = space-before-tab,tab-in-indent,trailing-space,cr-at-eol,tabwidth=4
+    whitespace = space-before-tab,trailing-space,cr-at-eol,tabwidth=4
     pager = less -x1,5
 [push]
     default = simple
@@ -125,9 +125,9 @@
 [blame]
     coloring = highlightRecent
 [pager]
-    log = diff-highlight | less -NMRX
-    show = diff-highlight | less -NMRX
-    diff = diff-highlight | less -NMRX
+    log = diff-highlight | sed 's,\t,→   ,g' | less -NMRX
+    show = diff-highlight | sed 's,\t,→   ,g' | less -NMRX
+    diff = diff-highlight | sed 's,\t,→   ,g' | less -NMRX
 [interactive]
     diffFilter = diff-highlight
 [merge]
