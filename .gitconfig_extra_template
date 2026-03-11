@@ -1,3 +1,6 @@
+[core]
+    sshCommand = ssh -o IdentitiesOnly=yes -i ~/.ssh/private/id_ed25519
+
 [includeIf "hasconfig:remote.*.url:https://github.com/NAMESPACE/**"]
     path = ~/.gitconfig_extra_NAMESPACE
 

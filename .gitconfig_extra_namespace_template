@@ -1,5 +1,5 @@
 [core]
-    sshCommand = ssh -i ~/.ssh/id_rsa_NAMESPACE
+    sshCommand = ssh -o IdentitiesOnly=yes -i ~/.ssh/NAMESPACE/id_rsa
 
 [user]
     name = NAME
