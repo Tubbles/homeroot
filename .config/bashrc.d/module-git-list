@@ -45,6 +45,7 @@ __git_list() {
     'added_index'  Show files added in the index
     'deleted_index'  Show files deleted in the index
     'renamed_index'  Show files modified in the index
+    'unmerged' Show unmerged (conflicted) files
     'untracked'  Show untracked files
     'ignored'  Show ignored files
 
@@ -78,7 +79,11 @@ __git_list() {
         "deleted" | "d")
             regex_groups+=(".D")
             ;;
-        "untracked" | "u")
+        "unmerged" | "um")
+            regex_groups+=("U.")
+            regex_groups+=(".U")
+            ;;
+        "untracked" | "ut")
             regex_groups+=("\?\?")
             ;;
         "ignored" | "i")
