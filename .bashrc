@@ -380,6 +380,17 @@ __source_if_exists "/usr/share/fzf/shell/key-bindings.bash"
 # Default settings for ydiff
 export YDIFF_OPTIONS=-w0
 
+# Set up yazi helper
+if command -v yazi >/dev/null; then
+    function y() {
+        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+        command yazi "$@" --cwd-file="$tmp"
+        IFS= read -r -d '' cwd < "$tmp"
+        [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+        rm -f -- "$tmp"
+    }
+fi
+
 # Load standard late modules
 # shellcheck disable=SC2044
 for module in $(find "${HOME}/.config/bashrc.d" -type f -name 'late-module-*'); do
