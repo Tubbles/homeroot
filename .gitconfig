@@ -14,7 +14,7 @@
     autoSetupRemote = true
 [alias]
     # alias - Show all available git aliases
-    alias = !git config --list | grep alias | sed 's/\\./ /g'
+    alias = !git config --list | grep alias
 
     # authors - Count the commit authors
     authors = shortlog -s -n --all --no-merges
