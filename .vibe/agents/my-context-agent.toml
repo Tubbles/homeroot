@@ -1,0 +1,7 @@
+display_name = "My Context Agent"
+description = "Default agent with additional context information"
+safety = "neutral"
+agent_type = "agent"
+
+# Use a custom system prompt that includes your extra info
+system_prompt_id = "my-custom-prompt"
