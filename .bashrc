@@ -204,6 +204,7 @@ alias ptrace-debug-on='sudo sysctl -w kernel.yama.ptrace_scope=0'
 alias ptrace-debug-off='sudo sysctl -w kernel.yama.ptrace_scope=1'
 alias git-multi-status='for dir in `find . -type d -name .git -exec dirname {} \;` ; do ( echo $dir ; cd $dir ; gst2 ) ; done'
 alias gf="__git_fixup_pick"
+alias oc=opencode
 
 if [[ -n "${KITTY_WINDOW_ID}" ]]; then
     alias icat="kitten icat"
