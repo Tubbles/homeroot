@@ -1,0 +1,24 @@
+{
+    "attribution": {
+        "commit": "",
+        "pr": ""
+    },
+    "permissions": {
+        "allow": [
+            "Bash(grep:*)",
+            "Bash(ls:*)",
+            "Bash(tmux set-window-option monitor-activity:*)",
+            "Bash(tmux display-message -p:*)",
+            "Bash(gsettings list-recursively:*)",
+            "Bash(claude --version)",
+            "Bash(npm list:*)",
+            "Bash(snap list *)"
+        ]
+    },
+    "statusLine": {
+        "type": "command",
+        "command": "bash ~/.claude/statusline-command.sh"
+    },
+    "effortLevel": "high",
+    "skipAutoPermissionPrompt": true
+}
