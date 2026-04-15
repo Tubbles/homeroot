@@ -64,6 +64,7 @@
 
     # edit - Edit the currently modified files, using vscode
     edit = !git -c color.status=never status --short --ignore-submodules=all --ignored 2>/dev/null | grep -E "^.M" | cut -c4- | sort -u | xargs --no-run-if-empty $EDITOR
+    edit-staged = !git -c color.status=never status --short --ignore-submodules=all --ignored 2>/dev/null | grep -E "^[AM]." | cut -c4- | sort -u | xargs --no-run-if-empty $EDITOR
 
     # fix - Display what our current conflicts are, during a merge, using vscode
     fix = !git diff --check 2>&1 | grep conflict | awk -F':' '{print $1}' | sort -u | xargs --no-run-if-empty $EDITOR
