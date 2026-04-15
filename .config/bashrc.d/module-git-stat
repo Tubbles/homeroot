@@ -20,7 +20,7 @@ __git_stat() {
         statuses["${filename}"]=${status}
         [[ ${status} == "A" ]] && ((new_count++))
         [[ ${status} == "D" ]] && ((del_count++))
-    done < <(git show --format="" --name-status "${commit}")
+    done < <(git show --no-show-signature --format="" --name-status "${commit}")
 
     # 3. Process the stat output
     # Use -p to preserve the colors from git show
@@ -44,7 +44,7 @@ __git_stat() {
         else
             echo "      ${line}"
         fi
-    done < <(git show --format="" --stat="$(($(tput cols) - 6))" --color=always "${commit}")
+    done < <(git show --no-show-signature --format="" --stat="$(($(tput cols) - 6))" --color=always "${commit}")
 
     # 4. Print new/deleted file summary
     if ((new_count > 0 || del_count > 0)); then
