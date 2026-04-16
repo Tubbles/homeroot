@@ -1,0 +1,8 @@
+{
+    "Alt-/": "lua:comment.comment",
+    "CtrlDown": "lua:initlua.scrollDownOne",
+    "CtrlP": "command:palettero",
+    "CtrlSpace": "command:palettero",
+    "CtrlUnderscore": "lua:comment.comment",
+    "CtrlUp": "lua:initlua.scrollUpOne"
+}
