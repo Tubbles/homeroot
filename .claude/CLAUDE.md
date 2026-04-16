@@ -3,8 +3,7 @@
 ## Git
 
 - Never chain git commands with `&&` or `;` - run them as separate tool calls so the user can approve each independently.
-- Never run `git push` or any variant. The user handles pushing to remote themselves. Do not offer to push.
-- To edit a non-latest commit: use `git commit --fixup=<target>` then `GIT_SEQUENCE_EDITOR=true git rebase -i --autosquash <target>~1`
+- Never use `git push --force` or any force-push variant.
 - To edit the latest commit: use `git commit --amend`
 - Create small, focused commits so changes are easy to review and revert.
 - Each commit should address a single concern (one bug fix, one feature, one refactor).

@@ -248,7 +248,7 @@ if [ -f "$usage_cache" ]; then
         sd_resets=$(jq -r '.seven_day.resets_at // empty' "$usage_cache")
         sd_suffix=""
         if [ -n "$sd_resets" ]; then
-            sd_suffix=$(printf '\e[37mresets:\e[0m %s' "$(date -d "$sd_resets" +%m/%d\ %H:%M 2>/dev/null || echo "$sd_resets")")
+            sd_suffix=$(printf '\e[37mresets:\e[0m %s' "$(date -d "$sd_resets" +%d/%-m\ %H:%M 2>/dev/null || echo "$sd_resets")")
         fi
         usage_bar "7d-usage" "$sd_util" "$sd_suffix"
     fi
