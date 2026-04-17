@@ -1,8 +1,16 @@
 {
     "Alt-/": "lua:comment.comment",
+    "Alt-d": "command:definition",
+    "Alt-f": "command:format",
+    "Alt-k": "command:hover",
+    "Alt-r": "command:references",
+    "Ctrl-d": "SpawnMultiCursor",
     "CtrlDown": "lua:initlua.scrollDownOne",
     "CtrlP": "command:palettero",
     "CtrlSpace": "command:palettero",
     "CtrlUnderscore": "lua:comment.comment",
+    "Alt-w": "NextSplit",
+    "Ctrl-q": "QuitAll",
+    "Ctrl-w": "Quit",
     "CtrlUp": "lua:initlua.scrollUpOne"
 }
