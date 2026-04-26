@@ -48,5 +48,11 @@
     "CtrlShiftAltDown": "DuplicateLineUp",
 
     //
-    "Shift-Ctrl-\\": "command-edit:textfilter "
+    "Shift-Ctrl-\\": "command-edit:textfilter ",
+
+    //
+    "Alt-l": "lua:initlua.smartNextPane",
+    "Alt-h": "lua:initlua.smartPrevPane",
+    "Alt-]": "lua:initlua.jumpNextMessage",
+    "Alt-[": "lua:initlua.jumpPrevMessage"
 }
