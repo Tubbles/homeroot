@@ -2,4 +2,6 @@
     "colorscheme": "one-dark",
     "lsp.server": "python=pylsp,go=gopls,typescript=deno lsp,javascript=deno lsp,json=deno lsp,rust=rust-analyzer,c++=clangd,c=clangd",
     "softwrap": true,
+    "paste": true,
+    "mkparents": true,
 }

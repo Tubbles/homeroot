@@ -12,5 +12,7 @@
     "Alt-w": "NextSplit",
     "Ctrl-q": "QuitAll",
     "Ctrl-w": "Quit",
-    "CtrlUp": "lua:initlua.scrollUpOne"
+    "CtrlUp": "lua:initlua.scrollUpOne",
+    "Shift-MouseLeft": "MouseSelectTo",
+    "CtrlShiftL": "SpawnMultiCursorAll",
 }
