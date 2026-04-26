@@ -87,6 +87,7 @@ __prepend_dir_to_path_smart "${HOME}/bin"
 
 __prepend_dir_to_path_smart_before "${HOME}/.cargo/bin" "/usr/games"
 __append_dir_to_path_smart "${HOME}/go/bin"
+__append_dir_to_path_smart "/usr/local/go/bin"
 __append_dir_to_path_smart "${HOME}/.global-node-modules/bin"
 __append_dir_to_path_smart "${HOME}/node_modules/.bin"
 
