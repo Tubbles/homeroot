@@ -208,7 +208,7 @@ case "${1:-}" in
 
     # Add volume mount for each unique path
     for dir in "${!mount_paths[@]}"; do
-        run_flags+=(--volume "${dir}:${dir}")
+        run_flags+=(--volume "${dir}:${dir}:z")
     done
 
     # don't let run_flags variable expansion produce an empty string if empty

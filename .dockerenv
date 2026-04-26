@@ -13,7 +13,7 @@ _check_and_add() {
     local dest="$2"
     if [[ -d "${source}" ]]; then
         extra_run_flags+=(
-            --volume "${source}:${dest}"
+            --volume "${source}:${dest}:ro,z"
         )
     fi
 }
@@ -21,19 +21,19 @@ _check_and_add() {
 extra_run_flags+=(
     --env "MCONTAINER=CONTAINER"
 
-    --volume "${HOME}/.bashrc:${docker_home}/.bashrc:ro"
-    --volume "${HOME}/.bin:${docker_home}/.bin:ro"
-    --volume "${HOME}/.config/bashrc.d:${docker_home}/.config/bashrc.d:ro"
-    --volume "${HOME}/.git-prompt.sh:${docker_home}/.git-prompt.sh:ro"
-    --volume "${HOME}/.gitconfig:${docker_home}/.gitconfig:ro"
-    --volume "${HOME}/.install/bash_env.source:${docker_home}/.install/bash_env.source:ro"
-    --volume "${HOME}/.install/git-prompt.source:${docker_home}/.install/git-prompt.source:ro"
+    --volume "${HOME}/.bashrc:${docker_home}/.bashrc:ro,z"
+    --volume "${HOME}/.bin:${docker_home}/.bin:ro,z"
+    --volume "${HOME}/.config/bashrc.d:${docker_home}/.config/bashrc.d:ro,z"
+    --volume "${HOME}/.git-prompt.sh:${docker_home}/.git-prompt.sh:ro,z"
+    --volume "${HOME}/.gitconfig:${docker_home}/.gitconfig:ro,z"
+    --volume "${HOME}/.install/bash_env.source:${docker_home}/.install/bash_env.source:ro,z"
+    --volume "${HOME}/.install/git-prompt.source:${docker_home}/.install/git-prompt.source:ro,z"
 
-    --volume "${HOME}/scr/setup_inside_container.sh:${docker_home}/scr/setup_inside_container.sh:ro"
+    --volume "${HOME}/scr/setup_inside_container.sh:${docker_home}/scr/setup_inside_container.sh:ro,z"
 )
 
-_check_and_add "${HOME}/.ssh" "${docker_home}/.ssh:ro"
-_check_and_add "/usr/local" "/usr/local:ro"
+_check_and_add "${HOME}/.ssh" "${docker_home}/.ssh"
+# _check_and_add "/usr/local" "/usr/local"
 
 if [[ -r "${_my_dir}/.dockerenv_extra" ]]; then
     source "${_my_dir}/.dockerenv_extra"
