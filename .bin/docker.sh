@@ -90,7 +90,7 @@ extra_run_flags=()
 
 : "${image_name:="worker"}"
 : "${image_tag:="latest"}"
-: "${registry:="docker.io"}"
+: "${registry:=""}"
 : "${local_directory:="${my_dir}/docker"}"
 : "${workspace_dir:="${current_dir}"}"
 : "${docker_home:="${my_dir}/.docker_home"}"
@@ -101,7 +101,12 @@ load_conf_files ".dockerenv" "${HOME}" "${current_dir}" "${my_dir}"
 
 # Set up variables
 : "${image:="${image_name}:${image_tag}"}"
-: "${full_url:="${registry}/${image}"}"
+if [[ -n "${registry}" ]]; then
+    : "${full_url:="${registry}/${image}"}"
+else
+    : "${full_url:="${image}"}"
+fi
+
 
 # If ${driver} is unset or empty, auto-detect podman or docker
 if [[ -z "${driver:-}" ]]; then
