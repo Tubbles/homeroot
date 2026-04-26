@@ -105,6 +105,8 @@ __source_if_exists "${HOME}/.git-completion.bash"
 __source_if_exists "${HOME}/.git-prompt.sh"
 __source_if_exists "${HOME}/.install/git-prompt.source"
 
+__append_dir_to_path_smart "${HOME}/.local/kitty.app/bin"
+
 PS1=''
 PS1+='\[\e[37m\][$?] `date +%y%m%d-%H%M%S`\n\[\e]0;\w\a\]\n'
 if [[ -z "${MCONTAINER:-}" ]]; then
