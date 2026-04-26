@@ -1,5 +1,9 @@
 # Global User Preferences
 
+## Memory
+
+When the user says "remember globally", "remember this globally", or any similar phrasing, save the instruction to this file (`~/.claude/CLAUDE.md`) rather than to a per-project memory entry. The per-project auto-memory system still applies for project-specific feedback, user, project, or reference notes. "Remember globally" is the explicit signal to write here.
+
 ## Git
 
 - Never chain git commands with `&&` or `;` - run them as separate tool calls so the user can approve each independently.
@@ -17,6 +21,19 @@
 
 - Do not hard-wrap lines in PR body text. Write prose as single long lines per paragraph and let the GitHub UI reflow naturally.
 - Add `Assisted-by: Claude:<model-id>` to the PR description.
+- To edit a PR body/title after creation, use `gh api -X PATCH repos/<owner>/<repo>/pulls/<num> -F body=@<file>` (or `-f title="..."`) instead of `gh pr edit`. `gh pr edit` currently fails with a GraphQL error about the deprecated projects-classic API; the REST PATCH goes through cleanly.
+
+## Writing in the user's name
+
+When producing text that goes out under the user's name (commit messages, PR descriptions, PR and issue comments, code comments authored for them, emails, chat messages), do not use any punctuation dash. That means no em-dash (`—`), no en-dash (`–`), and no hyphen used as a sentence-level separator (e.g. ` - `). These read as stiff and academic. Rewrite with commas, colons, periods, parentheses, or separate sentences instead.
+
+Hyphens inside compound words (`well-named`, `opt-in`) and CLI flags (`--draft`) are fine. This rule is about dashes as prose punctuation, not word formation.
+
+Keep semicolons to a minimum for the same reason. They read as uptight. Prefer a period and a new sentence, or a comma where grammar allows. If a semicolon is genuinely the right tool, it must be used strictly correctly: joining two independent clauses that could each stand alone as complete sentences, never as a fancy comma.
+
+Do not state the obvious or add filler. If the reader can see a fact from the diff (line count, "purely additive", "no callers affected", "this commit introduces"), leave it out. What belongs in a commit message or PR description is information the diff cannot show: the why, the tradeoff, the gotcha, the cited precedent, the test plan that confirms the claim. Anything the diff already proves is noise that wastes the reader's time.
+
+Tone: succinct, technical, friendly. Extend benefit of the doubt. Never attribute to malice what is adequately explained by ignorance. Skip hedging, apology, and self-praise in equal measure.
 
 ## Code Style
 
@@ -58,6 +75,14 @@ Defer to the existing project's architectural style if it differs.
 - When the user asks "can I do X?" or "should I do X?" — answer the question. Do not perform the action.
 - Only take action when explicitly instructed to (e.g. "do X", "delete X", "run X").
 - This applies especially to destructive or irreversible operations, but applies broadly.
+
+## Grounding in facts
+
+- Ground every statement in cold evidence: source code you've read, commits/issues/PRs you've linked, commands whose output you can cite. No expert-sounding hand-waving, no plausible-sounding extrapolation presented as fact.
+- If you're unsure about a claim, verify first. Web search, WebFetch, `gh` API, reading the source — whichever fits. When verification isn't possible or is ambiguous, ask the user rather than filling the gap with a guess.
+- Hedging words ("probably", "likely", "arguably") are not a shield — if you reach for one, that's the signal to either verify or ask.
+- When corrected, retract cleanly and narrow the claim to what's actually supported. Don't defend the mistake.
+- Claims about ecosystem state ("no one uses X", "only Y depends on this", "X has no downstream consumers") are bounded by what you can actually see: public GitHub search, the packages you've read, the issues you've clicked through. Private repos, internal codebases, and unpublished forks are invisible to you. When writing these claims into PR descriptions, issues, or code comments that go out under the user's name, scope them to what you verified ("based on a best-effort look at public code", "I couldn't find any consumer outside the key path"), and leave room for the user who didn't push their code to the internet.
 
 ## Gemini Added Memories
 - Strictly follow explicit instructions and do not perform unrequested tasks or 'extra helpful' actions.
