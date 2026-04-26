@@ -15,4 +15,6 @@
     "CtrlUp": "lua:initlua.scrollUpOne",
     "Shift-MouseLeft": "MouseSelectTo",
     "CtrlShiftL": "SpawnMultiCursorAll",
+    "CtrlShiftAltUp":   "DuplicateLineUp",
+    "CtrlShiftAltDown":   "DuplicateLineDown",
 }
