@@ -90,7 +90,7 @@ __append_dir_to_path_smart "${HOME}/go/bin"
 __append_dir_to_path_smart "/usr/local/go/bin"
 __append_dir_to_path_smart "${HOME}/.global-node-modules/bin"
 __append_dir_to_path_smart "${HOME}/node_modules/.bin"
-
+__append_dir_to_path_smart "${HOME}/.nix-profile/bin"
 
 __append_dir_to_path_smart "/usr/share/doc/git/contrib/diff-highlight"
 __append_dir_to_path_smart "/usr/share/git/diff-highlight/" # Some distros use this instead
