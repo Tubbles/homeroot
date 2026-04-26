@@ -4,4 +4,7 @@
     "softwrap": true,
     "paste": true,
     "mkparents": true,
+    "ft:json": {
+        "aspell.check": "on"
+    }
 }

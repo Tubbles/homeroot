@@ -1,20 +1,52 @@
 {
+    //
     "Alt-/": "lua:comment.comment",
+
+    //
     "Alt-d": "command:definition",
+
+    //
     "Alt-f": "command:format",
+
+    //
     "Alt-k": "command:hover",
+
+    //
     "Alt-r": "command:references",
-    "Ctrl-d": "SpawnMultiCursor",
-    "CtrlDown": "lua:initlua.scrollDownOne",
-    "CtrlP": "command:palettero",
-    "Ctrl- ": "command:palettero",
+
+    //
+    // "Ctrl- ": "command:palettero",
+    "CtrlShiftP": "command:palettero",
+
+    //
     "Ctrl-/": "lua:comment.comment",
+
+    //
     "Alt-w": "NextSplit",
+    "Alt-q": "PreviousSplit",
+    "Alt-r": "HSplit",
+    "Alt-d": "VSplit",
+    "Alt-x": "Unsplit",
+
+    //
     "Ctrl-q": "QuitAll",
     "Ctrl-w": "Quit",
+
+    //
     "CtrlUp": "lua:initlua.scrollUpOne",
+    "CtrlDown": "lua:initlua.scrollDownOne",
+
+    //
     "Shift-MouseLeft": "MouseSelectTo",
+
+    //
+    "Ctrl-d": "SpawnMultiCursor",
     "CtrlShiftL": "SpawnMultiCursorAll",
-    "CtrlShiftAltUp":   "DuplicateLineUp",
-    "CtrlShiftAltDown":   "DuplicateLineDown",
+
+    //
+    "CtrlShiftAltUp": "DuplicateLineDown",
+    "CtrlShiftAltDown": "DuplicateLineUp",
+
+    //
+    "Shift-Ctrl-\\": "command-edit:textfilter "
 }
