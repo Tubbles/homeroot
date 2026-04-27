@@ -1,4 +1,3 @@
-local buffer = import("micro/buffer")
 local micro = import("micro")
 local util = import("micro/util")
 
@@ -63,58 +62,3 @@ function smartPrevPane(bp)
         bp:PreviousTab()
     end
 end
-
-local function locAfter(loc, y, x)
-    return loc.Y > y or (loc.Y == y and loc.X > x)
-end
-
-local function locBefore(loc, y, x)
-    return loc.Y < y or (loc.Y == y and loc.X < x)
-end
-
-local function nearestMessage(messages, n, cur, forward)
-    local target = nil
-    for i = 1, n do
-        local s = messages[i].Start
-        local ok = forward and locAfter(s, cur.Y, cur.X) or locBefore(s, cur.Y, cur.X)
-        if ok then
-            local closer = (target == nil) or
-                (forward and locBefore(s, target.Y, target.X)) or
-                ((not forward) and locAfter(s, target.Y, target.X))
-            if closer then target = s end
-        end
-    end
-    return target
-end
-
-local function wrapMessage(messages, n, forward)
-    local target = messages[1].Start
-    for i = 2, n do
-        local s = messages[i].Start
-        if forward and locBefore(s, target.Y, target.X) then
-            target = s
-        elseif (not forward) and locAfter(s, target.Y, target.X) then
-            target = s
-        end
-    end
-    return target
-end
-
-local function jumpMessage(bp, forward)
-    local messages = bp.Buf.Messages
-    local n = #messages
-    if n == 0 then
-        micro.InfoBar():Message("No messages in buffer")
-        return
-    end
-    local target = nearestMessage(messages, n, bp.Cursor, forward)
-    if target == nil then
-        target = wrapMessage(messages, n, forward)
-        micro.InfoBar():Message("Wrapped to " .. (forward and "first" or "last") .. " message")
-    end
-    bp.Cursor:GotoLoc(target)
-    bp:Relocate()
-end
-
-function jumpNextMessage(bp) jumpMessage(bp, true) end
-function jumpPrevMessage(bp) jumpMessage(bp, false) end

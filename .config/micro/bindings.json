@@ -53,6 +53,7 @@
     //
     "Alt-l": "lua:initlua.smartNextPane",
     "Alt-h": "lua:initlua.smartPrevPane",
-    "Alt-]": "lua:initlua.jumpNextMessage",
-    "Alt-[": "lua:initlua.jumpPrevMessage"
+    "Alt-]": "JumpToNextMessage",
+    "Alt-[": "JumpToPrevMessage",
+    "Alt-m": "ShowFullMessage"
 }
