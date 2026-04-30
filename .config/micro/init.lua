@@ -49,16 +49,17 @@ function addNextMatch(bp)
 end
 
 -- Move to next pane: try next split inside the current tab first; if already
--- on the last split, fall through to the next tab.
+-- on the last split, fall through to the next tab. Walks the split tree in
+-- visual reading order, matching MovePaneToNext.
 function smartNextPane(bp)
-    if not bp:NextSplit() then
+    if not bp:NextLeafSplit() then
         bp:NextTab()
     end
 end
 
 -- Mirror image of smartNextPane.
 function smartPrevPane(bp)
-    if not bp:PreviousSplit() then
+    if not bp:PreviousLeafSplit() then
         bp:PreviousTab()
     end
 end
