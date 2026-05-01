@@ -49,17 +49,26 @@ function addNextMatch(bp)
 end
 
 -- Move to next pane: try next split inside the current tab first; if already
--- on the last split, fall through to the next tab. Walks the split tree in
--- visual reading order, matching MovePaneToNext.
+-- on the last split, fall through to the next tab; if already on the last
+-- tab, wrap around to the leftmost leaf of the first tab. Walks the split
+-- tree in visual reading order, matching MovePaneToNext.
 function smartNextPane(bp)
-    if not bp:NextLeafSplit() then
-        bp:NextTab()
+    if bp:NextLeafSplit() then return end
+    if bp:NextTab() then return end
+    bp:FirstTab()
+    local cur = micro.CurPane()
+    while cur:PreviousLeafSplit() do
+        cur = micro.CurPane()
     end
 end
 
 -- Mirror image of smartNextPane.
 function smartPrevPane(bp)
-    if not bp:PreviousLeafSplit() then
-        bp:PreviousTab()
+    if bp:PreviousLeafSplit() then return end
+    if bp:PreviousTab() then return end
+    bp:LastTab()
+    local cur = micro.CurPane()
+    while cur:NextLeafSplit() do
+        cur = micro.CurPane()
     end
 end
