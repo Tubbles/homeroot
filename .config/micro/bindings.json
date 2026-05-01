@@ -37,6 +37,9 @@
     "CtrlDown": "lua:initlua.scrollDownOne",
 
     //
+    "Ctrl-p": "lua:initlua.fzfOpen",
+
+    //
     "Shift-MouseLeft": "MouseSelectTo",
 
     //

@@ -1,5 +1,6 @@
 local micro = import("micro")
 local util = import("micro/util")
+local shell = import("micro/shell")
 
 function scrollUpOne(bp)
     bp:ScrollUp(1)
@@ -71,4 +72,28 @@ function smartPrevPane(bp)
     while cur:NextLeafSplit() do
         cur = micro.CurPane()
     end
+end
+
+-- VSCode-style Ctrl+P file picker: shells out to fzf with a candidate
+-- list (git-tracked + untracked-non-ignored, falling back to fd, then
+-- find), opens the chosen file in a new tab. RunInteractiveShell does
+-- TempFini/TempStart so fzf gets a real terminal.
+function fzfOpen(bp)
+    local listCmd = "(git ls-files --cached --others --exclude-standard 2>/dev/null"
+        .. " || fd --type f 2>/dev/null"
+        .. " || find . -type f)"
+    local cmd = "bash -c \"" .. listCmd .. " | fzf --layout=reverse\""
+
+    local out, err = shell.RunInteractiveShell(cmd, false, true)
+    if err ~= nil then return end
+
+    local path = out:gsub("%s+$", "")
+    if path == "" then return end
+
+    -- HandleCommand re-parses with shellquote.Split, so wrap the path
+    -- in single quotes and POSIX-escape any embedded single quotes
+    -- (foo'bar -> 'foo'\''bar') so spaces and shell metacharacters
+    -- survive intact.
+    local quoted = "'" .. path:gsub("'", "'\\''") .. "'"
+    bp:HandleCommand("tab " .. quoted)
 end
