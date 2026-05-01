@@ -92,6 +92,12 @@ __append_dir_to_path_smart "${HOME}/.global-node-modules/bin"
 __append_dir_to_path_smart "${HOME}/node_modules/.bin"
 __append_dir_to_path_smart "${HOME}/.nix-profile/bin"
 
+__append_dir_to_path_smart "${HOME}/.local/kitty.app/bin"
+
+for dir in "${HOME}"/opt/*/bin; do
+    __prepend_dir_to_path_smart_before "${dir}"
+done
+
 __append_dir_to_path_smart "/usr/share/doc/git/contrib/diff-highlight"
 __append_dir_to_path_smart "/usr/share/git/diff-highlight/" # Some distros use this instead
 __append_dir_to_path_smart "/usr/share/git-core/contrib/"   # Some distros use this instead
@@ -99,13 +105,12 @@ __append_dir_to_path_smart "/usr/share/git-core/contrib/"   # Some distros use t
 __source_if_exists "${HOME}/.bash-preexec.sh"
 __source_if_exists "${HOME}/.bash_extra"
 
+
 # Read in git specific scripts
 __source_if_exists "/usr/share/bash-completion/completions/git"
 __source_if_exists "${HOME}/.git-completion.bash"
 __source_if_exists "${HOME}/.git-prompt.sh"
 __source_if_exists "${HOME}/.install/git-prompt.source"
-
-__append_dir_to_path_smart "${HOME}/.local/kitty.app/bin"
 
 PS1=''
 PS1+='\[\e[37m\][$?] `date +%y%m%d-%H%M%S`\n\[\e]0;\w\a\]\n'
