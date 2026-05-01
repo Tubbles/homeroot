@@ -1,9 +1,21 @@
 {
+    "colorcolumn": 72,
     "colorscheme": "one-dark",
-    "lsp.server": "python=pylsp,go=gopls,typescript=deno lsp,javascript=deno lsp,json=deno lsp,rust=rust-analyzer,c++=clangd,c=clangd",
-    "softwrap": true,
-    "paste": true,
+    "hlsearch": true,
+    "lockbindings": true,
+    "lsp.server": "python=pylsp,go=gopls,typescript=deno lsp,javascript=deno lsp,json=deno lsp,rust=rust-analyzer,c++=clangd,c=clangd,lua=lua-language-server",
+    "matchbracestyle": "highlight",
     "mkparents": true,
+    "parsecursor": true,
+    "paste": true,
+    "rmtrailingws": true,
+    "savecursor": true,
+    "saveundo": true,
+    "showchars": "tab=>,space= ,itab=|>,ispace=|",
+    "softwrap": true,
+    "statusformatl": "$(filename) $(modified)$(overwrite) $(status.paste)| $(opt:filetype) | $(opt:fileformat) | $(opt:encoding)",
+    "statusformatr": "$(line),$(col)",
+    "tabstospaces": true,
     "ft:json": {
         "aspell.check": "on"
     }

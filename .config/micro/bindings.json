@@ -3,7 +3,7 @@
     "Alt-/": "lua:comment.comment",
 
     //
-    "Alt-d": "command:definition",
+    "F12": "command:definition",
 
     //
     "Alt-f": "command:format",
@@ -48,12 +48,31 @@
     "CtrlShiftAltDown": "DuplicateLineUp",
 
     //
-    "Shift-Ctrl-\\": "command-edit:textfilter ",
+    "CtrlShift-\\": "command-edit:textfilter ",
 
     //
-    "Alt-l": "lua:initlua.smartNextPane",
-    "Alt-h": "lua:initlua.smartPrevPane",
+    "Ctrl-Tab": "lua:initlua.smartNextPane",
+    "Ctrl-Backtab": "lua:initlua.smartPrevPane",
+    "CtrlShift-.": "MovePaneToNext",
+    "CtrlShift-,": "MovePaneToPrevious",
+
+    //
     "Alt-]": "JumpToNextMessage",
     "Alt-[": "JumpToPrevMessage",
-    "Alt-m": "ShowFullMessage"
+    "Alt-m": "ShowFullMessage",
+
+    //
+    "F1": "command:tree",
+
+    //
+    "CtrlShift-s": "command:tab ~/.config/micro/settings.json",
+    "CtrlShift-b": "command:tab ~/.config/micro/bindings.json",
+
+    //
+    "Ctrl-OldBackspace": "DeleteWordLeft",
+    "Ctrl-Delete": "DeleteWordRight",
+
+    //
+    "Alt-Left": "JumpBack",
+    "Alt-Right": "JumpForward",
 }
