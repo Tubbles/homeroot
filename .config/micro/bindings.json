@@ -66,10 +66,13 @@
 
     //
     "F1": "command:tree",
+    "F3": "FindNext",
+    "Shift-F3": "FindPrevious",
 
     //
     "CtrlShift-s": "command:tab ~/.config/micro/settings.json",
     "CtrlShift-b": "command:tab ~/.config/micro/bindings.json",
+    "CtrlShift-t": "command:tab ~/.config/micro/colorschemes/one-dark-j.micro",
 
     //
     "Ctrl-OldBackspace": "DeleteWordLeft",
