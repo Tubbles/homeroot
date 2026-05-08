@@ -1,6 +1,10 @@
 {
     "colorcolumn": 72,
     "colorscheme": "one-dark-j",
+    "filemanager.showhidden": true,
+    "ft:json": {
+        "aspell.check": "on",
+    },
     "hlsearch": true,
     "hlselection": true,
     "lockbindings": true,
@@ -17,7 +21,5 @@
     "statusformatl": "$(filename) $(modified)$(overwrite) $(status.paste)| $(opt:filetype) | $(opt:fileformat) | $(opt:encoding)",
     "statusformatr": "$(line),$(col)",
     "tabstospaces": true,
-    "ft:json": {
-        "aspell.check": "on"
-    }
+    "quittoscratch": true,
 }

@@ -65,7 +65,12 @@
     "Alt-m": "ShowFullMessage",
 
     //
-    "F1": "command:tree",
+    // "F1": "command:tree",
+    "F1": "FileExplorerAtFile",
+
+    //
+    // "Ctrl-e"
+    // "CtrlShift-e"
     "F3": "FindNext",
     "Shift-F3": "FindPrevious",
 
@@ -81,4 +86,10 @@
     //
     "Alt-Left": "JumpBack",
     "Alt-Right": "JumpForward",
+
+    // unbinds
+    "F2": "None",
+    "F4": "None",
+    "F7": "None",
+    "F10": "None",
 }
