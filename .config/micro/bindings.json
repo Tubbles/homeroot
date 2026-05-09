@@ -37,7 +37,8 @@
     "CtrlDown": "lua:initlua.scrollDownOne",
 
     //
-    "Ctrl-p": "lua:initlua.fzfOpen",
+    // "Ctrl-p": "lua:initlua.fzfOpen",
+    "Ctrl-p": "OpenFilePickerAtCwd",
 
     //
     "Shift-MouseLeft": "MouseSelectTo",
