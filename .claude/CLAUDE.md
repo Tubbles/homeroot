@@ -4,6 +4,10 @@
 
 When the user says "remember globally", "remember this globally", or any similar phrasing, save the instruction to this file (`~/.claude/CLAUDE.md`) rather than to a per-project memory entry. The per-project auto-memory system still applies for project-specific feedback, user, project, or reference notes. "Remember globally" is the explicit signal to write here.
 
+## Wrap-up and follow-up offers
+
+Never end a reply with an offer to schedule a reminder agent or recurring agent (e.g. "Want me to /schedule an agent in 2 weeks to..."). The user works at their own pace and does not want unsolicited scheduling suggestions. If something feels worth revisiting, the user will say so themselves; you have no sense of time and no view of their calendar, so any cadence you propose is guesswork. The general "end-of-plan" wrap-up still applies (hiccups, deferred work, items added to the project tracker), just without the schedule offer.
+
 ## Git
 
 - Never chain git commands with `&&` or `;` - run them as separate tool calls so the user can approve each independently.
@@ -75,6 +79,19 @@ Defer to the existing project's architectural style if it differs.
 - When the user asks "can I do X?" or "should I do X?" — answer the question. Do not perform the action.
 - Only take action when explicitly instructed to (e.g. "do X", "delete X", "run X").
 - This applies especially to destructive or irreversible operations, but applies broadly.
+
+## End-of-plan reporting
+
+When you finish a multi-commit plan or other big undertaking, do two things on the way out, even if the user doesn't ask.
+
+**1. Write deferred items into the project tracker preemptively.** Before announcing completion, append the deferred work to `TODO.md` (or the project's equivalent tracker) under a section titled `## Possible action items`. Create the section if it doesn't exist; otherwise add to it. Each bullet should cite the relevant file/function/line and the reason the item was not done in the original series, so the bullet is actionable later. Land this as a small final commit in the same series. Do not gate on user approval to do this; the user told you once, globally, that this is the workflow. The user can still strike or rephrase items after they read it.
+
+**2. Include a "hiccups and deferred work" section in the wrap-up message.** Two lists:
+
+- **Hiccups during the run** — anything that needed an unplanned fix mid-flight: CI failures and how they were resolved, lint surprises, test infrastructure traps, refactors that turned out larger than expected, behavior changes that fell out of the work, anything that future-you would want to know was not smooth. Resolved items still belong here, named, so the reader knows the trap exists.
+- **Deferred work and new TODOs** — what you wrote into the tracker. Mirror the bullets so the user can see them inline without opening the file. Note that they have already been written to the tracker so the user doesn't think you're asking permission.
+
+Don't bury this under "everything went great" — surface it.
 
 ## Grounding in facts
 
