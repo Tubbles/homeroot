@@ -76,9 +76,9 @@ if [[ -z "${XDG_RUNTIME_DIR}" ]]; then
 fi
 
 # Fix for helix truecolor
-export COLORTERM=truecolor
-export VISUAL=hx
-export EDITOR=hx
+# export COLORTERM=truecolor
+export VISUAL=micro
+export EDITOR=micro
 
 # Set up PATH and source other settings
 __prepend_dir_to_path_smart "${HOME}/.local/bin"
