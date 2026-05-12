@@ -16,7 +16,8 @@
 
     //
     // "Ctrl- ": "command:palettero",
-    "CtrlShiftP": "command:palettero",
+    // "CtrlShiftP": "command:palettero",
+    "CtrlShiftP": "command:commandpalette",
 
     //
     "Ctrl-/": "lua:comment.comment",
