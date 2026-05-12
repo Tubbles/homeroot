@@ -11,11 +11,13 @@ Never end a reply with an offer to schedule a reminder agent or recurring agent 
 ## Git
 
 - Never chain git commands with `&&` or `;` - run them as separate tool calls so the user can approve each independently.
+- Don't use `git -C <path>` when the current working directory is already `<path>`. Run plain `git`. The general `-C` rule in the Bash Commands section is easy to forget specifically for git.
 - Never use `git push --force` or any force-push variant.
 - To edit the latest commit: use `git commit --amend`
 - Create small, focused commits so changes are easy to review and revert.
 - Each commit should address a single concern (one bug fix, one feature, one refactor).
-- Use a succinct imperative commit title (e.g. "Add retry logic for API calls") with max 72 characters. The lines of the body shall be also max 72 characters.
+- Use a succinct imperative commit title (e.g. "Add retry logic for API calls") with max 72 characters.
+- Wrap the commit message body to max 72 columns with `fmt -w 72`, in place, before committing. `fmt` does not have a `-i` flag like `sed -i`, so use the command-substitution idiom: `printf '%s\n' "$(fmt -w 72 tmp/commit_msg.txt)" > tmp/commit_msg.txt`. Single command, no temp file: the `$(…)` reads and reformats the file before the `>` redirection truncates it. Verify with `awk 'length > 72 { print NR": "length"  "$0 }' tmp/commit_msg.txt` (any printed line is an overrun), then `git commit -F tmp/commit_msg.txt`. Title (first line) and trailer lines are preserved if already ≤72 chars; if a title would exceed, shorten it manually before running `fmt`. `fmt` mangles indented code blocks (compiler output, indented snippets) and splits trailer lines that exceed 72 chars (which breaks git's trailer parser). Inspect the output and fix by hand if either case applies. Do **not** use a `fmt … > tmp/commit_msg.wrapped; mv tmp/commit_msg.wrapped tmp/commit_msg.txt` two-file dance: it's confusing on inspection and obscures whether the commit used the wrapped or unwrapped content.
 - Include gotchas, caveats, or non-obvious side effects in the commit message body.
 - Never add "Co-Authored-By" lines or email addresses to commit messages.
 - Add an `Assisted-by: Claude:<model-id>` git trailer to every commit message (use your actual model ID, e.g. `claude-opus-4-6`).
