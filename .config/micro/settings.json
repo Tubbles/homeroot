@@ -3,7 +3,7 @@
     "colorscheme": "one-dark-j",
     "filemanager.showhidden": true,
     "ft:json": {
-        "aspell.check": "on",
+        "aspell.check": "on"
     },
     "hlsearch": true,
     "hlselection": true,
@@ -13,6 +13,8 @@
     "mkparents": true,
     "parsecursor": true,
     "paste": true,
+    "pathdisplay": "smart",
+    "quittoscratch": true,
     "rmtrailingws": true,
     "savecursor": true,
     "saveundo": true,
@@ -21,6 +23,5 @@
     "softwrap": true,
     "statusformatl": "$(filename) $(modified)$(overwrite) $(status.paste)| $(opt:filetype) | $(opt:fileformat) | $(opt:encoding)",
     "statusformatr": "$(line),$(col)",
-    "tabstospaces": true,
-    "quittoscratch": true,
+    "tabstospaces": true
 }
