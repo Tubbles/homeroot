@@ -80,18 +80,6 @@ Never time-box tasks. No "time-box: 1 day", no "fall back after N hours", no "sp
 
 In plans, risk lists, and effort writeups, describe *what* is uncertain and *why* ("the re-port sits in a pipeline we haven't read yet"), not *how long* to spend before abandoning.
 
-## Big undertakings
-
-For large multi-step changes (refactors, migrations, version bumps, build-system changes), keep plans focused on the recommended approach. Do not include "Plan B / fallback to old behavior" sections or pre-baked retreat paths. A pre-baked fallback signals defeatism and tempts retreating to a known-bad state instead of solving the real problem.
-
-Expect roadblocks and work through them. Compile errors from API renames, flag renames in vendored build files, test adjustments, etc. are expected work on a big change, not blockers. Stop-and-ask only when a real upstream bug, missing capability, or environmental incompatibility makes the recommended approach genuinely non-viable — at that point, ask, do not pivot autonomously.
-
-## Bug investigation
-
-Treat the user's bug report as authoritative. Do not hypothesize "user error" or "accidental input" explanations without explicit confirmation. Hypotheses that require the user to have done something they didn't mention are low-prior; hypotheses consistent with "the user did exactly what they said" are high-prior.
-
-Before writing any "user error" hypothesis down, re-read the report for evidence that *rules it out*. Visible side effects the user would have noticed (toasts, sounds, animations, overlay text) are strong negative evidence. If a "user error" explanation is still forming after that, ask a direct yes/no question first — one question often kills a bad hypothesis in 10 seconds.
-
 ## Git
 
 - Never chain git commands with `&&` or `;` - run them as separate tool calls so the user can approve each independently.
@@ -114,13 +102,6 @@ Before writing any "user error" hypothesis down, re-read the report for evidence
 - **Keep all documentation up to date.** When changing behavior, update your .md file and code comments in the same commit. Stale docs are worse than no docs.
 - When referring to specific commits in conversation, plans, or wrap-ups, include both a human-friendly name (commit subject or short paraphrase) AND the SHA — e.g. `1f5becec ("widget: add fuzzy filter")` or "the v3 port commit (`8ba12fe6`)". Lead with the human-friendly form so the reader can follow at a glance; include the SHA so it's directly usable in a `git` command. Bare SHAs alone are opaque; bare subjects alone force the reader to dig.
 - Before any plan that depends on remote git state (rebases, fast-forwards, integration rebuilds, "what's new upstream"), run `git fetch` from every relevant remote *first*, then read branch tips. Remote-tracking refs in the workspace are only as fresh as the last fetch — possibly hours or days stale — and a plan grounded in stale refs will under- or over-state the work. For plans that won't execute for a while, note "fetch again immediately before Step 1" in the plan itself.
-
-## GitHub PRs
-
-- Do not hard-wrap lines in PR body text. Write prose as single long lines per paragraph and let the GitHub UI reflow naturally.
-- Add `Assisted-by: Claude:<model-id>` to the PR description.
-- To edit a PR body/title after creation, use `gh api -X PATCH repos/<owner>/<repo>/pulls/<num> -F body=@<file>` (or `-f title="..."`) instead of `gh pr edit`. `gh pr edit` currently fails with a GraphQL error about the deprecated projects-classic API; the REST PATCH goes through cleanly.
-- When writing GitHub text (PR bodies, issue comments, review replies) that references an issue or PR in a *different* repo, use the qualified `owner/repo#N` form, not bare `#N`. Bare `#N` auto-links within the host repo and will silently mis-resolve. Same rule for commit SHAs from other repos: write `owner/repo@sha`.
 
 ## Writing in the user's name
 
@@ -161,12 +142,6 @@ Defer to the existing project's architectural style if it differs.
 - When a repo is cloned locally, prefer local file tools (Glob, Grep, Read) over `gh api` calls.
 - When cloning open source projects, always use the official upstream repo URL, not mirrors or forks.
 
-## Python
-
-- Always use `uv` instead of `pip` or `pip3`.
-- Always create a venv with `uv venv` first — never install system-wide (`--system`).
-- Install packages with `uv pip install --python .venv/bin/python <package>`.
-
 ## File Formats
 
 - Prefer ODF (ODP for presentations, ODS for spreadsheets) or PDF over Microsoft Office formats (PPTX, XLSX, DOCX).
@@ -181,19 +156,6 @@ Defer to the existing project's architectural style if it differs.
 - When the user asks "can I do X?" or "should I do X?" — answer the question. Do not perform the action.
 - Only take action when explicitly instructed to (e.g. "do X", "delete X", "run X").
 - This applies especially to destructive or irreversible operations, but applies broadly.
-
-## End-of-plan reporting
-
-When you finish a multi-commit plan or other big undertaking, do two things on the way out, even if the user doesn't ask.
-
-**1. Write deferred items into the project tracker preemptively.** Before announcing completion, append the deferred work to `TODO.md` (or the project's equivalent tracker) under a section titled `## Possible action items`. Create the section if it doesn't exist; otherwise add to it. Each bullet should cite the relevant file/function/line and the reason the item was not done in the original series, so the bullet is actionable later. Land this as a small final commit in the same series. Do not gate on user approval to do this; the user told you once, globally, that this is the workflow. The user can still strike or rephrase items after they read it.
-
-**2. Include a "hiccups and deferred work" section in the wrap-up message.** Two lists:
-
-- **Hiccups during the run** — anything that needed an unplanned fix mid-flight: CI failures and how they were resolved, lint surprises, test infrastructure traps, refactors that turned out larger than expected, behavior changes that fell out of the work, anything that future-you would want to know was not smooth. Resolved items still belong here, named, so the reader knows the trap exists.
-- **Deferred work and new TODOs** — what you wrote into the tracker. Mirror the bullets so the user can see them inline without opening the file. Note that they have already been written to the tracker so the user doesn't think you're asking permission.
-
-Don't bury this under "everything went great" — surface it.
 
 ## Grounding in facts
 
