@@ -20,7 +20,7 @@ if [ -n "$HOME" ] && [ "${cwd#$HOME}" != "$cwd" ]; then
 fi
 printf '\e[33m%s\e[0m' "$cwd_display"
 
-# Git branch in cyan
+# Git branch in cyan (on a new line only if it would push the cwd line past 80 chars)
 git_branch=$(git -C "$cwd" --no-optional-locks symbolic-ref --short HEAD 2>/dev/null)
 if [ -z "$git_branch" ]; then
     git_branch=$(git -C "$cwd" --no-optional-locks describe --tags --exact-match HEAD 2>/dev/null)
@@ -28,14 +28,24 @@ fi
 if [ -z "$git_branch" ]; then
     git_branch=$(git -C "$cwd" --no-optional-locks rev-parse --short HEAD 2>/dev/null)
 fi
-if [ -n "$git_branch" ]; then
-    printf ' \e[36m(%s)\e[0m' "$git_branch"
-fi
 
-# Stash indicator
+stash_mark=""
 stash_count=$(git -C "$cwd" --no-optional-locks stash list 2>/dev/null | wc -l)
 if [ "$stash_count" -gt 0 ] 2>/dev/null; then
-    printf '\e[33m$\e[0m'
+    stash_mark='$'
+fi
+
+if [ -n "$git_branch" ]; then
+    # Visible width: cwd + " " + branch + optional stash mark
+    combined_len=$(( ${#cwd_display} + 1 + ${#git_branch} + ${#stash_mark} ))
+    if [ "$combined_len" -le 80 ]; then
+        printf ' \e[36m%s\e[0m' "$git_branch"
+    else
+        printf '\n\e[36m%s\e[0m' "$git_branch"
+    fi
+    if [ -n "$stash_mark" ]; then
+        printf '\e[33m%s\e[0m' "$stash_mark"
+    fi
 fi
 
 printf '\n'
