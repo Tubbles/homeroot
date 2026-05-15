@@ -1,5 +1,5 @@
 {
-    "colorcolumn": 72,
+    "colorcolumn": [72, 80, 120],
     "colorscheme": "one-dark-j",
     "filemanager.showhidden": true,
     "ft:json": {
@@ -7,6 +7,7 @@
     },
     "hlsearch": true,
     "hlselection": true,
+    "ignorecase": false,
     "lockbindings": true,
     "lsp.server": "python=pylsp,go=gopls,typescript=deno lsp,javascript=deno lsp,json=deno lsp,rust=rust-analyzer,c++=clangd,c=clangd,lua=lua-language-server",
     "matchbracestyle": "highlight",
@@ -20,7 +21,8 @@
     "saveundo": true,
     "showchars": "tab=\u003e,space= ,itab=|\u003e,ispace=|",
     "softwrap": true,
-    "statusformatl": "$(filename) $(modified)$(overwrite) $(status.paste)| $(opt:filetype) | $(opt:fileformat) | $(opt:encoding)",
+    "statusformatl": "$(modified)$(overwrite) $(opt:filetype) | $(opt:fileformat) | $(opt:encoding)",
     "statusformatr": " $(icase.indicator) | $(line),$(col)",
-    "tabstospaces": true
+    "tabstospaces": true,
+    "textfilterselectword": false,
 }
