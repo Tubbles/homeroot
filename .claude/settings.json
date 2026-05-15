@@ -4,7 +4,6 @@
     "pr": ""
   },
   "permissions": {
-    "defaultMode": "auto",
     "allow": [
       "Bash(grep:*)",
       "Bash(ls:*)",
@@ -14,7 +13,8 @@
       "Bash(claude --version)",
       "Bash(npm list:*)",
       "Bash(snap list *)"
-    ]
+    ],
+    "defaultMode": "auto"
   },
   "hooks": {
     "Notification": [
@@ -35,8 +35,10 @@
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true
+    "lua-lsp@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true
   },
-  "effortLevel": "high",
-  "skipAutoPermissionPrompt": true
+  "effortLevel": "xhigh",
+  "skipAutoPermissionPrompt": true,
+  "prefersReducedMotion": true
 }
