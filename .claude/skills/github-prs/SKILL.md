@@ -9,3 +9,4 @@ description: Conventions for working with GitHub pull requests — don't hard-wr
 - Add `Assisted-by: Claude:<model-id>` to the PR description.
 - To edit a PR body/title after creation, use `gh api -X PATCH repos/<owner>/<repo>/pulls/<num> -F body=@<file>` (or `-f title="..."`) instead of `gh pr edit`. `gh pr edit` currently fails with a GraphQL error about the deprecated projects-classic API; the REST PATCH goes through cleanly.
 - When writing GitHub text (PR bodies, issue comments, review replies) that references an issue or PR in a *different* repo, use the qualified `owner/repo#N` form, not bare `#N`. Bare `#N` auto-links within the host repo and will silently mis-resolve. Same rule for commit SHAs from other repos: write `owner/repo@sha`.
+- When modifying the description of an already existing PR, make sure to use a read-modify-write procedure, in order to capture any potential direct edits made by the user.
