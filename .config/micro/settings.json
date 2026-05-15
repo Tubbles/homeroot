@@ -21,6 +21,6 @@
     "showchars": "tab=\u003e,space= ,itab=|\u003e,ispace=|",
     "softwrap": true,
     "statusformatl": "$(filename) $(modified)$(overwrite) $(status.paste)| $(opt:filetype) | $(opt:fileformat) | $(opt:encoding)",
-    "statusformatr": "$(line),$(col)",
+    "statusformatr": " $(icase.indicator) | $(line),$(col)",
     "tabstospaces": true
 }

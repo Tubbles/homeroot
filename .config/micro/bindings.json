@@ -94,6 +94,9 @@
     "Alt-Left": "JumpBack",
     "Alt-Right": "JumpForward",
 
+    //
+    "Alt-i": "command:toggle ignorecase",
+
     // unbinds
     "F2": "None",
     "F4": "None",
