@@ -127,12 +127,24 @@ Tone: succinct, technical, friendly. Extend benefit of the doubt. Never attribut
 
 Prefer C/Rust-style architectural patterns:
 
-- Small, clean, testable functions that are pure (no side effects)
+- Small, low-complexity, clean, testable functions that are pure (no side effects). Aim for 5-10 lines
 - Structs as data carriers
 - Composition over inheritance
 - Keep OOP to a minimum
+  - This does _not_ include patterns like vtable, type-erased polymorphism etc.
+  - Specifically this rule applies to concrete inheritance in C++ and Java code etc.
 
 Defer to the existing project's architectural style if it differs.
+
+- Never abbreviate symbol names and don't hesitate to use long names. However keep it focused and don't overdo it, stick to what is necessary to describe the symbol's intended use. Examples:
+  - `index` instead of `i` in loops
+  - `error` instead of `err`
+  - `buffer` instead of `buf` or `b`
+  - `pointer` instead of `ptr` or `p`
+  - `value_before_change`
+  - `cursor_to_center_of_view()`
+
+Defer to the existing project's coding and naming conventions if it differs.
 
 ## Bash Commands
 
