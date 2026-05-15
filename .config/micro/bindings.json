@@ -1,5 +1,10 @@
 {
     //
+    "Alt-c": "CommandMode",
+    "Ctrl-e": "FindNextWord",
+    "CtrlShift-e": "FindPreviousWord",
+
+    //
     "Alt-/": "lua:comment.comment",
 
     //
