@@ -9,15 +9,16 @@ input=$(cat)
 # Date/time in grey
 printf '\e[37m%s\e[0m ' "$(date +%y%m%d-%H%M%S)"
 
-# user@host in green
-printf '\e[32m%s@%s\e[0m ' "$(whoami)" "$(hostname -s)"
-
-# Working directory in yellow
+# Working directory in yellow (collapse $HOME to ~)
 cwd=$(printf '%s' "$input" | jq -r '.workspace.current_dir // empty' 2>/dev/null)
 if [ -z "$cwd" ]; then
     cwd="$PWD"
 fi
-printf '\e[33m%s\e[0m' "$cwd"
+cwd_display=$cwd
+if [ -n "$HOME" ] && [ "${cwd#$HOME}" != "$cwd" ]; then
+    cwd_display="~${cwd#$HOME}"
+fi
+printf '\e[33m%s\e[0m' "$cwd_display"
 
 # Git branch in cyan
 git_branch=$(git -C "$cwd" --no-optional-locks symbolic-ref --short HEAD 2>/dev/null)
