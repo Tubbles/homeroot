@@ -9,6 +9,7 @@
     "hlselection": true,
     "ignorecase": false,
     "lockbindings": true,
+    "lsp.formatOnSave": true,
     "lsp.server": "python=pylsp,go=gopls,typescript=deno lsp,javascript=deno lsp,json=deno lsp,rust=rust-analyzer,c++=clangd,c=clangd,lua=lua-language-server",
     "matchbracestyle": "highlight",
     "mkparents": true,
