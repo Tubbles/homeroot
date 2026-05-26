@@ -86,4 +86,5 @@ include "one-dark"
 # #282C34
 # color-link default "#ABB2BF,#282C54"
 # color-link current-line-number "#C6C6C6,#282C54"
-color-link hlselection ",#43474E"
+color-link selection "*,#656970"
+color-link hlselection "*,#43474E"
