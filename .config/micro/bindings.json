@@ -96,6 +96,7 @@
 
     //
     "Alt-i": "command:toggle ignorecase",
+    "Alt-z": "command:toggle softwrap",
 
     // unbinds
     "F2": "None",
