@@ -160,6 +160,10 @@ Defer to the existing project's coding and naming conventions if it differs.
 
 - Prefer ODF (ODP for presentations, ODS for spreadsheets) or PDF over Microsoft Office formats (PPTX, XLSX, DOCX).
 
+## Markdown
+
+- Never reflow free-form markdown. Let the renderer wrap. One paragraph = one line. Applies to docs, PR descriptions, plans, design notes, and any other prose markdown. Code blocks inside markdown follow their own language's conventions.
+
 ## Temporary files
 
 - Put temporary files such as logs in `$(pwd)/tmp`.
