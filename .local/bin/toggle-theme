@@ -36,11 +36,6 @@ plasma-apply-colorscheme "${kde}"
 gsettings set org.gnome.desktop.interface gtk-theme "${gtk}"
 gsettings set org.gnome.desktop.interface color-scheme "${scheme}"
 
-# zellij keys a theme by the name inside the file, not the filename, so write
-# active.kdl as a concrete copy of the mode's theme with its name set to "active".
-sed -E '/^[[:space:]]*themes[[:space:]]*\{/{n;s/^([[:space:]]*)[A-Za-z0-9_-]+([[:space:]]*\{)/\1active\2/}' \
-    "${ZELLIJ_THEMES}/$mode.kdl" >"${ZELLIJ_THEMES}/active.kdl"
-
-touch "${ZELLIJ_CONFIG}/config.kdl"
+"${ZELLIJ_THEMES}/set-theme.bash" $mode
 
 echo "switched to $mode"
