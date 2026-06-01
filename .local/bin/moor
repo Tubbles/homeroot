@@ -2,14 +2,18 @@
 # PAGER wrapper: choose moor's light/dark style from the desktop color-scheme,
 # because moor's terminal-background detection is wrong inside zellij (zellij#3590).
 set -euo pipefail
+if [[ -n "${XDG_CURRENT_DESKTOP:-}" ]]; then
+    scheme="$(dbus-send --session --print-reply=literal \
+        --dest=org.freedesktop.portal.Desktop /org/freedesktop/portal/desktop \
+        org.freedesktop.portal.Settings.Read \
+        string:org.freedesktop.appearance string:color-scheme 2>/dev/null |
+        grep -oE '[0-9]+$' || true)"
+else
+    # headless/SSH: no appearance portal, use the default style
+    scheme=""
+fi
 
-scheme="$(dbus-send --session --print-reply=literal \
-    --dest=org.freedesktop.portal.Desktop /org/freedesktop/portal/desktop \
-    org.freedesktop.portal.Settings.Read \
-    string:org.freedesktop.appearance string:color-scheme 2>/dev/null |
-    grep -oE '[0-9]+$' || true)"
-
-if [[ "$scheme" == "1" ]]; then
+if [[ "${scheme}" == "1" ]]; then
     style="onedark"
 else
     style="tango"
@@ -19,15 +23,15 @@ fi
 self="$(readlink -f "${BASH_SOURCE[0]}")"
 real_moor=""
 while IFS= read -r candidate; do
-    if [[ "$(readlink -f "$candidate")" != "$self" ]]; then
-        real_moor="$candidate"
+    if [[ "$(readlink -f "${candidate}")" != "${self}" ]]; then
+        real_moor="${candidate}"
         break
     fi
 done < <(type -aP moor)
 
-if [[ -z "$real_moor" ]]; then
+if [[ -z "${real_moor}" ]]; then
     echo "moor: could not find the real moor binary on PATH" >&2
     exit 127
 fi
 
-exec "$real_moor" --terminal-fg --style="$style" "$@"
+exec "${real_moor}" --terminal-fg --style="${style}" "${@}"
