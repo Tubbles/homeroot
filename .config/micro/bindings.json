@@ -95,8 +95,8 @@
     "Alt-Right": "JumpForward",
 
     //
-    "Alt-i": "command:toggle ignorecase",
-    "Alt-z": "command:toggle softwrap",
+    "Alt-i": "command:togglelocal ignorecase",
+    "Alt-z": "command:togglelocal softwrap",
 
     // unbinds
     "F2": "None",
