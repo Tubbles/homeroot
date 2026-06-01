@@ -9,33 +9,38 @@ GTK_LIGHT="Breeze"
 SCHEME_DARK="prefer-dark"
 SCHEME_LIGHT="default"
 
-ZELLIJ_THEMES="$HOME/.config/zellij/themes"
+ZELLIJ_CONFIG="${HOME}/.config/zellij"
+ZELLIJ_THEMES="${ZELLIJ_CONFIG}/themes"
 
 current="$(plasma-apply-colorscheme --list-schemes | grep 'current color scheme' || true)"
-if [[ "$current" == *"$KDE_DARK"* ]]; then
+if [[ "${current}" == *"${KDE_DARK}"* ]]; then
     mode="light"
 else
     mode="dark"
 fi
 
-if [[ "$mode" == "dark" ]]; then
-    kde="$KDE_DARK"
-    gtk="$GTK_DARK"
-    scheme="$SCHEME_DARK"
+if [[ "${mode}" == "dark" ]]; then
+    kde="${KDE_DARK}"
+    gtk="${GTK_DARK}"
+    scheme="${SCHEME_DARK}"
 else
-    kde="$KDE_LIGHT"
-    gtk="$GTK_LIGHT"
-    scheme="$SCHEME_LIGHT"
+    kde="${KDE_LIGHT}"
+    gtk="${GTK_LIGHT}"
+    scheme="${SCHEME_LIGHT}"
 fi
 
 # kitty and moor follow the freedesktop portal that this flips.
-plasma-apply-colorscheme "$kde"
+plasma-apply-colorscheme "${kde}"
 
 # GTK apps and the Firefox-snap chrome guess follow the GTK theme name.
-gsettings set org.gnome.desktop.interface gtk-theme "$gtk"
-gsettings set org.gnome.desktop.interface color-scheme "$scheme"
+gsettings set org.gnome.desktop.interface gtk-theme "${gtk}"
+gsettings set org.gnome.desktop.interface color-scheme "${scheme}"
 
-# zellij hot-reloads when the 'active' theme symlink repoints.
-ln -sfn "$mode.kdl" "$ZELLIJ_THEMES/active.kdl"
+# zellij keys a theme by the name inside the file, not the filename, so write
+# active.kdl as a concrete copy of the mode's theme with its name set to "active".
+sed -E '/^[[:space:]]*themes[[:space:]]*\{/{n;s/^([[:space:]]*)[A-Za-z0-9_-]+([[:space:]]*\{)/\1active\2/}' \
+    "${ZELLIJ_THEMES}/$mode.kdl" >"${ZELLIJ_THEMES}/active.kdl"
+
+touch "${ZELLIJ_CONFIG}/config.kdl"
 
 echo "switched to $mode"
