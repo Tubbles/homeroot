@@ -1,6 +1,13 @@
 {
-    "colorcolumn": [72, 80, 120],
+    "colorcolumn": [
+        72,
+        80,
+        120
+    ],
     "colorscheme": "one-dark-j",
+    "colorscheme.dark": "one-dark-j",
+    "colorscheme.follow-system": true,
+    "colorscheme.light": "everforest-light-j",
     "filemanager.showhidden": true,
     "ft:json": {
         "aspell.check": "on"
@@ -15,15 +22,15 @@
     "mkparents": true,
     "parsecursor": true,
     "paste": true,
+    "pathbar": true,
     "pathdisplay": "smart",
     "quittoscratch": true,
     "rmtrailingws": true,
     "savecursor": true,
     "saveundo": true,
     "showchars": "tab=\u003e,space= ,itab=|\u003e,ispace=|",
-    "softwrap": true,
     "statusformatl": "$(modified)$(overwrite) $(opt:filetype) | $(opt:fileformat) | $(opt:encoding)",
     "statusformatr": " $(icase.indicator) | $(line),$(col)",
     "tabstospaces": true,
-    "textfilterselectword": false,
+    "textfilterselectword": false
 }

@@ -79,6 +79,9 @@ fi
 # export COLORTERM=truecolor
 export VISUAL=micro
 export EDITOR=micro
+export PAGER=moor
+# export MOOR='--quit-if-one-screen --no-clear-on-exit-margin=4'
+# export MOOR='--style=onedark'
 
 # Set up PATH and source other settings
 __prepend_dir_to_path_smart "${HOME}/.local/bin"
@@ -412,5 +415,9 @@ for module in $(find "${HOME}/.config/bashrc.d" -type f -name 'late-module-*'); 
     # shellcheck disable=SC1090
     source "${module}"
 done
+
+# Some opinionated cmake settings
+export CMAKE_GENERATOR=Ninja
+export CTEST_PROGRESS_OUTPUT=ON
 
 :

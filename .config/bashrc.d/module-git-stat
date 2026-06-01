@@ -12,6 +12,7 @@ __git_stat() {
     local l_new="${c_new}[NEW]${c_rst}"
     local l_del="${c_old}[DEL]${c_rst}"
     local l_empty="     "
+    local num_cols="$(($(tput cols) - 6))"
 
     # 2. Map file statuses and count new/deleted files
     local new_count=0
@@ -44,7 +45,7 @@ __git_stat() {
         else
             echo "      ${line}"
         fi
-    done < <(git show --no-show-signature --format="" --stat="$(($(tput cols) - 6))" --color=always "${commit}")
+    done < <(git show --no-show-signature --format="" --stat="${num_cols}" --color=always "${commit}")
 
     # 4. Print new/deleted file summary
     if ((new_count > 0 || del_count > 0)); then

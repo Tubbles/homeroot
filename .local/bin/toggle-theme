@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# toggle-theme — flip the desktop between light and dark.
+set -euo pipefail
+
+KDE_DARK="BreezeDark"
+KDE_LIGHT="BreezeLight"
+GTK_DARK="Breeze-Dark"
+GTK_LIGHT="Breeze"
+SCHEME_DARK="prefer-dark"
+SCHEME_LIGHT="default"
+
+ZELLIJ_THEMES="$HOME/.config/zellij/themes"
+
+current="$(plasma-apply-colorscheme --list-schemes | grep 'current color scheme' || true)"
+if [[ "$current" == *"$KDE_DARK"* ]]; then
+    mode="light"
+else
+    mode="dark"
+fi
+
+if [[ "$mode" == "dark" ]]; then
+    kde="$KDE_DARK"
+    gtk="$GTK_DARK"
+    scheme="$SCHEME_DARK"
+else
+    kde="$KDE_LIGHT"
+    gtk="$GTK_LIGHT"
+    scheme="$SCHEME_LIGHT"
+fi
+
+# kitty and moor follow the freedesktop portal that this flips.
+plasma-apply-colorscheme "$kde"
+
+# GTK apps and the Firefox-snap chrome guess follow the GTK theme name.
+gsettings set org.gnome.desktop.interface gtk-theme "$gtk"
+gsettings set org.gnome.desktop.interface color-scheme "$scheme"
+
+# zellij hot-reloads when the 'active' theme symlink repoints.
+ln -sfn "$mode.kdl" "$ZELLIJ_THEMES/active.kdl"
+
+echo "switched to $mode"

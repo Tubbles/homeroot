@@ -1,0 +1,50 @@
+# Everforest Light, hard background — palette + semantics from
+# https://github.com/sainnhe/everforest (palette.md)
+color-link default "#5C6A72,#FFFBEF"
+color-link comment "#939F91,#FFFBEF"
+color-link divider "#939F91,#FFFBEF"
+color-link indent-char "#BEC5B2,#FFFBEF"
+
+color-link identifier "#3A94C5,#FFFBEF"
+color-link identifier.class "#DFA000,#FFFBEF"
+color-link identifier.var "#5C6A72,#FFFBEF"
+
+color-link constant "#35A77C,#FFFBEF"
+color-link constant.number "#DF69BA,#FFFBEF"
+color-link constant.string "#8DA101,#FFFBEF"
+color-link constant.string.char "#8DA101,#FFFBEF"
+color-link constant.specialChar "#DFA000,#FFFBEF"
+
+color-link statement "#F85552,#FFFBEF"
+color-link symbol "#F57D26,#FFFBEF"
+color-link symbol.brackets "#5C6A72,#FFFBEF"
+color-link symbol.operator "#F57D26,#FFFBEF"
+color-link symbol.tag "#F57D26,#FFFBEF"
+
+color-link preproc "#DF69BA,#FFFBEF"
+color-link type "#DFA000,#FFFBEF"
+color-link type.keyword "#F57D26,#FFFBEF"
+color-link special "#3A94C5,#FFFBEF"
+color-link underlined "underline #3A94C5,#FFFBEF"
+color-link error "#F85552,#FFE7DE"
+color-link todo "bold #F57D26,#FFFBEF"
+
+color-link diff-added "#8DA101"
+color-link diff-modified "#3A94C5"
+color-link diff-deleted "#F85552"
+color-link gutter-error "#F85552,#FFFBEF"
+color-link gutter-warning "#DFA000,#FFFBEF"
+
+color-link line-number "#A6B0A0,#FFFBEF"
+color-link current-line-number "#829181,#F8F5E4"
+color-link cursor-line "#F8F5E4"
+color-link color-column "#F8F5E4"
+
+color-link statusline "#5C6A72,#F8F5E4"
+color-link tabbar "#5C6A72,#F8F5E4"
+color-link match-brace "bold #5C6A72,#F0F2D4"
+color-link hlsearch "#FFFBEF,#8DA101"
+color-link selection "*,#DDD9CD"
+color-link hlselection "*,#EEEADE"
+color-link tab-error "#F85552"
+color-link trailingws "#F85552"

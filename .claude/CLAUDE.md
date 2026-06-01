@@ -163,6 +163,7 @@ Defer to the existing project's coding and naming conventions if it differs.
 ## Markdown
 
 - Never reflow free-form markdown. Let the renderer wrap. One paragraph = one line. Applies to docs, PR descriptions, plans, design notes, and any other prose markdown. Code blocks inside markdown follow their own language's conventions.
+- Exception: if the file you're editing already follows an established line-wrapping convention (e.g. consistently wrapped at 80 or 120 columns), match it. Don't mix styles within a file.
 
 ## Temporary files
 

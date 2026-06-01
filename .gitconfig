@@ -8,7 +8,8 @@
     preloadindex = true
     fscache = true
     whitespace = space-before-tab,trailing-space,cr-at-eol,tabwidth=4
-    pager = less -x1,5
+    # pager = less -x1,5
+    pager = moor
 [push]
     default = simple
     autoSetupRemote = true
@@ -57,7 +58,8 @@
 
     # ll, jst - display working tree status
     ll = status --porcelain --ignored
-    jst = !git -c color.status=always status -s | less -FRX
+    # jst = !git -c color.status=always status -s | less -FRX
+    jst = !git -c color.status=always status -s | moor
 
     # conflict - Display what our current conflicts are, during a merge
     conflict = !git status -s | grep -E '^(.U|U.)' | awk '{print $2}' | xargs grep -Hn -E '(<<<<<<<|=======|>>>>>>>)'
@@ -126,9 +128,12 @@
 [blame]
     coloring = highlightRecent
 [pager]
-    log = diff-highlight | sed 's,\t,→   ,g' | less -NMRX
-    show = diff-highlight | sed 's,\t,→   ,g' | less -NMRX
-    diff = diff-highlight | sed 's,\t,→   ,g' | less -NMRX
+    # log = diff-highlight | sed 's,\t,→   ,g' | less -NMRX
+    log = sed 's,\t,→   ,g' | riff
+    # show = diff-highlight | sed 's,\t,→   ,g' | less -NMRX
+    show = sed 's,\t,→   ,g' | riff
+    # diff = diff-highlight | sed 's,\t,→   ,g' | less -NMRX
+    diff = sed 's,\t,→   ,g' | riff
 [interactive]
     diffFilter = diff-highlight
 [merge]

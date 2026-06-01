@@ -39,6 +39,6 @@
     "gopls-lsp@claude-plugins-official": true
   },
   "effortLevel": "xhigh",
-  "skipAutoPermissionPrompt": true,
-  "prefersReducedMotion": true
+  "prefersReducedMotion": true,
+  "skipAutoPermissionPrompt": true
 }
