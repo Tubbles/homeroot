@@ -9,8 +9,9 @@
     "colorscheme.follow-system": true,
     "colorscheme.light": "everforest-light-j",
     "filemanager.showhidden": true,
-    "ft:json": {
-        "aspell.check": "on"
+    "aspell.check": "off",
+    "ft:proto": {
+        "tabsize": 2
     },
     "hlsearch": true,
     "hlselection": true,
@@ -27,7 +28,7 @@
     "rmtrailingws": true,
     "savecursor": true,
     "saveundo": true,
-    "showchars": "tab=\u003e,space= ,itab=|\u003e,ispace=|",
+    "showchars": "tab=→,space= ,itab=|→,ispace=|",
     "statusformatl": "$(modified)$(overwrite) $(opt:filetype) | $(opt:fileformat) | $(opt:encoding)",
     "statusformatr": " $(icase.indicator) | $(line),$(col)",
     "tabstospaces": true,

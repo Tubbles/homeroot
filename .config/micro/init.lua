@@ -97,3 +97,7 @@ function fzfOpen(bp)
     local quoted = "'" .. path:gsub("'", "'\\''") .. "'"
     bp:HandleCommand("tab " .. quoted)
 end
+
+function jumpToConflict(bp)
+    bp:Search("^<{7}", true, true)
+end

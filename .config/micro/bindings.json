@@ -76,8 +76,6 @@
     "F1": "FileExplorerAtFile",
 
     //
-    // "Ctrl-e"
-    // "CtrlShift-e"
     "F3": "FindNext",
     "Shift-F3": "FindPrevious",
 
@@ -97,6 +95,9 @@
     //
     "Alt-i": "command:togglelocal ignorecase",
     "Alt-z": "command:togglelocal softwrap",
+
+    //
+    "Ctrl-.": "lua:initlua.jumpToConflict",
 
     // unbinds
     "F2": "None",
