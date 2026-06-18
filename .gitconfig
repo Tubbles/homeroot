@@ -20,6 +20,9 @@
     # authors - Count the commit authors
     authors = shortlog -s -n --all --no-merges
 
+    # cp - cherry-pick
+    cp = cherry-pick
+
     # Various log aliases
     flog = log --graph --decorate --date=iso
     lol = log --no-show-signature --graph --format='%C(yellow)%h %C(cyan)%<(12,trunc)%an %C(red)%ad %C(auto)%d %Creset%<(80,trunc)%s' --date=iso
