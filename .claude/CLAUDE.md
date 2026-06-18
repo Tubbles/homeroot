@@ -123,6 +123,10 @@ When writing to a *different* project's maintainers (upstream PRs, cross-repo is
 
 Tone: succinct, technical, friendly. Extend benefit of the doubt. Never attribute to malice what is adequately explained by ignorance. Skip hedging, apology, and self-praise in equal measure.
 
+## General writing
+
+More generally, when writing English texts, do not use the following words and expressions, they are forbidden: * load-bearing.
+
 ## Code Style
 
 Prefer C/Rust-style architectural patterns:

@@ -9,12 +9,13 @@
 
 set -u
 
-env_file="$HOME/.claude/hook-local.env"
+my_dir="$(dirname "$(realpath "${0}")")"
+env_file="${my_dir}/hook-local.env"
 # shellcheck disable=SC1090
-[[ -r "$env_file" ]] && source "$env_file"
+[[ -r "${env_file}" ]] && source "${env_file}"
 
 payload=$(cat)
-message=$(printf '%s' "$payload" | jq -r '.message // "Claude needs your input"')
+message=$(printf '%s' "${payload}" | jq -r '.message // "Claude needs your input"')
 
 case "$(hostname)" in
     vaio)
@@ -22,11 +23,20 @@ case "$(hostname)" in
         curl -s \
             -H 'Title: Claude Code (input needed)' \
             -H 'Tags: bell' \
-            -d "$message" \
+            -d "${message}" \
             "https://ntfy.sh/${NTFY_TOPIC}" > /dev/null 2>&1 || true
         ;;
     *)
-        # Unknown host: no-op so the hook never misbehaves on new machines.
-        :
+        if find "${HOME}/.local/share/icons" \
+                "${HOME}/.icons" \
+                "/usr/share/icons" \
+                "/usr/share/pixmaps" \
+                -name "claudecode.*" -type f 2>/dev/null | grep -q .; then
+            icon="claudecode"
+        else
+            icon="utilities-terminal"
+        fi
+
+        notify-send -u low -i "${icon}" -t 3000 "${message}"
         ;;
 esac
