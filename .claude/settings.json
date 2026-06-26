@@ -41,5 +41,6 @@
   },
   "effortLevel": "xhigh",
   "prefersReducedMotion": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "tui": "fullscreen"
 }
