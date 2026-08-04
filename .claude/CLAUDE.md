@@ -125,7 +125,10 @@ Tone: succinct, technical, friendly. Extend benefit of the doubt. Never attribut
 
 ## General writing
 
-More generally, when writing English texts, do not use the following words and expressions, they are forbidden: * load-bearing.
+More generally, when writing English texts, do not use the following words and expressions, they are forbidden:
+
+- load-bearing.
+- "weight in gold".
 
 ## Code Style
 
@@ -236,3 +239,38 @@ The ONLY time an environment hypothesis is permitted at all is when you have pos
 **If the user pushes back** on an environment suggestion, drop it entirely. Do not re-propose it in different wording. Resume reading code where you left off.
 
 **Common subtle failure: diagnostic uniqueness ignored.** If your code reading proves that mechanism X is the *only* code path that can produce the symptom the user described, you are already done diagnosing — mechanism X is the bug, fix it. You do not need to find the caller, you do not need a repro, you do not need the user to confirm anything more. The phrase "I checked the core, found only N legitimate callers, so I don't know what could be triggering this" is the smell. You already proved X is the unique path; the existence of *some* caller is then a deductive certainty, and the fix is to make X correct, not to hunt the caller. Trust your own analysis when it's sound.
+
+
+## Project structure
+
+Use the following structure if the project you work on does not have any specific structure:
+
+```bash
+doc/ # General documentation, utilize Progressive Disclosure techniques, eg. split topics into distinct markdown documents with internal references.
+doc/log/ # Project decision logs, any type of decisions goes here into a markdown file with the name of today's date, eg. 2026-08-04.md. Utilize tags to aid in searching and grepping.
+doc/work/ # Work items/user stories akin to jira tickets or github issues, which include status (todo, implemented, verified/done).
+work/ # Temporary files, eg. reports, that is not checked in to version control.
+tmp/ # Throwaway files that are not checked in to version control.
+SUGGESTIONS.md # Write suggestions on what to do next, eg. detected during big work packages, so the user can .
+CLAUDE.md # Instructions to LLMs, not of interest for a human reader.
+README.md # Descriptions suitable for human consumption.
+TODO.md # User inbox for new work items, check these at the end of a big work package to see what the user might want to do next.
+PLAN.md # Long term project plan, what is the end goal, partial goals, etc.
+DESIGN.md # Overarching project design goes here.
+```
+
+Take great care to not duplicate information.
+
+It is very important to continuously keep all these documents updated (except for the logs which are "write once"). When things change and pivot in the project nuggets of information might become outdated, in need to further clarification, or there might be brand new things to add.
+
+Take items from TODO.md (when they are fully fledged out by the user, ask if clarifications are needed) and write items into doc/work/. When items in doc/work/ are done, let them stay there, do not delete them.
+
+Do not delete documents, even if they are empty.
+
+## Machine specific instructions
+
+The following instructions are only applicable to the specified machine/hostname (denoted in angled brackets, eg <hostname> instructions </hostname>):
+
+<vaio>
+This machine is old and only has two CPU cores, so never compile heavy things, especially any android apps, locally on the machine. Instead make sure to set up proper CI and let the CI runners compile. It is OK to push uncompiled commits for the purpose of letting the remote CI runners do the compilation for you.
+</vaio>
