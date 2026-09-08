@@ -86,6 +86,12 @@ Never time-box tasks. No "time-box: 1 day", no "fall back after N hours", no "sp
 
 In plans, risk lists, and effort writeups, describe *what* is uncertain and *why* ("the re-port sits in a pipeline we haven't read yet"), not *how long* to spend before abandoning.
 
+## Subagents
+
+- Run at most one subagent at a time. Handle work items in series, never fan several agents out in parallel, even when the tasks are independent. Parallel agents cost more tokens and are harder to follow.
+- Fable (the default model of these sessions) delegates to Opus 5 subagents by default (`model: "opus"`) to preserve the token budget, unless instructed otherwise. Give a subagent a small, clearly scoped task with explicit deliverables, the files it may touch, the commands to verify with, and the shape of the report you want back. The main agent reviews the diff and makes the commits.
+- A subagent can be stopped by its token cap before finishing. Check every completion notification for that: the result is cut off mid sentence, the requested final report is missing, or a deliverable file ends mid function or without its tests. When that happens, do not start a new agent. Resume the same one with `SendMessage` to its agent id and the message `continue`; it keeps its context and picks up where it stopped. A notification that says the agent finished but reports only part of the scope is the same case.
+
 ## Git
 
 - Never chain git commands with `&&` or `;` - run them as separate tool calls so the user can approve each independently.
