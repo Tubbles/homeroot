@@ -98,7 +98,7 @@ __append_dir_to_path_smart "${HOME}/.nix-profile/bin"
 __append_dir_to_path_smart "${HOME}/.local/kitty.app/bin"
 
 for dir in "${HOME}"/opt/*/bin; do
-    __prepend_dir_to_path_smart_before "${dir}"
+    __append_dir_to_path_smart "${dir}"
 done
 
 __append_dir_to_path_smart "/usr/share/doc/git/contrib/diff-highlight"
