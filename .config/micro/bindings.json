@@ -58,8 +58,10 @@
     "CtrlShift-\\": "command-edit:textfilter ",
 
     //
-    "Ctrl-Tab": "lua:initlua.smartNextPane",
-    "Ctrl-Backtab": "lua:initlua.smartPrevPane",
+    "Ctrl-PageDown": "lua:initlua.smartNextPane",
+    "Ctrl-PageUp": "lua:initlua.smartPrevPane",
+    "Ctrl-Tab": "SwitchToRecentBuffer",
+    "Ctrl-Backtab": "CycleBuffersBackward",
     "CtrlShift-.": "MovePaneToNext",
     "CtrlShift-,": "MovePaneToPrevious",
 
