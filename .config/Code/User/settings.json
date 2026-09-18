@@ -359,7 +359,6 @@
     "window.commandCenter": false,
     "window.customMenuBarAltFocus": false,
     "window.customTitleBarVisibility": "auto",
-    "window.menuBarVisibility": "compact",
     "window.title": "${rootName}${separator}${rootPath}${separator}${appName} ${dirty}",
     "window.titleBarStyle": "custom",
     "window.titleSeparator": " -  ",
@@ -374,4 +373,28 @@
     "zenMode.hideLineNumbers": false,
     "zenMode.restore": false,
     "zenMode.showTabs": "single",
+    "insert-unicode.favorites": {
+        "directories": {},
+        "items": [
+            [
+                9
+            ]
+        ]
+    },
+    "makefile.configureOnOpen": false,
+    "errorLens.messageEnabled": false,
+    "editor.formatOnSave": false,
+    "workbench.editor.empty.hint": "hidden",
+    "claudeCode.preferredLocation": "sidebar",
+    "tableformatter.common.centerAlignedHeader": false,
+    "cSpell.userWords": [
+        "aurix",
+        "TRICORE"
+    ],
+    "markdownlint.config": {},
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "http.systemCertificatesNode": true,
+    "geminicodeassist.enableTelemetry": false,
+    "claudeCode.useCtrlEnterToSend": true,
+    "claudeCode.selectedModel": "opus",
 }

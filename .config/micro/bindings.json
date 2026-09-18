@@ -8,9 +8,6 @@
     "Alt-/": "lua:comment.comment",
 
     //
-    "F12": "command:definition",
-
-    //
     "Alt-f": "command:format",
 
     //
@@ -80,9 +77,9 @@
     "Shift-F3": "FindPrevious",
 
     //
-    "CtrlShift-s": "command:tab ~/.config/micro/settings.json",
-    "CtrlShift-b": "command:tab ~/.config/micro/bindings.json",
-    "CtrlShift-t": "command:tab ~/.config/micro/colorschemes/one-dark-j.micro",
+    "Ctrl-Shift-s": "command:tab ~/.config/micro/settings.json",
+    "Ctrl-Shift-b": "command:tab ~/.config/micro/bindings.json",
+    "Ctrl-Shift-t": "command:tab ~/.config/micro/colorschemes/one-dark-j.micro",
 
     //
     "Ctrl-OldBackspace": "DeleteWordLeft",
@@ -98,6 +95,21 @@
 
     //
     "Ctrl-.": "lua:initlua.jumpToConflict",
+
+    //
+    "Ctrl-r": "WorkspacePicker",
+
+    //
+    "Ctrl-Shift-f": "WorkspaceSearch",
+
+    // LSP
+    // Format
+    // Rename
+    "Ctrl-Shift- ": "LspHover",
+    "Ctrl- ": "LspCompletion",
+    "F12": "LspGotoDefinition",
+    "Ctrl-Shift-F12": "LspReferences",
+    "Shift-Alt-f": "LspFormat",
 
     // unbinds
     "F2": "None",

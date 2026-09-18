@@ -121,7 +121,8 @@ zip_sync_plugin() {
     rm -rf "$tmpdir"
 }
 
-git_sync_plugin lsp         AndCake/micro-plugin-lsp v0.6.3
+# git_sync_plugin lsp         AndCake/micro-plugin-lsp v0.6.3
 git_sync_plugin palettero   terokarvinen/palettero   v0.0.5
 git_sync_plugin aspell      priner/micro-aspell-plugin v1.3.0
-zip_sync_plugin filemanager https://github.com/micro-editor/updated-plugins/releases/download/v1.0.0/filemanager-3.5.1.zip
+# zip_sync_plugin filemanager https://github.com/micro-editor/updated-plugins/releases/download/v1.0.0/filemanager-3.5.1.zip
+git_sync_plugin ltm      Tubbles/ltm v0.2.0

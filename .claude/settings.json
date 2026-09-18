@@ -16,6 +16,7 @@
     ],
     "defaultMode": "auto"
   },
+  "model": "claude-fable-5-1[1m]",
   "hooks": {
     "Notification": [
       {
@@ -40,7 +41,14 @@
     "rust-analyzer-lsp@claude-plugins-official": true
   },
   "effortLevel": "xhigh",
+  "tui": "fullscreen",
   "prefersReducedMotion": true,
+  "theme": "dark",
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "tui": "fullscreen"
+  "modelSettings": {
+    "claude-fable-5-1": {
+      "effortLevel": "xhigh"
+    }
+  }
 }
