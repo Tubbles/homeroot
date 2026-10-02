@@ -277,6 +277,8 @@ DESIGN.md # Overarching project design goes here.
 
 Take great care to not duplicate information.
 
+Anchor the ignore patterns for the untracked directories to the repository root in `.gitignore`: `/work/` and `/tmp/`, never `work/` or `tmp/`. An unanchored `work/` matches any directory with that name at any depth, including `doc/work/`, and silently drops the work items from every commit (this happened on 2026-09-26 in mine-oh-belowed).
+
 It is very important to continuously keep all these documents updated (except for the logs which are "write once"). When things change and pivot in the project nuggets of information might become outdated, in need to further clarification, or there might be brand new things to add.
 
 Take items from TODO.md (when they are fully fledged out by the user, ask if clarifications are needed) and write items into doc/work/. When items in doc/work/ are done, let them stay there, do not delete them.
