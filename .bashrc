@@ -102,8 +102,9 @@ for dir in "${HOME}"/opt/*/bin; do
 done
 
 __append_dir_to_path_smart "/usr/share/doc/git/contrib/diff-highlight"
-__append_dir_to_path_smart "/usr/share/git/diff-highlight/" # Some distros use this instead
-__append_dir_to_path_smart "/usr/share/git-core/contrib/"   # Some distros use this instead
+__append_dir_to_path_smart "/usr/share/git/diff-highlight/"  # Some distros use this instead
+__append_dir_to_path_smart "/usr/share/git-core/contrib/"    # Some distros use this instead
+__append_dir_to_path_smart "${HOME}/scr/git-diff-highlight/" # Fall back to local build
 
 __source_if_exists "${HOME}/.bash-preexec.sh"
 __source_if_exists "${HOME}/.bash_extra"
