@@ -297,6 +297,17 @@ Preferred layout for user-facing tools (CLIs, daemons, editor helpers) that need
 - **State and logs**: `$XDG_STATE_HOME/<tool>/`, never next to the configuration.
 - **Home expansion**: expand a leading `~/` in path-like values and in environment variable values the tool passes on, since child processes will not.
 
+## Heavy benchmarks
+
+Performance benchmarks that load the whole machine (`./build.sh bench`, a game's `--benchmark=<size>`, profiling runs, anything whose numbers are the point or that saturates the CPU or GPU for more than a few seconds) run only between 03:00 and 06:00 Swedish time: `TZ=Europe/Stockholm date +%H` must print 03, 04 or 05. Outside that window the user may be playing or otherwise using the machine, and the numbers would be noise anyway. Ordinary builds and the test suite are not benchmarks. A benchmark wanted outside the window is asked for and waits for the user; never run one on your own. Subagents follow the same rule, so say it in their prompt.
+
+Lock file, so agents of different projects never benchmark at once on one machine, make sure to create a script with this content (so that the PID can be captured correctly):
+
+- Before a benchmark, create `~/benchmark.lock` atomically: `(set -o noclobber; printf '%s\n' "$lines" > ~/benchmark.lock)` fails when the file exists.
+- If it exists, read it (it says who is running what), then poll its existence every 60 seconds until it is gone. If its `pid` is no longer alive (`kill -0 <pid>` fails), the lock is stale: remove it and say so in the reply. Never remove a live process's lock.
+- The file holds `key=value` lines: `pid` (the shell running the benchmark), `started` (ISO 8601 UTC), `expected_minutes`, `cwd`, `project`, `command`, `session` (the agent's session URL or id), `note` (one free line, for example what the machine must not be used for meanwhile).
+- Remove the file when the benchmark ends, also on failure: `trap 'rm -f ~/benchmark.lock' EXIT` in the shell that holds it.
+
 ## Machine specific instructions
 
 The following instructions are only applicable to the specified machine/hostname (denoted in angled brackets, eg <hostname> instructions </hostname>):
