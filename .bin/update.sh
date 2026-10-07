@@ -207,7 +207,12 @@ main() {
         return
     fi
     if [[ "$elevation_tool" == sudo && "${planned_steps[*]}" == *:step_os* ]]; then
-        sudo -v || die "sudo authentication failed"
+        # A bare sudo -v asks for a password whenever any sudoers entry for
+        # the user wants one, even on NOPASSWD setups where plain commands
+        # never prompt. Only validate when a plain command would need it.
+        if ! sudo -n true 2>/dev/null; then
+            sudo -v || die "sudo authentication failed"
+        fi
     fi
     run_hook hook-pre update_pre
     local step
