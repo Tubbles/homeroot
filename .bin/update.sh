@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # update.sh - Update everything on this machine: the OS package manager first,
-# then the third party stores that are installed (AUR helper, flatpak, snap,
-# brew), then machine local extras from an update.local.sh next to this script.
+# then the third party stores that are installed (flatpak, snap, brew), then
+# machine local extras from an update.local.sh next to this script.
 #
 # Usage:
 #     update.sh [--check | --help]
@@ -80,14 +80,6 @@ for candidate in apt-get dnf pacman zypper; do
     fi
 done
 
-aur_helper=""
-for candidate in paru yay; do
-    if have "$candidate"; then
-        aur_helper="$candidate"
-        break
-    fi
-done
-
 step_os() {
     case "$os_package_manager" in
         apt-get)
@@ -107,9 +99,6 @@ step_os() {
     esac
 }
 
-# The AUR helper calls sudo on its own for the pacman part, so it runs as the
-# user. -Sua limits it to AUR packages since step_os already did the repos.
-step_aur() { "$aur_helper" -Sua --noconfirm; }
 step_flatpak_system() { elevate flatpak update -y --system; }
 step_flatpak_user() { flatpak update -y --user; }
 step_snap() { elevate snap refresh; }
@@ -179,7 +168,6 @@ preflight() {
     else
         plan_step os root "$os_package_manager" step_os
     fi
-    plan_step aur user "$aur_helper" step_aur
     plan_step flatpak-system root flatpak step_flatpak_system
     plan_step flatpak-user user flatpak step_flatpak_user
     plan_step snap root snap step_snap
