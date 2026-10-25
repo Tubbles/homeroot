@@ -99,7 +99,7 @@ In plans, risk lists, and effort writeups, describe *what* is uncertain and *why
 
 - Never chain git commands with `&&` or `;` - run them as separate tool calls so the user can approve each independently.
 - Don't use `git -C <path>` when the current working directory is already `<path>`. Run plain `git`. The general `-C` rule in the Bash Commands section is easy to forget specifically for git.
-- Never use `git push --force` or any force-push variant.
+- Never use `git push --force` or any force-push variant. Exception: feature branches on the user's forks (see Forks).
 - To edit the latest commit: use `git commit --amend`
 - Create small, focused commits so changes are easy to review and revert.
 - Each commit should address a single concern (one bug fix, one feature, one refactor).
