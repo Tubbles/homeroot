@@ -78,10 +78,10 @@
     "F3": "FindNext",
     "Shift-F3": "FindPrevious",
 
-    //
+    // Quickly change micro's settings
     "Ctrl-Shift-s": "command:tab ~/.config/micro/settings.json",
     "Ctrl-Shift-b": "command:tab ~/.config/micro/bindings.json",
-    "Ctrl-Shift-t": "command:tab ~/.config/micro/colorschemes/one-dark-j.micro",
+    "Ctrl-Shift-m": "command:tab ~/.config/micro/colorschemes/one-dark-j.micro",
 
     //
     "Ctrl-OldBackspace": "DeleteWordLeft",
@@ -103,6 +103,7 @@
 
     //
     "Ctrl-Shift-f": "WorkspaceSearch",
+    "Ctrl-Shift-t": "ReopenLastClosed",
 
     // LSP
     // Format
