@@ -11,15 +11,15 @@
     "colorscheme.light": "everforest-light-j",
     "editorconfig": true,
     "filemanager.showhidden": true,
-    "*.sjson": {
-        "filetype": "json"
+    "ft:odin": {
+        "tabsize": 8,
+        "tabstospaces": false
     },
     "ft:proto": {
         "tabsize": 2
     },
-    "ft:odin": {
-        "tabsize": 8,
-        "tabstospaces": false,
+    "glob:*.sjson": {
+        "filetype": "json"
     },
     "hlsearch": true,
     "hlselection": true,
@@ -41,6 +41,5 @@
     "statusformatl": "$(modified)$(overwrite) $(opt:filetype) | $(opt:fileformat) | $(opt:encoding)",
     "statusformatr": " $(icase.indicator) | $(line),$(col)",
     "tabstospaces": true,
-    // "treesitter": true,
     "textfilterselectword": false
 }
