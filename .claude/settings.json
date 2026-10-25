@@ -13,11 +13,12 @@
       "Bash(gsettings list-recursively:*)",
       "Bash(claude --version)",
       "Bash(npm list:*)",
-      "Bash(snap list *)"
+      "Bash(snap list *)",
+      "Bash(git push:*)"
     ],
     "defaultMode": "auto"
   },
-  "model": "claude-fable-5-1[1m]",
+  "model": "opus",
   "hooks": {
     "Notification": [
       {
@@ -46,11 +47,17 @@
     "claude-fable-5-1": {
       "effortLevel": "xhigh",
       "autoCompactWindow": 500000
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh",
+      "autoCompactWindow": 500000
     }
   },
+  "autoCompactWindow": 500000,
   "tui": "fullscreen",
   "prefersReducedMotion": true,
   "theme": "dark",
+  "switchModelsOnFlag": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true
 }
