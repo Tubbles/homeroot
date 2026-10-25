@@ -23,6 +23,7 @@
     },
     "hlsearch": true,
     "hlselection": true,
+    "ignorecase": false,
     "lockbindings": true,
     "lsp": true,
     "matchbracestyle": "highlight",
