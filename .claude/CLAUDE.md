@@ -317,7 +317,7 @@ Do not delete documents, even if they are empty.
 
 ## Configuration files for greenfield tools
 
-Preferred layout for user-facing tools (CLIs, daemons, editor helpers) that need configuration. Reference implementation for the layering: kroken (`~/dev/kroken`, package `src/config/`, documented in its `doc/configuration.md`). kroken predates the format preference below and uses TOML. Skip the layout where it does not fit: libraries, single-file scripts, and projects with an established configuration convention (defer to that convention). Drop the project layer for tools that have no per-project dimension.
+Preferred layout for user-facing tools (CLIs, daemons, editor helpers) that need configuration. Reference implementation: kroken (`~/dev/kroken`, package `src/config/`, documented in its `doc/configuration.md`). Skip the layout where it does not fit: libraries, single-file scripts, and projects with an established configuration convention (defer to that convention). Drop the project layer for tools that have no per-project dimension.
 
 - **Format**: SJSON (Bitsquid simplified JSON, also called MJSON: implicit root object, optional commas, bare identifier keys, `=` allowed instead of `:`, comments; specification: https://bitsquid.blogspot.com/2009/10/simplified-json-notation.html) whenever the language supports it natively. Odin does, through `core:encoding/json` with `Specification.SJSON`. Use TOML only when the language natively supports TOML but not SJSON. When neither is native and a parser has to be vendored or written, prefer SJSON where it makes sense: it is a small superset of JSON, so a hand-written parser stays short. File extension `.sjson`.
 - **Layers, lowest precedence first**: `$XDG_CONFIG_DIRS/<tool>/config.<ext>` for each entry, applied last to first so the first entry wins; `$XDG_CONFIG_HOME/<tool>/config.<ext>`; `$XDG_CONFIG_HOME/<tool>/config.d/*.<ext>` sorted by file name; project files named `.<tool>` discovered clang-format style from the target file's directory (or the working directory) up to the filesystem root, applied root first so the closest file wins; command line flags last.
@@ -351,3 +351,18 @@ The following instructions are only applicable to the specified machine/hostname
 <vaio>
 This machine is old and only has two CPU cores, so never compile heavy things, especially any android apps, locally on the machine. Instead make sure to set up proper CI and let the CI runners compile. It is OK to push uncompiled commits for the purpose of letting the remote CI runners do the compilation for you.
 </vaio>
+
+## Security changes need explicit approval, every time
+
+Never make a security related change without the user's explicit approval for that specific change, at that point. A general "go", "continue" or "yes" for a plan is never blanket approval for the security relevant steps inside it. Ask before each one, state exactly what will change and where, and wait.
+
+Security related means, at least: adding, replacing or revoking any key, token, password, certificate or credential anywhere (SSH keys, GitHub deploy keys or tokens, API keys, vault passwords, sudoers rules, PAM, user accounts); changes to who can log in or escalate (sudo, SSH config, authorized_keys, groups); anything that exposes or opens a service (ports, firewall rules, reverse proxy entries, DNS records, port forwards, VPN peers); changes on third party accounts (GitHub, UniFi, Oderland, cloud consoles); and boot or disk changes that affect how a machine can be accessed or recovered (boot order, bootloader config, reflashing).
+
+Added 2026-10-07 after a GitHub deploy key was added twice without a per-step ask; the user accepted the key but wants the asking.
+
+## Nothing gets installed, and no sudo, without the user
+
+- Never install anything on any machine without explicit approval for that specific install: apt, dnf, flatpak, snap, pip or uv outside a project's own venv, container images and containers, systemd units, git clones into system paths, scripts into /usr/local. Updating what is already installed through the user's own update path (`update.sh`) is fine when asked; adding is not.
+- The user is the arbiter of sudo everywhere. Never add or keep NOPASSWD sudoers rules, never rely on passwordless sudo, never ask for or store the user's sudo password. If a step needs root on a machine, say exactly which commands and ask the user to run or approve them, or route it through the mechanism the user chose for that machine (for the Pis, the ansible-pull timer applies what is on the repo's main branch as root, so a push to main is a root action and must be treated as one).
+
+Added 2026-10-07 at the user's request, after a boot server was installed on fluiddpi because it happened to have passwordless sudo.
