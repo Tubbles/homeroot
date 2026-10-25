@@ -284,6 +284,18 @@ It is very important to continuously keep all these documents updated (except fo
 
 Take items from TODO.md (when they are fully fledged out by the user, ask if clarifications are needed) and write items into doc/work/. When items in doc/work/ are done, let them stay there, do not delete them.
 
+### Work items are overviews, the log is the drill-down
+
+A work item in `doc/work/` is a short, high level description of a chunk of work, what a ticket holds: the goal, the scope in a few lines, a `Status` line, a `Verify` list and, once designed, the specification an implementer follows. It is a living document until the work is done: the stages keep it current (the status, the specification, a decision that changes the plan, a deviation the implementer took), but it never grows into a scratch pad of thousands of lines: no agent reports pasted in, no measured numbers the log or the commit hold, no restated context, no trail of every thought (user, 2026-10-05). The directory is the user's overview of the current progress; when they want to know what happened or why something is the way it is, they read `doc/log/` (user, 2026-10-05: "These items are meant as a very high level chunk of work description, not a scratch board during the work").
+
+The specification is written tight, for the implementer. What of the work matters afterwards (the seam chosen and the alternatives rejected, a measurement that decided something, a behaviour change an old save meets) goes into the log section of the landing, in a few weighed sentences, not into the item.
+
+Weigh every sentence written into `doc/work/`, `doc/log/` and the other docs: write only what is not already stated elsewhere, in a commit message, in the code or what the code shows directly, in the log, in another document. Restating and duplicating adds text mass the user has to wade through (user, 2026-10-05: "weigh your words precisely and with intent, write what is not already stated elsewhere").
+
+The `Status` line is one word and a short parenthesis: the date and, once landed, the commit. Agent ids, worktree paths and decision summaries do not live there; a scratch file under `tmp/` holds what the main agent needs to resume an agent.
+
+A work item is never reused or reopened. When its work has landed it moves to `doc/work/done/`, when it is closed or folded into another to `doc/work/cancelled/`, and it stays there. Related work that crops up afterwards, a second pass, a follow-up, a regression, becomes a new item with a new number that refers to the old one. No "pass B" on a done item (user, 2026-10-05).
+
 Do not delete documents, even if they are empty.
 
 ## Configuration files for greenfield tools
