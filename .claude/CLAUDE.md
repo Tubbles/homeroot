@@ -311,6 +311,10 @@ Lock file, so agents of different projects never benchmark at once on one machin
 - The file holds `key=value` lines: `pid` (the shell running the benchmark), `started` (ISO 8601 UTC), `expected_minutes`, `cwd`, `project`, `command`, `session` (the agent's session URL or id), `note` (one free line, for example what the machine must not be used for meanwhile).
 - Remove the file when the benchmark ends, also on failure: `trap 'rm -f ~/benchmark.lock' EXIT` in the shell that holds it.
 
+## Image generation prompts
+
+When a round of feedback changes an image generation prompt, rewrite the whole prompt from scratch around the new picture. Never append corrections to the previous prompt: an additive prompt grows long and contradictory, the style paragraph crowds out the subject, and the model keeps the composition it likes and drops the measurements (the pod interior rounds of 2026-10-04 stalled this way at 600 words). Each round's prompt is a fresh, short text that states the geometry once, in the subject's own terms (an apex barely above a seated helmet, not "two metres"), with the style in a sentence or two at the end. Save every prompt beside its images and show it to the user on request.
+
 ## Machine specific instructions
 
 The following instructions are only applicable to the specified machine/hostname (denoted in angled brackets, eg <hostname> instructions </hostname>):
