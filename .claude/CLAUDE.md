@@ -118,6 +118,21 @@ In plans, risk lists, and effort writeups, describe *what* is uncertain and *why
 - When referring to specific commits in conversation, plans, or wrap-ups, include both a human-friendly name (commit subject or short paraphrase) AND the SHA — e.g. `1f5becec ("widget: add fuzzy filter")` or "the v3 port commit (`8ba12fe6`)". Lead with the human-friendly form so the reader can follow at a glance; include the SHA so it's directly usable in a `git` command. Bare SHAs alone are opaque; bare subjects alone force the reader to dig.
 - Before any plan that depends on remote git state (rebases, fast-forwards, integration rebuilds, "what's new upstream"), run `git fetch` from every relevant remote *first*, then read branch tips. Remote-tracking refs in the workspace are only as fresh as the last fetch — possibly hours or days stale — and a plan grounded in stale refs will under- or over-state the work. For plans that won't execute for a while, note "fetch again immediately before Step 1" in the plan itself.
 
+## Forks
+
+Branching model for the user's forks of other projects (user, 2026-10-25). Reference implementation: the micro fork (`~/dev/micro`, section "Fork workflow" of its CLAUDE.md). Goal: every change can become an upstream PR on its own, while one branch carries all of them for the user's own use.
+
+- Remotes: `origin` is the fork, `upstream` the original project.
+- `master` (or whatever upstream's default branch is called) mirrors upstream. It only ever fast-forwards to `upstream/master` and never carries fork commits.
+- Every change is a feature branch off `master`, one concern each (a feature, a fix), so it can be rebased onto upstream and offered as a PR by itself.
+  - A feature that builds on another feature branches from that feature's tip (a stack). A feature that needs several feature branches starts from a merge of them (`git checkout -b <new> master`, then `git merge <dependency> <dependency>`), never from replayed copies of their commits.
+  - Never branch a feature off `integration`: that couples it to every other patch.
+- `integration` is `master` plus one merge commit per feature (`Merge branch '<feature>' into integration`). It merges only stack tips, so a stack's shared history comes in once. This is the branch the user builds, runs and deploys. Commits that only make sense for the combined build (output generated from all features together) go on `integration` only.
+- Fork-only notes (CLAUDE.md, TODO.md, SUGGESTIONS.md, `work/`, `tmp/`) stay untracked in the local clone, so no branch carries them.
+- When upstream moves: fetch, fast-forward `master`, tag each branch about to be rewritten as `archive/<branch>-pre-<YYYY-MM-DD>`, rebase the features onto the new `master` (stacks in order), run the tests on each rebased feature branch (not only on `integration`), then rebuild `integration`: reset it to `master` and merge the stack tips again. `integration` is disposable.
+- Force pushing feature branches on the user's forks is always fine, without asking (user, 2026-10-25), with `--force-with-lease`. This is the one exception to the no force push rule in Git. Resetting `master` or `integration` is not covered: ask first.
+- A fork with a long-lived base layer of its own (micro's tcell port) bases its features on that layer instead of `master`. The project's CLAUDE.md says so.
+
 ## Writing in the user's name
 
 When producing text that goes out under the user's name (commit messages, PR descriptions, PR and issue comments, code comments authored for them, emails, chat messages), do not use any punctuation dash. That means no em-dash (`—`), no en-dash (`–`), and no hyphen used as a sentence-level separator (e.g. ` - `). These read as stiff and academic. Rewrite with commas, colons, periods, parentheses, or separate sentences instead.
