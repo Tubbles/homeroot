@@ -110,12 +110,12 @@
     // Rename
     "Ctrl-Shift- ": "LspHover",
     "Ctrl- ": "LspCompletion",
+    "F2": "LspRename",
     "F12": "LspGotoDefinition",
     "Ctrl-Shift-F12": "LspReferences",
     "Shift-Alt-f": "LspFormat",
 
     // unbinds
-    "F2": "None",
     "F4": "None",
     "F7": "None",
     "F10": "None",
