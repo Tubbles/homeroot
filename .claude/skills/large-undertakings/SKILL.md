@@ -1,6 +1,6 @@
 ---
 name: large-undertakings
-description: Conventions for large multi-step changes (refactors, migrations, version bumps, build-system changes, multi-commit series). Plans should focus on the recommended approach without Plan-B/fallback sections; expected roadblocks are work to do, not blockers; on the way out, write deferred items into the project tracker and include a hiccups-and-deferred-work section in the wrap-up message. Load when planning or executing a refactor, migration, version bump, build-system change, or any multi-commit series, and when finishing such a series.
+description: Conventions for large multi-step changes (refactors, migrations, version bumps, build-system changes, multi-commit series). Plans should focus on the recommended approach without Plan-B/fallback sections; expected roadblocks are work to do, not blockers; on the way out, write deferred items the user explicitly asked for into TODO.md and genuinely new implementation-phase ideas into SUGGESTIONS.md (creating it if needed), and include a hiccups-and-deferred-work section in the wrap-up message. Load when planning or executing a refactor, migration, version bump, build-system change, or any multi-commit series, and when finishing such a series.
 ---
 
 # Large undertakings
@@ -15,7 +15,10 @@ Expect roadblocks and work through them. Compile errors from API renames, flag r
 
 When you finish a multi-commit plan or other big undertaking, do two things on the way out, even if the user doesn't ask.
 
-**1. Write deferred items into the project tracker preemptively.** Before announcing completion, append the deferred work to `TODO.md` (or the project's equivalent tracker) under a section titled `## Possible action items`. Create the section if it doesn't exist; otherwise add to it. Each bullet should cite the relevant file/function/line and the reason the item was not done in the original series, so the bullet is actionable later. Land this as a small final commit in the same series. Do not gate on user approval to do this; the user told you once, globally, that this is the workflow. The user can still strike or rephrase items after they read it.
+**1. Write deferred items into the tracker preemptively, routed by origin.** Before announcing completion, sort each deferred item by where it came from:
+
+- **The user explicitly asked for it** (it was part of the original request or a follow-up instruction, and got deferred rather than done) → append it to `TODO.md` (or the project's equivalent To Dos file). Deferring it must not demote it: it stays a To Do until done or until the user strikes it.
+- **It is genuinely new** (noticed during implementation — an observation, idea, or candidate improvement the user never asked for) → append it to the project's `SUGGESTIONS.md`, creating the file if it doesn't exist. Never put new ideas of your own into the To Dos file. Each bullet should cite the relevant file/function/line and the reason the item was not done in the original series, so the bullet is actionable later. Land this as a small final commit in the same series. Do not gate on user approval to do this; the user told you once, globally, that this is the workflow. The user can still strike or rephrase items after they read it.
 
 **2. Include a "hiccups and deferred work" section in the wrap-up message.** Two lists:
 
